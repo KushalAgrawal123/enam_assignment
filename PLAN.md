@@ -65,6 +65,12 @@ piece looks like**. Where they disagree, this file wins, and every disagreement 
     and FINN doesn't try to get around that. NSE's announcements API works and carries more than BSE's: ISIN, NSE's
     own category, a text summary, the PDF and an XBRL flag. Every portfolio company is NSE-listed. `bse_code`
     stays empty. NSE answers GitHub's runners too (run 41624378582), so the jobs stay on Actions.
+11. **The Pull API runs on Vercel, not Hugging Face Spaces.** You asked to keep the project simple, and Vercel runs
+    FastAPI with no configuration on the account you already have: no Hugging Face account or token, no 48-hour
+    sleep, no 30–60 s Docker cold start. It's a second Vercel project (`finn-api`) deployed from `backend/`,
+    with functions allowed 300 s, which covers reading an annual report. Document ingestion is a separate,
+    resumable `POST /research/{symbol}/ingest`, so the number cards never wait on PDFs. The "cold Space"
+    exit criterion becomes "first request to a freshly deployed function".
 
 ## Setup you provide
 
@@ -74,7 +80,7 @@ piece looks like**. Where they disagree, this file wins, and every disagreement 
 | 1 | A Supabase project: project URL, publishable key, session-pooler connection string | Database (I apply the schema with `psql`) |
 | 1 | A Vercel account and an access token | Hosting the PWA (I deploy with the CLI) |
 | 1 (optional) | Gemini API key | Classifying leftovers only, in Phase 1 |
-| 2 | Hugging Face write token | Pull API on a Docker Space (I create it) |
+| 2 | Nothing new (Delta 11: the API runs on Vercel) | — |
 | 3 | Telegram bot token + chat id (from BotFather), Tavily API key | Alerts and bios of incoming people |
 | 4 | Anthropic API key | Strong tier, used by P9–P11 only |
 
