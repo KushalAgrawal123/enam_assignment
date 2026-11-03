@@ -5,5 +5,5 @@ An editor, not a terminal: FINN sends a finite brief of what changed in your por
 
 **Try it on a phone:** https://finn-beryl-delta.vercel.app (installable; add it to your home screen).
 
-Status: Phase 1 of 5 (see `PLAN.md`). Until the database is connected the app runs on a demo snapshot of real NSE
-filings frozen on 3 Nov 2026, and says so in the top-right chip.
+Status: Phase 1 of 5 (see `PLAN.md`). Live data from NSE, refreshed every 15 minutes by GitHub Actions. If live
+data is unavailable the app falls back to a frozen snapshot and says so in the top-right chip.

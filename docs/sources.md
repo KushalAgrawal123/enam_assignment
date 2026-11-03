@@ -18,4 +18,7 @@ already allowed for (`FINN_USE_NSE`). Every portfolio company is NSE-listed, so 
 ## Cloud runner check
 
 Every workflow run starts with `python -m jobs.source_check` (non-blocking), so the Actions log shows whether
-GitHub's runners can reach NSE. Pending the first scheduled run (repo pushed 3 Nov 2026).
+GitHub's runners can reach NSE.
+
+**3 Nov 2026, run 41624378582:** NSE announcements ✅ (9 rows), EQUITY_L ✅, yfinance ✅. The jobs run on
+GitHub Actions; no local fallback needed.

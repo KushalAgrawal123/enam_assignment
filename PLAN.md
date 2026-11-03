@@ -9,7 +9,7 @@ piece looks like**. Where they disagree, this file wins, and every disagreement 
 
 | Phase | At the end you can… | Status |
 |---|---|---|
-| 1 · Foundations + live Brief | install FINN on a phone and read a ranked brief of real portfolio filings | **in progress**: built, deployed in demo mode; live data waits on Supabase |
+| 1 · Foundations + live Brief | install FINN on a phone and read a ranked brief of real portfolio filings | ✅ done 3 Nov: https://finn-beryl-delta.vercel.app (live) |
 | 2 · Pull foundations | look up any NSE ticker and get its number cards in seconds, each number tappable to its table row | not started |
 | 3 · Push cards + triggers | see verified results numbers, who an incoming CFO is, one-liners, and Telegram alerts on thresholds you set | not started |
 | 4 · Pull analysis | read what management promised vs delivered, and tap any claim to its source page | not started |
@@ -64,8 +64,7 @@ piece looks like**. Where they disagree, this file wins, and every disagreement 
 10. **NSE is the primary filings feed; BSE is off.** BSE's API returns 403 to automated clients (`docs/sources.md`),
     and FINN doesn't try to get around that. NSE's announcements API works and carries more than BSE's: ISIN, NSE's
     own category, a text summary, the PDF and an XBRL flag. Every portfolio company is NSE-listed. `bse_code`
-    stays empty. If NSE turns out to block GitHub's runners, the poll job moves to a local schedule (step 1's
-    fallback).
+    stays empty. NSE answers GitHub's runners too (run 41624378582), so the jobs stay on Actions.
 
 ## Setup you provide
 
