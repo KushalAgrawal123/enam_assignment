@@ -46,3 +46,15 @@ export async function tableReceipt(symbol: string, citationId: string, payload?:
     return null;
   }
 }
+
+// ---- writes (Phase 3) go through this app's own server routes, which hold the API token server-side. ----
+async function local<T>(path: string, method: string, body?: unknown): Promise<T> {
+  const r = await fetch(path, { method, headers: { "Content-Type": "application/json" }, body: body ? JSON.stringify(body) : undefined });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) throw new ApiError(data.error ?? "http_error", data.detail ?? `HTTP ${r.status}`, r.status);
+  return data as T;
+}
+
+export const getSettings = () => call<import("./types").Settings>("/settings");
+export const putSettings = (patch: Partial<import("./types").Settings>) => local<import("./types").Settings>("/api/settings", "PUT", patch);
+export const markAlertSeen = (id: number) => local<{ ok: boolean }>(`/api/alerts/${id}/seen`, "POST");

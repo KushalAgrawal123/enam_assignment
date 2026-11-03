@@ -88,6 +88,7 @@ export interface Snapshot {
   filings: Filing[];
   prices: PricePoint[];
   alerts: Alert[];
+  settings?: Settings;
 }
 
 export type DataMode = "live" | "demo";
@@ -99,6 +100,7 @@ export interface BriefData {
   filings: Filing[];
   companies: Record<string, Company>;
   prices: Record<string, PricePoint[]>;
+  alerts: Alert[];
   fallbackReason: string | null;
 }
 
@@ -131,4 +133,35 @@ export interface ResearchPayload {
 export interface TableReceipt {
   kind: "table"; doc_url: string; section: string; metric: string; periods: string[];
   values: (number | null)[]; highlight: number; basis: string | null;
+}
+
+// ---- Push cards (Phase 3) ----
+export interface ResultsCard {
+  type: "results"; period_end: string; basis: "consolidated" | "standalone" | null;
+  source: "xbrl" | "pdf" | "screener"; verified: boolean; issues: string[]; flags: string[];
+  rows: { metric: string; value_cr: number | null; qoq_pct: number | null; yoy_pct: number | null }[];
+  margin: { ebitda_margin_pct?: number; qoq_bps?: number | null; yoy_bps?: number | null };
+  compare: { qoq: string | null; yoy: string | null };
+  ebitda_note: string | null; url: string | null; page: number | null;
+}
+export interface Person {
+  name: string; role: string | null; role_class: string | null;
+  action: "appointment" | "resignation" | "cessation" | "redesignation" | "retirement";
+  effective_date: string | null; reason: string | null; page: number | null;
+  bio: { headline: string | null; bullets: { text: string; url: string }[];
+         sources?: { url: string; title: string }[]; note?: string } | null;
+}
+export interface MgmtCard { type: "management_change"; outgoing: Person[]; incoming: Person[]; flags: string[]; url: string | null }
+export interface OneLinerCard { type: "oneliner"; category: string; line: string;
+  facts: Record<string, string | number | null>; url: string | null; page: number | null }
+export type PushCard = ResultsCard | MgmtCard | OneLinerCard;
+
+export interface AlertPayload { date: string; close: number; ret_pct: number | null; index_ret_pct: number | null;
+  vol_x: number | null; likely_cause: { subject: string; url: string | null; category: string } | null;
+  filing_id?: string; url?: string | null; category?: string; tier?: string }
+
+export interface Settings {
+  vol_multiple: number; vol_lookback: number; min_avg_volume: number; price_move_pct: number;
+  relative_to_index: boolean; alert_categories: string[]; min_category_tier: "act" | "know" | "routine";
+  overrides: Record<string, Record<string, number | boolean>>; weights: Record<string, number>;
 }

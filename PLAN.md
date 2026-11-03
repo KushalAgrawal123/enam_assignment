@@ -11,7 +11,7 @@ piece looks like**. Where they disagree, this file wins, and every disagreement 
 |---|---|---|
 | 1 · Foundations + live Brief | install FINN on a phone and read a ranked brief of real portfolio filings | ✅ done 3 Nov: https://finn-beryl-delta.vercel.app (live) |
 | 2 · Pull foundations | look up any NSE ticker and get its number cards in seconds, each number tappable to its table row | ✅ done 3 Nov: Look up → /c/SYMBOL, API https://finn-api-khaki.vercel.app |
-| 3 · Push cards + triggers | see verified results numbers, who an incoming CFO is, one-liners, and Telegram alerts on thresholds you set | not started |
+| 3 · Push cards + triggers | see verified results numbers, who an incoming CFO is, one-liners, and Telegram alerts on thresholds you set | ✅ built 3 Nov; Telegram, bios, PDF rung and LLM one-liners switch on when their keys are added |
 | 4 · Pull analysis | read what management promised vs delivered, and tap any claim to its source page | not started |
 | 5 · Reliability + submission | hand it to a reviewer: works on unseen tickers, survives dead scrapers, package complete | not started |
 
@@ -71,6 +71,14 @@ piece looks like**. Where they disagree, this file wins, and every disagreement 
     with functions allowed 300 s, which covers reading an annual report. Document ingestion is a separate,
     resumable `POST /research/{symbol}/ingest`, so the number cards never wait on PDFs. The "cold Space"
     exit criterion becomes "first request to a freshly deployed function".
+12. **Results ladder: the filing PDF, then screener's quarterly table; no XBRL rung.** NSE's financial-results
+    index (the XBRL source) stops in January 2025. The screener rung is verified by arithmetic: the table's
+    own identities must hold for the current, previous and year-ago quarters, and the PDF rung (when a Gemini
+    key exists) must agree with the table. Banks show Revenue, PBT and PAT, because screener's "financing
+    profit" nets provisions and is often negative.
+13. **The write token never reaches the browser.** BUILD_PLAN put it in `NEXT_PUBLIC_FINN_API_TOKEN`; that ships it
+    to every visitor. Writes (Rules, alert seen) go through the web app's own server routes, which add the
+    token from a server-only variable.
 
 ## Setup you provide
 

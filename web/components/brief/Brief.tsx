@@ -1,9 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { AlertCard } from "@/components/cards/AlertCard";
 import { DataModeChip } from "@/components/DataModeChip";
 import { WINDOW_HOURS, WindowChip, type WindowKey } from "@/components/WindowChip";
+import { markAlertSeen } from "@/lib/api";
 import { liveConfigured, loadBrief } from "@/lib/data";
+import { hiddenIds, triage, undo } from "@/lib/triage";
 import { buildDigest } from "@/lib/digest";
 import { istDay, longDay } from "@/lib/format";
 import type { BriefData, DataMode } from "@/lib/types";
@@ -39,6 +43,17 @@ export function Brief() {
   const [error, setError] = useState<string | null>(null);
   const [win, setWin] = useState<WindowKey>("24h");
   const [custom, setCustom] = useState({ from: "", to: "" });
+  const [hidden, setHidden] = useState<Set<string>>(new Set());
+  const [lastAction, setLastAction] = useState<{ id: string; label: string } | null>(null);
+
+  useEffect(() => { const t = setTimeout(() => setHidden(hiddenIds()), 0); return () => clearTimeout(t); }, []);
+  const act = (id: string, action: "noted" | "snoozed", label: string, alertId?: number) => {
+    triage(id, action);
+    if (alertId !== undefined) markAlertSeen(alertId).catch(() => {});   // the server learns it was seen
+    setHidden(hiddenIds());
+    setLastAction({ id, label: action === "noted" ? `Noted: ${label}` : `Snoozed till 8am: ${label}` });
+  };
+  const undoLast = () => { if (lastAction) { undo(lastAction.id); setHidden(hiddenIds()); setLastAction(null); } };
 
   useEffect(() => {
     let alive = true;
@@ -53,7 +68,12 @@ export function Brief() {
     return { start: z(new Date(new Date(data.asOf).getTime() - hours * 3600 * 1000)), end: data.asOf };
   }, [data, win, custom]);
 
-  const digest = useMemo(() => (data && range ? buildDigest(data.filings, range.start, range.end) : null), [data, range]);
+  const digest = useMemo(() => {
+    if (!data || !range) return null;
+    const alerts = data.alerts.filter((a) => range.start <= a.ts && a.ts <= range.end && !hidden.has(`alert:${a.id}`));
+    const d = buildDigest(data.filings, range.start, range.end, alerts);
+    return { ...d, act: d.act.filter((c) => !hidden.has(c.id)), know: d.know.filter((c) => !hidden.has(c.id)) };
+  }, [data, range, hidden]);
 
   const toggleMode = () => {
     const next: DataMode = data?.mode === "live" ? "demo" : "live";
@@ -82,9 +102,11 @@ export function Brief() {
           <p className="text-[12px] text-muted">{longDay(now)}</p>
           <h1 className="whitespace-nowrap font-serif text-[30px] leading-tight">Your brief</h1>
         </div>
-        <div className="shrink-0 pt-1">
+        <div className="flex shrink-0 items-center gap-2 pt-1">
           <DataModeChip mode={data.mode} freezeTime={data.freezeTime} reason={data.fallbackReason}
             liveAvailable={liveConfigured()} onToggle={toggleMode} />
+          <Link href="/rules" aria-label="Your rules: what FINN alerts you about"
+            className="grid h-7 w-7 place-items-center rounded-full border border-hairline text-[12px] text-muted hover:text-ink">⚙</Link>
         </div>
       </header>
 
@@ -103,10 +125,15 @@ export function Brief() {
         <h2 id="act-h" className="mb-2 flex items-center gap-2 text-[11px] uppercase tracking-wider text-muted">
           <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent" /> Act
         </h2>
-        {digest.act.length === 0 ? <p className="text-muted">Nothing needs action {WINDOW_LABEL[win]}.</p> : (
+        {digest.act.length === 0 && digest.alerts.length === 0 ? <p className="text-muted">Nothing needs action {WINDOW_LABEL[win]}.</p> : (
           <div className="space-y-3">
+            {digest.alerts.map((a) => (
+              <AlertCard key={`a${a.id}`} a={a} now={now}
+                onNoted={() => act(`alert:${a.id}`, "noted", a.title, a.id)} onSnooze={() => act(`alert:${a.id}`, "snoozed", a.title)} />
+            ))}
             {digest.act.map((c) => (
-              <ActCard key={c.id} c={c} company={data.companies[c.symbol]} prices={data.prices[c.symbol]} now={now} />
+              <ActCard key={c.id} c={c} company={data.companies[c.symbol]} prices={data.prices[c.symbol]} now={now}
+                onNoted={() => act(c.id, "noted", c.symbol)} onSnooze={() => act(c.id, "snoozed", c.symbol)} />
             ))}
           </div>
         )}
@@ -115,12 +142,19 @@ export function Brief() {
       {digest.know.length > 0 && (
         <section className="mt-7" aria-labelledby="know-h">
           <h2 id="know-h" className="mb-1 text-[11px] uppercase tracking-wider text-muted">Know</h2>
-          <ul>{digest.know.map((c) => <KnowRow key={c.id} c={c} now={now} />)}</ul>
+          <ul>{digest.know.map((c) => <KnowRow key={c.id} c={c} now={now}
+            onNoted={() => act(c.id, "noted", c.symbol)} onSnooze={() => act(c.id, "snoozed", c.symbol)} />)}</ul>
         </section>
       )}
 
       <RoutineFold routine={digest.routine} now={now} />
       <CaughtUp windowLabel={WINDOW_LABEL[win]} asOf={now} mode={data.mode} />
+      {lastAction && (
+        <div role="status" className="fixed inset-x-4 bottom-[calc(env(safe-area-inset-bottom)+4rem)] z-40 mx-auto flex max-w-[528px] items-center justify-between rounded-full bg-ink px-4 py-2 text-[13px] text-paper">
+          <span className="truncate">{lastAction.label}</span>
+          <button onClick={undoLast} className="ml-3 shrink-0 font-medium underline underline-offset-2">Undo</button>
+        </div>
+      )}
     </main>
   );
 }

@@ -12,6 +12,8 @@ from zoneinfo import ZoneInfo
 from .. import config, db
 from ..sources import fetchers
 from .classify import classify
+from . import notify
+from .alerts import category_alerts, eod_alerts
 from .score import base_weight, score_filing
 
 log = logging.getLogger("finn.pipeline")
@@ -108,11 +110,88 @@ def run_poll(start: dt.datetime, end: dt.datetime, rescore: bool = False) -> dic
                         secondary=cats["secondary"], method=cats["method"], score=s["score"], tier=s["tier"],
                         reasons=s["reasons"]))
     db.upsert("filings", out, key=["id"], update=[k for k in (out[0] if out else {}) if k not in ("card", "card_status")])
+    for o in out:
+        if o["tier"] in ("act", "know") and o["category"] in CARD_CATEGORIES:
+            db.execute("update filings set card_status = 'pending' where id = %s and card_status in ('none', 'failed')",
+                       (o["id"],))
+    cards = build_cards()
+    new_alerts = category_alerts(out, settings) if not rescore else []
+    stored = store_alerts(new_alerts)
+    pushed = notify.send_pending()
     db.set_meta("last_poll", {"at": dt.datetime.now(dt.timezone.utc).isoformat(), "start": start.isoformat(),
                               "end": end.isoformat(), "fetched": len(rows), "new": len(out)})
     tiers = {t: sum(1 for o in out if o["tier"] == t) for t in ("act", "know", "routine")}
-    log.info("poll %s..%s fetched=%d new=%d %s", start, end, len(rows), len(out), tiers)
-    return dict(fetched=len(rows), new=len(out), **tiers)
+    log.info("poll %s..%s fetched=%d new=%d %s cards=%s alerts=%d telegram=%s", start, end, len(rows), len(out),
+             tiers, cards, stored, pushed)
+    return dict(fetched=len(rows), new=len(out), **tiers, cards=cards, alerts=stored, telegram=pushed)
+
+
+CARD_CATEGORIES = {"results", "management_change", "M&A", "fund_raise", "capex", "litigation", "credit_rating",
+                   "insider_trading", "pledging", "dividend", "bonus_split", "press_release"}
+
+
+def build_cards(limit: int = 40) -> dict:
+    """Build cards for pending Act/Know filings. A results card waits (stays pending) until screener's table has
+    the quarter; it gives up after 3 days. Failures mark the card failed, never the poll."""
+    from .mgmt import mgmt_card
+    from .oneliner import oneliner
+    from .results import pdf_values, period_end_from_text, results_card
+    from .. import llm
+
+    pending = db.select("""select f.id, f.symbol, f.ts, f.subject, f.text, f.url, f.category, f.subtype,
+                                  c.name, c.is_financial
+                           from filings f join companies c using (symbol)
+                           where f.card_status = 'pending' order by f.ts desc limit %s""", (limit,))
+    screener: dict[str, dict] = {}
+    done = waiting = failed = 0
+    for f in pending:
+        try:
+            card = None
+            if f["category"] == "results" and f["subtype"] in ("filing", "board_outcome"):
+                period = period_end_from_text(f"{f['subject']} {f['text']}") or _last_quarter_end(f["ts"])
+                if f["symbol"] not in screener:
+                    screener[f["symbol"]] = fetchers.screener_company(f["symbol"])
+                b = screener[f["symbol"]]
+                pdfv = None
+                if llm.available("cheap") and f["url"]:
+                    pdfv = pdf_values(fetchers.pdf_pages(f["url"], max_pages=8), period)
+                card = results_card(b["tables"].get("quarters"), period, bool(f["is_financial"]), b.get("basis"),
+                                    f["url"], pdf_values=pdfv)
+                if card is None and dt.datetime.now(dt.timezone.utc) - f["ts"] < dt.timedelta(days=3):
+                    waiting += 1
+                    continue
+            elif f["category"] == "management_change":
+                pages = fetchers.pdf_pages(f["url"], max_pages=5) if llm.available("cheap") and f["url"] else None
+                card = mgmt_card(f["text"] or f["subject"], f["name"] or f["symbol"], f["url"], pages)
+            elif f["category"] != "results":
+                pages = fetchers.pdf_pages(f["url"], max_pages=4) if llm.available("cheap") and f["url"] else None
+                card = oneliner(f["category"], f["subject"], f["text"] or "", f["url"], pages)
+            status = "ready" if card else "none"
+            db.execute("update filings set card = %s, card_status = %s where id = %s",
+                       (db.Jsonb(card) if card else None, status, f["id"]))
+            done += bool(card)
+        except Exception as e:  # degrade per card
+            log.warning("card %s %s: %s", f["symbol"], f["id"], e)
+            db.execute("update filings set card_status = 'failed' where id = %s", (f["id"],))
+            failed += 1
+    return {"built": done, "waiting": waiting, "failed": failed}
+
+
+def _last_quarter_end(ts: dt.datetime) -> str:
+    d = ts.astimezone(IST).date()
+    q_end_month = ((d.month - 1) // 3) * 3          # quarter that ended before this one
+    y = d.year if q_end_month else d.year - 1
+    m = q_end_month or 12
+    nxt = dt.date(y + (m == 12), m % 12 + 1, 1)
+    return (nxt - dt.timedelta(days=1)).isoformat()
+
+
+def store_alerts(alerts: list[dict]) -> int:
+    if not alerts:
+        return 0
+    before = db.select("select count(*) n from alerts")[0]["n"]
+    db.upsert("alerts", alerts, key=["dedupe"], update=[])      # first write wins; re-runs don't re-alert
+    return db.select("select count(*) n from alerts")[0]["n"] - before
 
 
 def run_eod(days: int = 90) -> dict:
@@ -128,7 +207,23 @@ def run_eod(days: int = 90) -> dict:
         for back in range(0, 15):
             rows += fetchers.bhavcopy_history(today - dt.timedelta(days=back), missing)
     db.upsert("prices", rows, key=["symbol", "date"])
+    stored = eod_check()
+    pushed = notify.send_pending()
     db.set_meta("last_eod", {"at": dt.datetime.now(dt.timezone.utc).isoformat(), "rows": len(rows),
-                             "missing_from_yfinance": missing})
-    log.info("eod rows=%d missing=%s", len(rows), missing)
-    return dict(rows=len(rows), symbols=len(got), missing=missing)
+                             "missing_from_yfinance": missing, "alerts": stored})
+    log.info("eod rows=%d missing=%s alerts=%d telegram=%s", len(rows), missing, stored, pushed)
+    return dict(rows=len(rows), symbols=len(got), missing=missing, alerts=stored, telegram=pushed)
+
+
+def eod_check() -> int:
+    """Run the price/volume triggers on the latest stored session for the portfolio."""
+    settings = db.settings()
+    series: dict[str, list[dict]] = {}
+    for p in db.select("""select symbol, date, close, volume from prices
+                          where date >= current_date - 60 order by symbol, date"""):
+        series.setdefault(p["symbol"], []).append(p)
+    portfolio = {r["symbol"] for r in db.select("select symbol from companies where in_portfolio")}
+    filings = db.select("""select id, symbol, ts, subject, url, category, score from filings
+                           where ts >= now() - interval '5 days'""")
+    alerts = eod_alerts({s: v for s, v in series.items() if s in portfolio}, settings, series.get(INDEX), filings)
+    return store_alerts(alerts)

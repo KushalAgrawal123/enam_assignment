@@ -40,9 +40,11 @@ def snapshot(freeze: dt.datetime) -> dict:
                        ((freeze - dt.timedelta(days=90)).date(), freeze.date()))
     companies = db.select("""select symbol, name, sector, mcap_cr, is_financial, in_portfolio, in_research_set
                              from companies order by symbol""")
+    alerts = db.select("""select id, symbol, kind, ts, title, reasons, payload, seen from alerts
+                          where ts between %s and %s order by ts desc""", (start, freeze))
     s = db.settings()
     return dict(freeze_time=_iso(freeze), companies=_clean(companies), filings=_clean(filings),
-                prices=_clean(prices), alerts=[], settings={k: _iso(v) for k, v in s.items()})
+                prices=_clean(prices), alerts=_clean(alerts), settings={k: _iso(v) for k, v in s.items()})
 
 
 def warm_research() -> None:

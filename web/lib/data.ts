@@ -1,7 +1,7 @@
 // Data layer (BUILD_PLAN §6.3): live Supabase first, the frozen demo snapshot otherwise.
 // Falls back when Supabase isn't configured, a request fails, or the newest filing is older than 72 hours.
 import { supabase } from "./supabase";
-import type { BriefData, Company, DataMode, Filing, PricePoint, Snapshot } from "./types";
+import type { Alert, BriefData, Company, DataMode, Filing, PricePoint, Snapshot } from "./types";
 
 const STALE_MS = 72 * 3600 * 1000;
 const HISTORY_DAYS = 8; // the widest preset window is 7d; custom ranges reload with their own start
@@ -25,12 +25,13 @@ async function loadLive(since: Date): Promise<BriefData> {
   if (!sb) throw new Error("Supabase isn't configured for this deployment");
   const now = new Date();
   const priceSince = new Date(now.getTime() - 60 * 86400 * 1000).toISOString().slice(0, 10);
-  const [f, c, p] = await Promise.all([
+  const [f, c, p, a] = await Promise.all([
     sb.from("filings").select(FILING_COLS).gte("ts", since.toISOString()).order("ts", { ascending: false }).limit(2000),
     sb.from("companies").select("symbol,name,sector,mcap_cr,is_financial,in_portfolio,in_research_set"),
     sb.from("prices").select("symbol,date,close,volume").gte("date", priceSince).order("date").limit(5000),
+    sb.from("alerts").select("id,symbol,kind,ts,title,reasons,payload,seen").gte("ts", since.toISOString()).order("ts", { ascending: false }).limit(200),
   ]);
-  const err = f.error ?? c.error ?? p.error;
+  const err = f.error ?? c.error ?? p.error ?? a.error;
   if (err) throw new Error(err.message);
   const filings = (f.data as Filing[]).map(normFiling);
   const newest = filings[0]?.ts;
@@ -38,7 +39,8 @@ async function loadLive(since: Date): Promise<BriefData> {
     throw new Error("Live data is more than 72 hours old");
   }
   const { c: companies, p: prices } = index(c.data as Company[], p.data as PricePoint[]);
-  return { mode: "live", asOf: z(now), freezeTime: null, filings, companies, prices, fallbackReason: null };
+  const alerts = (a.data as Alert[]).map((x) => ({ ...x, ts: z(new Date(x.ts)) }));
+  return { mode: "live", asOf: z(now), freezeTime: null, filings, companies, prices, alerts, fallbackReason: null };
 }
 
 let snapshotPromise: Promise<Snapshot> | null = null;
@@ -52,7 +54,7 @@ async function loadDemo(reason: string | null): Promise<BriefData> {
   const { c, p } = index(s.companies, s.prices);
   return {
     mode: "demo", asOf: s.freeze_time, freezeTime: s.freeze_time, filings: s.filings.map(normFiling),
-    companies: c, prices: p, fallbackReason: reason,
+    companies: c, prices: p, alerts: s.alerts ?? [], fallbackReason: reason,
   };
 }
 

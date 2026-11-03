@@ -2,16 +2,19 @@
 
 import { useState } from "react";
 import { dayMove, Sparkline } from "@/components/Sparkline";
+import { Swipeable, TriageButtons } from "@/components/Swipeable";
 import { CATEGORY_LABEL, pct, short, shortName, when } from "@/lib/format";
 import type { Company, DigestCard, PricePoint } from "@/lib/types";
+import { CardBody } from "./CardBody";
 
 /** An Act item: the full card. Tap to see why it's here and everything folded into it. */
-export function ActCard({ c, company, prices, now }: {
-  c: DigestCard; company?: Company; prices?: PricePoint[]; now: string;
+export function ActCard({ c, company, prices, now, onNoted, onSnooze }: {
+  c: DigestCard; company?: Company; prices?: PricePoint[]; now: string; onNoted: () => void; onSnooze: () => void;
 }) {
   const [open, setOpen] = useState(false);
   const move = dayMove(prices);
   return (
+    <Swipeable onNoted={onNoted} onSnooze={onSnooze}>
     <article className="rounded-xl border border-hairline bg-raised">
       <button onClick={() => setOpen(!open)} aria-expanded={open} className="block w-full px-4 pb-3 pt-3.5 text-left">
         <div className="flex items-center gap-2 text-[12px] text-muted">
@@ -21,6 +24,7 @@ export function ActCard({ c, company, prices, now }: {
           <span className="num ml-auto shrink-0">{when(c.ts, now)}</span>
         </div>
         <h3 className="mt-1.5 font-serif text-[18px] leading-snug">{c.title}</h3>
+        <CardBody c={c} />
         <div className="mt-2 flex items-center gap-3 text-[12px] text-muted">
           <span className="rounded border border-hairline px-1.5 py-px">{CATEGORY_LABEL[c.category] ?? c.category}</span>
           {c.attachments.length > 0 && <span>+{c.attachments.length} related</span>}
@@ -59,9 +63,11 @@ export function ActCard({ c, company, prices, now }: {
                 Open filing ↗
               </a>
             )}
+            <TriageButtons onNoted={onNoted} onSnooze={onSnooze} />
           </div>
         </div>
       </div>
     </article>
+    </Swipeable>
   );
 }
