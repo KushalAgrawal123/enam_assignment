@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// Only screens that exist are listed (PLAN Phase 1). Watch and Look up join in later phases.
-const ITEMS: { href: string; label: string }[] = [{ href: "/", label: "Brief" }];
+// Only screens that exist are listed. Watch joins in Phase 5.
+const ITEMS: { href: string; label: string }[] = [{ href: "/", label: "Brief" }, { href: "/lookup", label: "Look up" }];
+
+const active = (path: string, href: string) => href === "/" ? path === "/" : path.startsWith(href) || (href === "/lookup" && path.startsWith("/c/"));
 
 export function BottomNav() {
   const path = usePathname();
@@ -14,8 +16,8 @@ export function BottomNav() {
       <ul className="mx-auto flex max-w-[560px]">
         {ITEMS.map((i) => (
           <li key={i.href} className="flex-1">
-            <Link href={i.href} aria-current={path === i.href ? "page" : undefined}
-              className={`block py-3 text-center text-[12px] ${path === i.href ? "text-ink" : "text-muted"}`}>
+            <Link href={i.href} aria-current={active(path, i.href) ? "page" : undefined}
+              className={`block py-3 text-center text-[12px] ${active(path, i.href) ? "font-medium text-ink" : "text-muted"}`}>
               {i.label}
             </Link>
           </li>

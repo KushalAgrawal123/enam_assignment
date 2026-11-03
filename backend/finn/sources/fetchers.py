@@ -188,3 +188,115 @@ def _f(v) -> float | None:
         return None if v != v else round(v, 4)
     except (TypeError, ValueError):
         return None
+
+
+# ------------------------------------------------------------ screener ---
+
+SCREENER = "https://www.screener.in"
+SECTIONS = ["quarters", "profit-loss", "balance-sheet", "cash-flow", "ratios"]
+_MONTHS = {m: i for i, m in enumerate(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
+                                        "Dec"], 1)}
+
+
+def _period(label: str) -> str:
+    """'Sep 2026' -> '2026-09-30' (quarters are keyed by period-end date); 'TTM' stays 'TTM'."""
+    m = re.fullmatch(r"([A-Z][a-z]{2}) (\d{4})", label.strip())
+    if not m:
+        return label.strip()
+    y, mo = int(m.group(2)), _MONTHS[m.group(1)]
+    nxt = dt.date(y + (mo == 12), mo % 12 + 1, 1)
+    return (nxt - dt.timedelta(days=1)).isoformat()
+
+
+def _num(text: str) -> float | None:
+    t = text.replace(",", "").replace("%", "").replace("₹", "").replace("Cr.", "").strip()
+    try:
+        return float(t)
+    except ValueError:
+        return None
+
+
+def _label(td) -> str:
+    """Row label without screener's '+' expanders and tooltips ('Sales +' -> 'Sales')."""
+    first = td.find(["button", "a"]) or td
+    text = next((s.strip() for s in first.strings if s.strip()), "")
+    return re.sub(r"\s*\+$", "", text).strip()
+
+
+def parse_screener(html: str) -> dict:
+    from bs4 import BeautifulSoup
+
+    s = BeautifulSoup(html, "lxml")
+    out: dict = {"tables": {}, "top": {}, "documents": {"annual_reports": [], "concalls": []}}
+    h1 = s.select_one("h1")
+    out["name"] = h1.get_text(strip=True) if h1 else None
+    for sec in SECTIONS:
+        t = s.select_one(f"section#{sec} table.data-table")
+        if not t:
+            continue
+        periods = [_period(th.get_text(strip=True)) for th in t.select("thead th")][1:]
+        rows = {}
+        for tr in t.select("tbody tr"):
+            tds = tr.select("td")
+            if len(tds) < 2:
+                continue
+            label = _label(tds[0])
+            if not label or label == "Raw PDF":
+                continue
+            rows[label] = [_num(td.get_text(strip=True)) for td in tds[1:len(periods) + 1]]
+        if rows and any(v is not None for vals in rows.values() for v in vals):
+            out["tables"][sec] = {"periods": periods, "rows": rows}
+    for li in s.select("#top-ratios li"):
+        name, val = li.select_one(".name"), li.select_one(".value")
+        if name and val:
+            nums = [_num(x) for x in re.findall(r"[\d,]+\.?\d*", val.get_text(" ", strip=True))]
+            out["top"][name.get_text(strip=True)] = nums[0] if len(nums) == 1 else nums
+    for li in s.select("section#documents .annual-reports li"):
+        a = li.select_one("a")
+        m = re.search(r"(20\d\d)", li.get_text(" ", strip=True))
+        if a and a.get("href"):
+            out["documents"]["annual_reports"].append({"year": m.group(1) if m else None, "url": a["href"]})
+    for li in s.select("section#documents .concalls li"):
+        when = li.select_one("div")
+        tr = next((a for a in li.select("a") if a.get_text(strip=True).lower() == "transcript"), None)
+        out["documents"]["concalls"].append({"period": when.get_text(strip=True) if when else None,
+                                              "transcript": tr["href"] if tr else None})
+    return out
+
+
+def screener_company(symbol: str) -> dict:
+    """Parsed screener page. Consolidated first; standalone when the consolidated view has no tables."""
+    last = None
+    for basis, path in (("consolidated", f"/company/{symbol}/consolidated/"), ("standalone", f"/company/{symbol}/")):
+        r = requests.get(SCREENER + path, headers=UA, timeout=30)
+        if r.status_code == 404:
+            raise SourceError(f"screener has no page for {symbol}")
+        r.raise_for_status()
+        data = parse_screener(r.text)
+        if data["tables"].get("quarters") or data["tables"].get("profit-loss"):
+            data["basis"] = basis
+            data["fetched_at"] = dt.datetime.now(dt.timezone.utc).isoformat()
+            return data
+        last = data
+    raise SourceError(f"screener page for {symbol} has no financial tables")
+
+
+def pdf_pages(url: str, max_pages: int | None = None) -> list[str]:
+    """Download a PDF and return its text, one string per page."""
+    import pypdfium2 as pdfium
+
+    r = requests.get(url, headers=UA, timeout=90, allow_redirects=True)
+    r.raise_for_status()
+    if not r.content.startswith(b"%PDF"):
+        raise SourceError(f"not a PDF: {url}")
+    doc = pdfium.PdfDocument(r.content)
+    n = len(doc) if max_pages is None else min(len(doc), max_pages)
+    pages = []
+    for i in range(n):
+        page = doc[i]
+        tp = page.get_textpage()
+        pages.append(tp.get_text_range())
+        tp.close()
+        page.close()
+    doc.close()
+    return pages

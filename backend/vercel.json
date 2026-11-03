@@ -1,0 +1,4 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": { "finn_api/main.py": { "maxDuration": 300 } }
+}

@@ -55,3 +55,21 @@ export const short = (iso: string) => `${shortFmt.format(new Date(iso))} ${timeF
 
 /** Always the full "Tue 3 Nov · 16:06" form (IST). */
 export const stamp = (iso: string) => `${dayFmt.format(new Date(iso))} · ${timeFmt.format(new Date(iso))}`;
+
+const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+/** Table period keys: "2026-03-31" -> "FY26" for annual tables, "Sep 2026" for quarters; TTM/current pass through. */
+export function periodLabel(p: string, annual = false): string {
+  const m = /^(\d{4})-(\d{2})-\d{2}$/.exec(p);
+  if (!m) return p === "current" ? "now" : p;
+  return annual && m[2] === "03" ? `FY${m[1].slice(2)}` : `${MON[Number(m[2]) - 1]} ${m[1]}`;
+}
+
+/** A value in its unit: "₹38,632 cr", "19%", "0.21x", "46 days". */
+export function fmt(v: number | null | undefined, unit: string): string {
+  if (v === null || v === undefined || Number.isNaN(v)) return "—";
+  if (unit === "₹ cr") return `₹${Math.round(v).toLocaleString("en-IN")} cr`;
+  if (unit === "%") return `${Number.isInteger(v) ? v : v.toFixed(1)}%`;
+  if (unit === "x") return `${v.toFixed(2)}×`;
+  if (unit === "days") return `${Math.round(v)} days`;
+  return Math.abs(v) >= 100 ? Math.round(v).toLocaleString("en-IN") : String(v);
+}

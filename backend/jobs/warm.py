@@ -45,13 +45,33 @@ def snapshot(freeze: dt.datetime) -> dict:
                 prices=_clean(prices), alerts=[], settings={k: _iso(v) for k, v in s.items()})
 
 
+def warm_research() -> None:
+    """Number cards + documents for the research set; payloads frozen to web/public/demo/research/."""
+    from finn.pull import bundle, run
+
+    out = DEMO / "research"
+    out.mkdir(parents=True, exist_ok=True)
+    for sym in config.RESEARCH:
+        run.build_numbers(sym, refresh=True)
+        while not bundle.ingest(sym, budget_s=600)["done"]:
+            pass
+        p = run.payload(sym)
+        (out / f"{sym}.json").write_text(json.dumps(p, default=str, separators=(",", ":")))
+        print(f"{sym}: {p['documents']}", flush=True)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--freeze", nargs="?", const="now")
     ap.add_argument("--force", action="store_true")
+    ap.add_argument("--research", action="store_true", help="build + ingest the research set, freeze its payloads")
     a = ap.parse_args()
+    if a.research:
+        warm_research()
     if not a.freeze:
-        raise SystemExit("usage: python -m jobs.warm --freeze [ISO] [--force]")
+        if a.research:
+            return
+        raise SystemExit("usage: python -m jobs.warm [--research] --freeze [ISO] [--force]")
     freeze = dt.datetime.now(dt.timezone.utc) if a.freeze == "now" else dt.datetime.fromisoformat(a.freeze)
     snap = snapshot(freeze)
     acts = sum(1 for f in snap["filings"] if f["tier"] == "act")

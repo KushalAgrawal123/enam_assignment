@@ -12,10 +12,21 @@ from psycopg.types.json import Jsonb
 from . import config
 
 
+_conn: psycopg.Connection | None = None
+
+
 @contextmanager
 def conn():
-    with psycopg.connect(config.DB_URL, row_factory=dict_row, prepare_threshold=None) as c:
-        yield c
+    """One reused autocommit connection per process: a new TLS handshake to the pooler costs ~1 s."""
+    global _conn
+    if _conn is None or _conn.closed or _conn.broken:
+        _conn = psycopg.connect(config.DB_URL, row_factory=dict_row, prepare_threshold=None, autocommit=True)
+    try:
+        yield _conn
+    except psycopg.OperationalError:
+        _conn.close()
+        _conn = None
+        raise
 
 
 def select(sql: str, params: Sequence[Any] | dict | None = None) -> list[dict]:
@@ -43,7 +54,7 @@ def upsert(table: str, rows: Iterable[dict], key: Sequence[str], update: Sequenc
            f"on conflict ({', '.join(key)}) do "
            + (f"update set {', '.join(f'{c} = excluded.{c}' for c in update)}" if update else "nothing"))
     with conn() as c:
-        with c.cursor() as cur:
+        with c.transaction(), c.cursor() as cur:
             cur.executemany(sql, [[_adapt(r.get(k)) for k in cols] for r in rows])
     return len(rows)
 

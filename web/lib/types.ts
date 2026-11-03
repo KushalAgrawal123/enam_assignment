@@ -101,3 +101,34 @@ export interface BriefData {
   prices: Record<string, PricePoint[]>;
   fallbackReason: string | null;
 }
+
+// ---- Pull (Phase 2) ----
+export type ResearchCardId = "verdict" | "ledger" | "narrative" | "snapshot" | "financials"
+  | "trajectory" | "balance_sheet" | "cash_quality" | "guidance" | "bull_bear";
+
+export interface Citation {
+  id: string;
+  kind: "transcript" | "annual_report" | "results" | "filing" | "table";
+  doc_url?: string; period?: string; page?: number; quote?: string;
+  table_ref?: { section: string; metric: string; period: string; value: number | null };
+}
+
+export interface ResearchCard<T = unknown> {
+  id: ResearchCardId; status: "queued" | "running" | "ready" | "gap" | "failed";
+  data: T | null; citations: Citation[]; gaps: string[];
+}
+
+export interface Cell { value: number; period: string; metric?: string; citation?: string; citations?: string[] }
+export interface Item extends Cell { label: string; unit: string; derived?: string }
+
+export interface ResearchPayload {
+  symbol: string; name: string; basis: "consolidated" | "standalone" | null; is_financial: boolean;
+  as_of: string; status: "queued" | "running" | "ready" | "partial";
+  cards: Partial<Record<ResearchCardId, ResearchCard>>; gaps: string[];
+  documents?: { transcripts: number; annual_report: string | null; ocr_needed: number; failed: number; pending: number };
+}
+
+export interface TableReceipt {
+  kind: "table"; doc_url: string; section: string; metric: string; periods: string[];
+  values: (number | null)[]; highlight: number; basis: string | null;
+}

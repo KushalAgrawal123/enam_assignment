@@ -10,7 +10,7 @@ piece looks like**. Where they disagree, this file wins, and every disagreement 
 | Phase | At the end you can… | Status |
 |---|---|---|
 | 1 · Foundations + live Brief | install FINN on a phone and read a ranked brief of real portfolio filings | ✅ done 3 Nov: https://finn-beryl-delta.vercel.app (live) |
-| 2 · Pull foundations | look up any NSE ticker and get its number cards in seconds, each number tappable to its table row | not started |
+| 2 · Pull foundations | look up any NSE ticker and get its number cards in seconds, each number tappable to its table row | ✅ done 3 Nov: Look up → /c/SYMBOL, API https://finn-api-khaki.vercel.app |
 | 3 · Push cards + triggers | see verified results numbers, who an incoming CFO is, one-liners, and Telegram alerts on thresholds you set | not started |
 | 4 · Pull analysis | read what management promised vs delivered, and tap any claim to its source page | not started |
 | 5 · Reliability + submission | hand it to a reviewer: works on unseen tickers, survives dead scrapers, package complete | not started |
