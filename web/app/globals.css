@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* BUILD_PLAN §6.5. Vermilion is reserved for Act and alerts. */
+:root {
+  --paper: #f7f5f0;
+  --ink: #1c1b19;
+  --muted: #6b6a65;
+  --hairline: #e3e0d8;
+  --raised: #fffdf8;
+  --accent: #d2462b;
+  --up: #2f6b3a;
+  --down: #a33a22;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #151514;
+    --ink: #eceae4;
+    --muted: #9a988f;
+    --hairline: #2c2b28;
+    --raised: #1c1c1a;
+    --up: #7fb38a;
+    --down: #e0826b;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-hairline: var(--hairline);
+  --color-raised: var(--raised);
+  --color-accent: var(--accent);
+  --color-up: var(--up);
+  --color-down: var(--down);
+  --font-serif: var(--font-newsreader), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+html {
+  background: var(--paper);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 150ms expand/collapse (BUILD_PLAN §6.5) */
+.fold {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 150ms ease;
+}
+.fold[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+.fold > * {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fold {
+    transition: none;
+  }
+}
