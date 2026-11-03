@@ -1,0 +1,2677 @@
+{
+ "filings": [
+  {
+   "id": "NSE-106830289",
+   "symbol": "NAZARA",
+   "ts": "2026-10-27T10:42:04Z",
+   "subject": "Link of Recording",
+   "url": "https://nsearchives.nseindia.com/corporate/NAZARA_27102026161013_OutcomeofEarningCall.pdf",
+   "category": "earnings_call",
+   "subtype": "recording",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Earnings call: audio of a call, transcript is more useful"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106830354",
+   "symbol": "INFY",
+   "ts": "2026-10-27T11:08:30Z",
+   "subject": "Infosys Successfully Delivers Syngenta s Global SAP S/4HANA Transformation for Crop Protection Business",
+   "url": "https://nsearchives.nseindia.com/corporate/Infosys_27102026163727_PR_27102026.pdf",
+   "category": "press_release",
+   "subtype": "general",
+   "score": 0.4,
+   "tier": "know",
+   "reasons": [
+    "Company news",
+    "stock moved -3.4% that day"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106830402",
+   "symbol": "BEL",
+   "ts": "2026-10-27T11:21:04Z",
+   "subject": "Schedule of meet",
+   "url": "https://nsearchives.nseindia.com/corporate/BEL_27102026164511_Lettersigned.pdf",
+   "category": "investor_meetings",
+   "subtype": "general",
+   "score": 0.08,
+   "tier": "routine",
+   "reasons": [
+    "Investor meeting"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106830405",
+   "symbol": "ETERNAL",
+   "ts": "2026-10-27T11:22:27Z",
+   "subject": "Transcript of earnings conference call conducted on October 21, 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/ZOMATO_27102026165119_Transcript_of_the_earnings_conference_call_September_2026signed.pdf",
+   "category": "earnings_call",
+   "subtype": "transcript",
+   "score": 0.4,
+   "tier": "know",
+   "reasons": [
+    "Earnings call"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106830479",
+   "symbol": "LT",
+   "ts": "2026-10-27T11:43:09Z",
+   "subject": "Results for the quarter ended September 30, 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/PAM_27102026171156_LTSep2026.pdf",
+   "category": "results",
+   "subtype": "filing",
+   "score": 1.0,
+   "tier": "act",
+   "reasons": [
+    "Quarterly results: the results filing itself",
+    "on your alert list",
+    "stock moved +3.7% that day"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106830809",
+   "symbol": "LT",
+   "ts": "2026-10-27T13:07:19Z",
+   "subject": "Analyst Presentation.- Q2 / H1 FY27",
+   "url": "https://nsearchives.nseindia.com/corporate/PAM_27102026183653_AnalystPresentationSep2026.pdf",
+   "category": "results",
+   "subtype": "deck",
+   "score": 0.5,
+   "tier": "know",
+   "reasons": [
+    "Quarterly results",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106830830",
+   "symbol": "POLYCAB",
+   "ts": "2026-10-27T13:12:35Z",
+   "subject": "Certificate under SEBI (Depositories and Participants) Regulations, 2018",
+   "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_27102026184209_IntimationtoStockExchange.pdf",
+   "category": "unclassified",
+   "subtype": "compliance",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Routine filing"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106830897",
+   "symbol": "POLYCAB",
+   "ts": "2026-10-27T13:34:27Z",
+   "subject": "Analyst(s)/Investor(s) meet",
+   "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_27102026190410_Intimationtostockexchange.pdf",
+   "category": "investor_meetings",
+   "subtype": "general",
+   "score": 0.08,
+   "tier": "routine",
+   "reasons": [
+    "Investor meeting"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106830931",
+   "symbol": "RELIANCE",
+   "ts": "2026-10-27T13:47:10Z",
+   "subject": "The meeting of the Board of Directors of the Company is scheduled on October 30, 2026, inter alia, to consider and approve a",
+   "url": "https://nsearchives.nseindia.com/corporate/kavinavora_27102026191700_SE_27102026.pdf",
+   "category": "results",
+   "subtype": "board_notice",
+   "score": 0.35,
+   "tier": "know",
+   "reasons": [
+    "Quarterly results",
+    "stock moved -3.2% that day"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106831073",
+   "symbol": "MARUTI",
+   "ts": "2026-10-27T15:00:49Z",
+   "subject": "Audio Recording of the investors' call held on 27th October 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_27102026202705_SubmissionofAudioRecordings.pdf",
+   "category": "earnings_call",
+   "subtype": "recording",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Earnings call: audio of a call, transcript is more useful"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106831152",
+   "symbol": "RELIANCE",
+   "ts": "2026-10-27T16:41:29Z",
+   "subject": "Trading in equity shares of Jio Platforms Limited (JPL) will commence from October 28, 2026.Further, a meeting of board of directors of JPL is scheduled to be held on Friday, October 30, 2026, inter a\u2026",
+   "url": "https://nsearchives.nseindia.com/corporate/kavinavora_27102026220855_RIL_SELETTER_271026.pdf",
+   "category": "results",
+   "subtype": "board_notice",
+   "score": 0.25,
+   "tier": "routine",
+   "reasons": [
+    "Quarterly results"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106831153",
+   "symbol": "LT",
+   "ts": "2026-10-27T16:43:16Z",
+   "subject": "Link of Recording",
+   "url": "https://nsearchives.nseindia.com/corporate/PAM_27102026221257_Intimation27102026.pdf",
+   "category": "earnings_call",
+   "subtype": "recording",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Earnings call: audio of a call, transcript is more useful"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106831187",
+   "symbol": "INFY",
+   "ts": "2026-10-27T17:23:15Z",
+   "subject": "Investor Conference",
+   "url": "https://nsearchives.nseindia.com/corporate/Infosys_27102026225301_SE_filing_Investor_Conference_27102026.pdf",
+   "category": "investor_meetings",
+   "subtype": "general",
+   "score": 0.08,
+   "tier": "routine",
+   "reasons": [
+    "Investor meeting"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106831411",
+   "symbol": "SUZLON",
+   "ts": "2026-10-28T04:01:53Z",
+   "subject": "Credit Rating",
+   "url": "https://nsearchives.nseindia.com/corporate/SUZLON1_28102026093056_Suzlon28102026.pdf",
+   "category": "credit_rating",
+   "subtype": "general",
+   "score": 0.4,
+   "tier": "know",
+   "reasons": [
+    "Credit rating",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106831536",
+   "symbol": "POLYCAB",
+   "ts": "2026-10-28T04:54:43Z",
+   "subject": "The update of NCLAT order dated October 27, 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_28102026102430_StockExchangeintimation27102026.pdf",
+   "category": "litigation",
+   "subtype": "insolvency",
+   "score": 0.7,
+   "tier": "act",
+   "reasons": [
+    "Legal / regulatory: insolvency proceedings",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106831569",
+   "symbol": "MARUTI",
+   "ts": "2026-10-28T05:08:47Z",
+   "subject": "Copy of Newspaper Publication",
+   "url": "https://nsearchives.nseindia.com/corporate/MARUTI_28102026103729_STxIntimation_NP_27Oct2026.pdf",
+   "category": "unclassified",
+   "subtype": "newspaper_ad",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Routine filing"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106831940",
+   "symbol": "TITAN",
+   "ts": "2026-10-28T08:19:00Z",
+   "subject": "The Company has incorporated Titan Company Canada Inc",
+   "url": "https://nsearchives.nseindia.com/corporate/TITAN_28102026134838_SEIntimation_-_Canada_Incorporation.pdf",
+   "category": "M&A",
+   "subtype": "subsidiary_incorporation",
+   "score": 0.25,
+   "tier": "routine",
+   "reasons": [
+    "Deal"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106832541",
+   "symbol": "TITAN",
+   "ts": "2026-10-28T11:56:00Z",
+   "subject": "Copy of Newspaper Publication",
+   "url": "https://nsearchives.nseindia.com/corporate/TITAN_28102026172546_SEnewspaperadlossofshares.pdf",
+   "category": "unclassified",
+   "subtype": "newspaper_ad",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Routine filing"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106832556",
+   "symbol": "NAZARA",
+   "ts": "2026-10-28T11:58:59Z",
+   "subject": "Copy of Newspaper Publication",
+   "url": "https://nsearchives.nseindia.com/corporate/NAZARA_28102026172729_NewspaperPublicationfinal.pdf",
+   "category": "unclassified",
+   "subtype": "newspaper_ad",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Routine filing"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106832566",
+   "symbol": "INFY",
+   "ts": "2026-10-28T12:01:34Z",
+   "subject": "Canada s UNI Financial Cooperation Advances Branch Modernization with Infosys Finacle Universal Banker",
+   "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173120_PR_28102026.pdf",
+   "category": "press_release",
+   "subtype": "general",
+   "score": 0.3,
+   "tier": "routine",
+   "reasons": [
+    "Company news"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106832593",
+   "symbol": "INFY",
+   "ts": "2026-10-28T12:08:42Z",
+   "subject": "Earnings Call Transcript",
+   "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173824_SE_filing_Earnings_call_transcript.pdf",
+   "category": "earnings_call",
+   "subtype": "transcript",
+   "score": 0.4,
+   "tier": "know",
+   "reasons": [
+    "Earnings call"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106832611",
+   "symbol": "POLYCAB",
+   "ts": "2026-10-28T12:13:39Z",
+   "subject": "Analyst(s)/Investor(s) meet",
+   "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_28102026174326_Intimationtostockexchange.pdf",
+   "category": "investor_meetings",
+   "subtype": "general",
+   "score": 0.08,
+   "tier": "routine",
+   "reasons": [
+    "Investor meeting"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106833000",
+   "symbol": "BHARTIARTL",
+   "ts": "2026-10-28T13:39:29Z",
+   "subject": "Schedule of meet",
+   "url": "https://nsearchives.nseindia.com/corporate/BHARTIARTL_28102026185916_AirtelSTXEarningCallIntimation.pdf",
+   "category": "investor_meetings",
+   "subtype": "general",
+   "score": 0.08,
+   "tier": "routine",
+   "reasons": [
+    "Investor meeting"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106833097",
+   "symbol": "LT",
+   "ts": "2026-10-28T14:17:25Z",
+   "subject": "Copy of Newspaper Publication",
+   "url": "https://nsearchives.nseindia.com/corporate/PAM_28102026194657_NewspaperAdvtSep2026.pdf",
+   "category": "unclassified",
+   "subtype": "newspaper_ad",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Routine filing"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106833522",
+   "symbol": "RATEGAIN",
+   "ts": "2026-10-28T23:43:46Z",
+   "subject": "Grant of 53021  Options",
+   "url": "https://nsearchives.nseindia.com/corporate/RATEGAIN_29102026051334_RG_SAR_Grant.pdf",
+   "category": "unclassified",
+   "subtype": "esop",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Routine filing"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106833525",
+   "symbol": "RATEGAIN",
+   "ts": "2026-10-28T23:53:17Z",
+   "subject": "Schedule of meet",
+   "url": "https://nsearchives.nseindia.com/corporate/RATEGAIN_29102026052302_RG_EC_051126.pdf",
+   "category": "investor_meetings",
+   "subtype": "general",
+   "score": 0.08,
+   "tier": "routine",
+   "reasons": [
+    "Investor meeting"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106833561",
+   "symbol": "RELIANCE",
+   "ts": "2026-10-29T03:25:40Z",
+   "subject": "Disclosure under Regulation 30 of the Securities and Exchange Board of India (Listing Obligations and Disclosure Requirements) Regulations, 2015   Voluntary strike off of Hamleys (Franchising) Limited",
+   "url": "https://nsearchives.nseindia.com/corporate/kavinavora_29102026084603_SE_29102026.pdf",
+   "category": "M&A",
+   "subtype": "restructuring",
+   "score": 0.45,
+   "tier": "know",
+   "reasons": [
+    "Deal",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106833712",
+   "symbol": "MARUTI",
+   "ts": "2026-10-29T05:20:48Z",
+   "subject": "A press release dated October 29, 2026, titled \"Maruti Suzuki, India s No 1 Electric Vehicle exporter, crosses EV exports of 50,000 units",
+   "url": "https://nsearchives.nseindia.com/corporate/MARUTI_29102026104658_StxIntimation_EVExports.pdf",
+   "category": "press_release",
+   "subtype": "general",
+   "score": 0.3,
+   "tier": "routine",
+   "reasons": [
+    "Company news"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106834064",
+   "symbol": "BHARTIARTL",
+   "ts": "2026-10-29T08:12:21Z",
+   "subject": "Action(s) taken or orders passed",
+   "url": "https://nsearchives.nseindia.com/corporate/BHARTIARTL_29102026134154_BhartiAirtelSTXIntimation.pdf",
+   "category": "litigation",
+   "subtype": "regulatory_order",
+   "score": 0.65,
+   "tier": "know",
+   "reasons": [
+    "Legal / regulatory: a regulator or court has acted",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106834219",
+   "symbol": "INFY",
+   "ts": "2026-10-29T09:35:32Z",
+   "subject": "Winners of Qorus-Infosys Finacle Banking Innovation Awards 2026 Announced",
+   "url": "https://nsearchives.nseindia.com/corporate/INFY_29102026150417_PR_29102026.pdf",
+   "category": "press_release",
+   "subtype": "general",
+   "score": 0.3,
+   "tier": "routine",
+   "reasons": [
+    "Company news"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106834249",
+   "symbol": "INFY",
+   "ts": "2026-10-29T09:45:01Z",
+   "subject": "Copy of Newspaper Publication",
+   "url": "https://nsearchives.nseindia.com/corporate/INFY_29102026151445_SE_intimation_Newspaper_ad_2.pdf",
+   "category": "unclassified",
+   "subtype": "newspaper_ad",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Routine filing"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106834353",
+   "symbol": "SUZLON",
+   "ts": "2026-10-29T10:21:45Z",
+   "subject": "Results for the period ended September 30, 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/SUZLON1_29102026154942_Suzlon29102026.pdf",
+   "category": "results",
+   "subtype": "filing",
+   "score": 1.0,
+   "tier": "act",
+   "reasons": [
+    "Quarterly results: the results filing itself",
+    "on your alert list",
+    "stock moved -7.9% that day"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106834418",
+   "symbol": "TRENT",
+   "ts": "2026-10-29T10:38:05Z",
+   "subject": "Results",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026160446_DraftOutcomeofBM.pdf",
+   "category": "results",
+   "subtype": "board_outcome",
+   "score": 0.85,
+   "tier": "act",
+   "reasons": [
+    "Quarterly results: board meeting outcome on results day",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106834446",
+   "symbol": "TRENT",
+   "ts": "2026-10-29T10:47:38Z",
+   "subject": "Investor Presentation",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026161637_InvestorPresentationQ2FY27.pdf",
+   "category": "results",
+   "subtype": "deck",
+   "score": 0.5,
+   "tier": "know",
+   "reasons": [
+    "Quarterly results",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106834466",
+   "symbol": "TRENT",
+   "ts": "2026-10-29T10:51:37Z",
+   "subject": "A press release dated October 29, 2026, titled \"Press Release on Unaudited Financial Results (Standalone and Consolidated) for thesecond quarter and half-year ended 30th September 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026162053_PressReleaseOct2026.pdf",
+   "category": "results",
+   "subtype": "press_release",
+   "score": 0.6,
+   "tier": "know",
+   "reasons": [
+    "Quarterly results",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106834503",
+   "symbol": "TRENT",
+   "ts": "2026-10-29T11:02:13Z",
+   "subject": "Appointment of Mr Rajiv Dube as Non- Executive Director of the company w.e.f",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163044_AppointmentofDirector.pdf",
+   "category": "management_change",
+   "subtype": "director",
+   "score": 0.45,
+   "tier": "know",
+   "reasons": [
+    "Management change",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106834504",
+   "symbol": "TRENT",
+   "ts": "2026-10-29T11:02:13Z",
+   "subject": "Change in Director(s) of the company",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163102_AppointmentofDirector.pdf",
+   "category": "management_change",
+   "subtype": "director",
+   "score": 0.45,
+   "tier": "know",
+   "reasons": [
+    "Management change",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106834506",
+   "symbol": "TRENT",
+   "ts": "2026-10-29T11:02:13Z",
+   "subject": "Appointment of Mrs Kalpana Merchant as Non- Executive Independent Director of the company w.e.f",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163140_AppointmentofDirector.pdf",
+   "category": "management_change",
+   "subtype": "independent_director",
+   "score": 0.3,
+   "tier": "routine",
+   "reasons": [
+    "Management change"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106834505",
+   "symbol": "TRENT",
+   "ts": "2026-10-29T11:02:13Z",
+   "subject": "Retirement of Mr Noel N Tata as the Chairman",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163122_AppointmentofDirector.pdf",
+   "category": "management_change",
+   "subtype": "senior",
+   "score": 1.0,
+   "tier": "act",
+   "reasons": [
+    "Management change: a top-level role (CEO/CFO/MD/Chair) is changing",
+    "on your alert list",
+    "stock moved +5.4% that day"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106835327",
+   "symbol": "SUZLON",
+   "ts": "2026-10-29T15:06:10Z",
+   "subject": "Link of Recording",
+   "url": "https://nsearchives.nseindia.com/corporate/SUZLON1_29102026203518_Suzlon29102026.pdf",
+   "category": "earnings_call",
+   "subtype": "recording",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Earnings call: audio of a call, transcript is more useful"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106835654",
+   "symbol": "SUNPHARMA",
+   "ts": "2026-10-30T02:35:47Z",
+   "subject": "A press release dated October 30, 2026, titled \"ILUMYA\u00ae (tildrakizumab-asmn) approved in the U.S",
+   "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_30102026080437_SE_Intimation_of_Press_Release_ILUMYA_PsA_Approval.pdf",
+   "category": "press_release",
+   "subtype": "product",
+   "score": 0.4,
+   "tier": "know",
+   "reasons": [
+    "Company news"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106835822",
+   "symbol": "ICICIBANK",
+   "ts": "2026-10-30T04:46:13Z",
+   "subject": "Allotment of 109039  Shares",
+   "url": "https://nsearchives.nseindia.com/corporate/ICICIBANK1_30102026101600_Lettertoexchange.pdf",
+   "category": "unclassified",
+   "subtype": "esop",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Routine filing"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106836029",
+   "symbol": "POLYCAB",
+   "ts": "2026-10-30T06:50:09Z",
+   "subject": "The order passed by NCLAT setting aside the order of NCLT Ahmedabad bench dated October 07, 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_30102026121954_SECIRP30102026.pdf",
+   "category": "litigation",
+   "subtype": "insolvency",
+   "score": 0.7,
+   "tier": "act",
+   "reasons": [
+    "Legal / regulatory: insolvency proceedings",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106836275",
+   "symbol": "SUNPHARMA",
+   "ts": "2026-10-30T08:45:10Z",
+   "subject": "Results for the quarter ended 30 September 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_30102026141321_BMOutcomeFinancialoct26signed.pdf",
+   "category": "results",
+   "subtype": "filing",
+   "score": 0.95,
+   "tier": "act",
+   "reasons": [
+    "Quarterly results: the results filing itself",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106836294",
+   "symbol": "SUZLON",
+   "ts": "2026-10-30T08:58:30Z",
+   "subject": "Rumour Verification - Regulation 30(11)",
+   "url": "https://nsearchives.nseindia.com/corporate/SUZLON1_30102026142755_Suzlon30102026.pdf",
+   "category": "press_release",
+   "subtype": "clarification",
+   "score": 0.55,
+   "tier": "know",
+   "reasons": [
+    "Company news: the company is answering a news report"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106836343",
+   "symbol": "BAJFINANCE",
+   "ts": "2026-10-30T09:23:37Z",
+   "subject": "Allotment of 2,06,950 securities pursuant to Non Convertible Securities at its meeting held on October 30, 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_30102026145301_REG30_Allotment_intimation.pdf",
+   "category": "fund_raise",
+   "subtype": "debt",
+   "score": 0.2,
+   "tier": "routine",
+   "reasons": [
+    "Fund raise: routine debt issuance"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106836401",
+   "symbol": "SUNPHARMA",
+   "ts": "2026-10-30T09:48:46Z",
+   "subject": "Appointment of Statutory Auditors Pursuant to Mandatory Auditor Rotation",
+   "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_30102026151827_BMOutcome30102026_Conclusion.pdf",
+   "category": "unclassified",
+   "subtype": "auditor",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Routine filing"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106836415",
+   "symbol": "BHARTIARTL",
+   "ts": "2026-10-30T09:53:54Z",
+   "subject": "Copy of Newspaper Publication",
+   "url": "https://nsearchives.nseindia.com/corporate/BHARTIARTL_30102026152337_STXintimationOctober302026.pdf",
+   "category": "unclassified",
+   "subtype": "newspaper_ad",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Routine filing"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106836523",
+   "symbol": "DIXON",
+   "ts": "2026-10-30T10:37:23Z",
+   "subject": "Results for the period ended September 30, 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/DIXON_30102026160547_Outcome30102026.pdf",
+   "category": "results",
+   "subtype": "filing",
+   "score": 1.0,
+   "tier": "act",
+   "reasons": [
+    "Quarterly results: the results filing itself",
+    "on your alert list",
+    "stock moved +12.0% that day"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106836531",
+   "symbol": "DIXON",
+   "ts": "2026-10-30T10:40:12Z",
+   "subject": "Change in Management",
+   "url": "https://nsearchives.nseindia.com/corporate/DIXON_30102026160939_Outcome30102026.pdf",
+   "category": "management_change",
+   "subtype": "other",
+   "score": 0.5,
+   "tier": "know",
+   "reasons": [
+    "Management change",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106836561",
+   "symbol": "DIXON",
+   "ts": "2026-10-30T10:49:57Z",
+   "subject": "Investor Presentation",
+   "url": "https://nsearchives.nseindia.com/corporate/DIXON_30102026161836_OutcomewithPPT30102026.pdf",
+   "category": "results",
+   "subtype": "deck",
+   "score": 0.5,
+   "tier": "know",
+   "reasons": [
+    "Quarterly results",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106836723",
+   "symbol": "BEL",
+   "ts": "2026-10-30T11:32:28Z",
+   "subject": "Results for the period ended September 30, 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/BEL_30102026165447_Lettersigned.pdf",
+   "category": "results",
+   "subtype": "filing",
+   "score": 0.95,
+   "tier": "act",
+   "reasons": [
+    "Quarterly results: the results filing itself",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106836729",
+   "symbol": "NAZARA",
+   "ts": "2026-10-30T11:34:19Z",
+   "subject": "Transcript",
+   "url": "https://nsearchives.nseindia.com/corporate/NAZARA_30102026170330_IntimationofTranscript.pdf",
+   "category": "earnings_call",
+   "subtype": "transcript",
+   "score": 0.4,
+   "tier": "know",
+   "reasons": [
+    "Earnings call"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106837091",
+   "symbol": "SUZLON",
+   "ts": "2026-10-30T12:52:36Z",
+   "subject": "Credit Rating",
+   "url": "https://nsearchives.nseindia.com/corporate/SUZLON1_30102026182203_Suzlon30102026.pdf",
+   "category": "credit_rating",
+   "subtype": "general",
+   "score": 0.5,
+   "tier": "know",
+   "reasons": [
+    "Credit rating",
+    "on your alert list",
+    "stock moved +4.0% that day"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106837197",
+   "symbol": "INFY",
+   "ts": "2026-10-30T13:20:50Z",
+   "subject": "Infosys Announces Expansion of Pocharam Development Center in Hyderabad",
+   "url": "https://nsearchives.nseindia.com/corporate/INFY_30102026185037_PR_30102026.pdf",
+   "category": "press_release",
+   "subtype": "general",
+   "score": 0.3,
+   "tier": "routine",
+   "reasons": [
+    "Company news"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106837394",
+   "symbol": "RELIANCE",
+   "ts": "2026-10-30T14:10:11Z",
+   "subject": "Results for the quarter ended September 30, 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/kavinavora_30102026193935_SE_30102026_Results.pdf",
+   "category": "results",
+   "subtype": "filing",
+   "score": 1.0,
+   "tier": "act",
+   "reasons": [
+    "Quarterly results: the results filing itself",
+    "on your alert list",
+    "stock moved +11.6% that day"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106837406",
+   "symbol": "RELIANCE",
+   "ts": "2026-10-30T14:13:24Z",
+   "subject": "In continuation of our letter of today's date on the Unaudited Financial Results (Consolidated and Standalone) for the quarter and half year ended September 30, 2026, we attach a copy of media release\u2026",
+   "url": "https://nsearchives.nseindia.com/corporate/kavinavora_30102026194315_SE_30102026_MR.pdf",
+   "category": "results",
+   "subtype": "press_release",
+   "score": 0.6,
+   "tier": "know",
+   "reasons": [
+    "Quarterly results",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106837413",
+   "symbol": "RELIANCE",
+   "ts": "2026-10-30T14:17:12Z",
+   "subject": "Investor Presentation",
+   "url": "https://nsearchives.nseindia.com/corporate/kavinavora_30102026194557_SE_30102026_IP.pdf",
+   "category": "results",
+   "subtype": "deck",
+   "score": 0.5,
+   "tier": "know",
+   "reasons": [
+    "Quarterly results",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106837454",
+   "symbol": "SUNPHARMA",
+   "ts": "2026-10-30T14:43:58Z",
+   "subject": "Link of Recording",
+   "url": "https://nsearchives.nseindia.com/corporate/SUNPHARMA456_30102026201207_IntimationSE20261030_Q2FY27_Call_Recording_Signed.pdf",
+   "category": "earnings_call",
+   "subtype": "recording",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Earnings call: audio of a call, transcript is more useful"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106837485",
+   "symbol": "DIXON",
+   "ts": "2026-10-30T15:02:52Z",
+   "subject": "Link of Recording",
+   "url": "https://nsearchives.nseindia.com/corporate/DIXON_30102026203021_ConferenceCallRecordingIntimation30102026.pdf",
+   "category": "earnings_call",
+   "subtype": "recording",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Earnings call: audio of a call, transcript is more useful"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106837634",
+   "symbol": "BHARTIARTL",
+   "ts": "2026-10-30T17:10:24Z",
+   "subject": "Action(s) taken or orders passed",
+   "url": "https://nsearchives.nseindia.com/corporate/BHARTIARTL_30102026223927_BhartiAirtelSTXdisclosure.pdf",
+   "category": "litigation",
+   "subtype": "regulatory_order",
+   "score": 0.65,
+   "tier": "know",
+   "reasons": [
+    "Legal / regulatory: a regulator or court has acted",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106837640",
+   "symbol": "NAZARA",
+   "ts": "2026-10-30T17:15:50Z",
+   "subject": "Disclosure under Regulation 30 of the SEBI (LODR) Regulations, 2015 - Update",
+   "url": "https://nsearchives.nseindia.com/corporate/NAZARA_30102026224359_IntimationNazara.pdf",
+   "category": "unclassified",
+   "subtype": "unmatched",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Routine filing"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106837941",
+   "symbol": "LT",
+   "ts": "2026-10-31T07:30:35Z",
+   "subject": "Updates on the Business Transfer Agreement with Vyoma.AI Limited (Vyoma), Wholly owned Subsidiary of the Company and Share Purchase Agreement towards sale of entire stake held in L&T Network Services \u2026",
+   "url": "https://nsearchives.nseindia.com/corporate/AB_31102026130022_SEIntimation_ExtensionofBTAVyoma_31102026.pdf",
+   "category": "M&A",
+   "subtype": "stake_sale",
+   "score": 0.75,
+   "tier": "act",
+   "reasons": [
+    "Deal",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106838334",
+   "symbol": "SUNPHARMA",
+   "ts": "2026-10-31T12:02:02Z",
+   "subject": "Copy of Newspaper Publication",
+   "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_31102026173121_SEIntimationforFinancialResultsNewspaperadvertisement.pdf",
+   "category": "unclassified",
+   "subtype": "newspaper_ad",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Routine filing"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106838338",
+   "symbol": "RELIANCE",
+   "ts": "2026-10-31T12:04:03Z",
+   "subject": "Audio recording of the discussion on the Unaudited Financial Results (Consolidated and Standalone) of the Company for the quarter and half year ended September 30, 2026, at the analyst meet held on Oc\u2026",
+   "url": "https://nsearchives.nseindia.com/corporate/kavinavora_31102026173331_SE_31102026_AR.pdf",
+   "category": "earnings_call",
+   "subtype": "recording",
+   "score": 0.25,
+   "tier": "routine",
+   "reasons": [
+    "Earnings call: audio of a call, transcript is more useful",
+    "stock moved +11.6% that day"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106838529",
+   "symbol": "DIXON",
+   "ts": "2026-10-31T14:02:44Z",
+   "subject": "Copy of newspaper publication of Unaudited Financial Results (standalone & consolidated) of the Company for the quarter and half year ended 30th September, 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/DIXON_31102026192630_NewspaperAdvertisement31101026.pdf",
+   "category": "results",
+   "subtype": "newspaper_ad",
+   "score": 0.25,
+   "tier": "routine",
+   "reasons": [
+    "Quarterly results: statutory newspaper ad of results already filed",
+    "stock moved +12.0% that day"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106838574",
+   "symbol": "SUNPHARMA",
+   "ts": "2026-10-31T14:44:24Z",
+   "subject": "Completion and Results of Postal Ballot dated 01 October 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_31102026201341_SEIntimationforVR_-_31_October_2026.pdf",
+   "category": "postal_ballot",
+   "subtype": "general",
+   "score": 0.08,
+   "tier": "routine",
+   "reasons": [
+    "Postal ballot"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106838602",
+   "symbol": "BEL",
+   "ts": "2026-10-31T15:23:21Z",
+   "subject": "Copy of Newspaper Publication of Financial Results",
+   "url": "https://nsearchives.nseindia.com/corporate/BEL_31102026204800_Lettersigned.pdf",
+   "category": "results",
+   "subtype": "newspaper_ad",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Quarterly results: statutory newspaper ad of results already filed"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106838744",
+   "symbol": "ICICIBANK",
+   "ts": "2026-11-01T04:13:51Z",
+   "subject": "Disclosure under Regulation 30 of the SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015",
+   "url": "https://nsearchives.nseindia.com/corporate/ICICI2022_01112026094235_BSENSE01112026.pdf",
+   "category": "unclassified",
+   "subtype": "unmatched",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Routine filing"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106838779",
+   "symbol": "MARUTI",
+   "ts": "2026-11-01T08:15:06Z",
+   "subject": "A press release dated November 01, 2026, titled \"Maruti Suzuki sales in October 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_01112026133641_StxIntimation_Sales_Oct2026.pdf",
+   "category": "press_release",
+   "subtype": "business_update",
+   "score": 0.4,
+   "tier": "know",
+   "reasons": [
+    "Company news"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106838789",
+   "symbol": "MARUTI",
+   "ts": "2026-11-01T09:14:18Z",
+   "subject": "Maruti Suzuki Production Volume: October 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_01112026143647_STxIntimation_Prod_Oct2026.pdf",
+   "category": "press_release",
+   "subtype": "business_update",
+   "score": 0.4,
+   "tier": "know",
+   "reasons": [
+    "Company news"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106838897",
+   "symbol": "RELIANCE",
+   "ts": "2026-11-01T17:39:22Z",
+   "subject": "Transcript of the discussion on the Unaudited Financial Results (Consolidated and Standalone) of the Company for the quarter and half year ended September 30, 2026, at the analyst meet held on October\u2026",
+   "url": "https://nsearchives.nseindia.com/corporate/kavinavora_01112026230907_SE_01112026.pdf",
+   "category": "earnings_call",
+   "subtype": "transcript",
+   "score": 0.6,
+   "tier": "know",
+   "reasons": [
+    "Earnings call",
+    "stock moved +11.6% that day"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106839016",
+   "symbol": "LT",
+   "ts": "2026-11-02T04:48:49Z",
+   "subject": "Bagging/Receiving of orders/contracts",
+   "url": "https://nsearchives.nseindia.com/corporate/PAM_02112026101835_PressRelease02112026.pdf",
+   "category": "press_release",
+   "subtype": "order_win",
+   "score": 0.45,
+   "tier": "know",
+   "reasons": [
+    "Company news"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106839393",
+   "symbol": "TRENT",
+   "ts": "2026-11-02T07:56:56Z",
+   "subject": "Newspaper Publication on Unaudited Financial Results (Standalone and Consolidated) for the second quarter and half-year ended 30th September 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_02112026132637_Q2FY27_Financial_Results_-_Newspaper_Publication.pdf",
+   "category": "results",
+   "subtype": "newspaper_ad",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Quarterly results: statutory newspaper ad of results already filed"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106839459",
+   "symbol": "SUNPHARMA",
+   "ts": "2026-11-02T08:48:39Z",
+   "subject": "The Exchange has sought clarification from Sun Pharmaceutical Industries Limited with respect to recent news item captioned India orders Sun Pharma to halt eye-care drug production at plant after qual\u2026",
+   "url": "-",
+   "category": "press_release",
+   "subtype": "clarification",
+   "score": 0.55,
+   "tier": "know",
+   "reasons": [
+    "Company news: the company is answering a news report"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106840137",
+   "symbol": "LT",
+   "ts": "2026-11-02T12:26:36Z",
+   "subject": "Transcript",
+   "url": "https://nsearchives.nseindia.com/corporate/PAM_02112026175603_TranscriptSep2026.pdf",
+   "category": "earnings_call",
+   "subtype": "transcript",
+   "score": 0.4,
+   "tier": "know",
+   "reasons": [
+    "Earnings call"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106840252",
+   "symbol": "ITC",
+   "ts": "2026-11-02T12:45:57Z",
+   "subject": "Results",
+   "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026181547_SE_Results_.pdf",
+   "category": "results",
+   "subtype": "board_outcome",
+   "score": 0.85,
+   "tier": "act",
+   "reasons": [
+    "Quarterly results: board meeting outcome on results day",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106840268",
+   "symbol": "ITC",
+   "ts": "2026-11-02T12:50:16Z",
+   "subject": "Results for the period ended September 30, 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026181912_SE_Results_.pdf",
+   "category": "results",
+   "subtype": "filing",
+   "score": 0.95,
+   "tier": "act",
+   "reasons": [
+    "Quarterly results: the results filing itself",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106840335",
+   "symbol": "ITC",
+   "ts": "2026-11-02T13:02:13Z",
+   "subject": "Media Statement and Presentation",
+   "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026183159_SE_Media_.pdf",
+   "category": "press_release",
+   "subtype": "general",
+   "score": 0.3,
+   "tier": "routine",
+   "reasons": [
+    "Company news"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106840382",
+   "symbol": "ITC",
+   "ts": "2026-11-02T13:15:24Z",
+   "subject": "Amalgamation/Merger",
+   "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026184512_SE_Sproutlife_.pdf",
+   "category": "M&A",
+   "subtype": "merger",
+   "score": 0.85,
+   "tier": "act",
+   "reasons": [
+    "Deal",
+    "on your alert list"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106840525",
+   "symbol": "BAJFINANCE",
+   "ts": "2026-11-02T14:01:06Z",
+   "subject": "Proceedings of Extraordinary General Meeting held on November 02, 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_02112026193032_BFLEGMProceedings.pdf",
+   "category": "agm_egm",
+   "subtype": "general",
+   "score": 0.08,
+   "tier": "routine",
+   "reasons": [
+    "Shareholder meeting"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106840669",
+   "symbol": "SUNPHARMA",
+   "ts": "2026-11-02T15:28:22Z",
+   "subject": "Clarification regarding news report relating to the Company s Assam facility",
+   "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_02112026205719_Reply_to_SEs_-_Rumour_Verification02112026.pdf",
+   "category": "press_release",
+   "subtype": "clarification",
+   "score": 0.55,
+   "tier": "know",
+   "reasons": [
+    "Company news: the company is answering a news report"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106840686",
+   "symbol": "MARUTI",
+   "ts": "2026-11-02T15:38:18Z",
+   "subject": "Transcript",
+   "url": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_02112026210459_Transcript_27Oct026.pdf",
+   "category": "earnings_call",
+   "subtype": "transcript",
+   "score": 0.4,
+   "tier": "know",
+   "reasons": [
+    "Earnings call"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106841159",
+   "symbol": "ICICIBANK",
+   "ts": "2026-11-03T04:54:40Z",
+   "subject": "Allotment of 62879  Shares",
+   "url": "https://nsearchives.nseindia.com/corporate/ICICIBANK1_03112026102424_Lettertoexchange.pdf",
+   "category": "unclassified",
+   "subtype": "esop",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Routine filing"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106841276",
+   "symbol": "DIXON",
+   "ts": "2026-11-03T05:54:09Z",
+   "subject": "Outcome of Analyst or Institutional Investor Meet",
+   "url": "https://nsearchives.nseindia.com/corporate/DIXON_03112026112356_InvestorMeetOutcome031102026.pdf",
+   "category": "investor_meetings",
+   "subtype": "general",
+   "score": 0.08,
+   "tier": "routine",
+   "reasons": [
+    "Investor meeting"
+   ],
+   "card": null
+  },
+  {
+   "id": "NSE-106841885",
+   "symbol": "POLYCAB",
+   "ts": "2026-11-03T10:31:15Z",
+   "subject": "Allotment of 3403  Shares",
+   "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_03112026160106_IntimationtoStockexchange.pdf",
+   "category": "unclassified",
+   "subtype": "esop",
+   "score": 0.05,
+   "tier": "routine",
+   "reasons": [
+    "Routine filing"
+   ],
+   "card": null
+  }
+ ],
+ "cases": [
+  {
+   "start": "2026-10-27T10:30:00Z",
+   "end": "2026-11-03T10:30:00Z",
+   "expected": {
+    "window": {
+     "start": "2026-10-27T10:30:00Z",
+     "end": "2026-11-03T10:30:00Z"
+    },
+    "headline": {
+     "act": 13,
+     "know": 20,
+     "routine": 33,
+     "filings": 85,
+     "companies": 18
+    },
+    "alerts": [],
+    "act": [
+     {
+      "kind": "filing",
+      "id": "NSE-106837394",
+      "symbol": "RELIANCE",
+      "category": "results",
+      "subtype": "filing",
+      "tier": "act",
+      "score": 1.0,
+      "ts": "2026-10-30T14:10:11Z",
+      "title": "Results for the quarter ended September 30, 2026",
+      "card": null,
+      "reasons": [
+       "Quarterly results: the results filing itself",
+       "on your alert list",
+       "stock moved +11.6% that day",
+       "6 related filings folded in (deck, call, press release)"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/kavinavora_30102026193935_SE_30102026_Results.pdf",
+      "attachments": [
+       {
+        "subject": "In continuation of our letter of today's date on the Unaudited Financial Results (Consolidated and Standalone) for the quarter and half year ended September 30, 2026, we attach a copy of media release\u2026",
+        "url": "https://nsearchives.nseindia.com/corporate/kavinavora_30102026194315_SE_30102026_MR.pdf",
+        "category": "results",
+        "ts": "2026-10-30T14:13:24Z"
+       },
+       {
+        "subject": "Transcript of the discussion on the Unaudited Financial Results (Consolidated and Standalone) of the Company for the quarter and half year ended September 30, 2026, at the analyst meet held on October\u2026",
+        "url": "https://nsearchives.nseindia.com/corporate/kavinavora_01112026230907_SE_01112026.pdf",
+        "category": "earnings_call",
+        "ts": "2026-11-01T17:39:22Z"
+       },
+       {
+        "subject": "Investor Presentation",
+        "url": "https://nsearchives.nseindia.com/corporate/kavinavora_30102026194557_SE_30102026_IP.pdf",
+        "category": "results",
+        "ts": "2026-10-30T14:17:12Z"
+       },
+       {
+        "subject": "The meeting of the Board of Directors of the Company is scheduled on October 30, 2026, inter alia, to consider and approve a",
+        "url": "https://nsearchives.nseindia.com/corporate/kavinavora_27102026191700_SE_27102026.pdf",
+        "category": "results",
+        "ts": "2026-10-27T13:47:10Z"
+       },
+       {
+        "subject": "Trading in equity shares of Jio Platforms Limited (JPL) will commence from October 28, 2026.Further, a meeting of board of directors of JPL is scheduled to be held on Friday, October 30, 2026, inter a\u2026",
+        "url": "https://nsearchives.nseindia.com/corporate/kavinavora_27102026220855_RIL_SELETTER_271026.pdf",
+        "category": "results",
+        "ts": "2026-10-27T16:41:29Z"
+       },
+       {
+        "subject": "Audio recording of the discussion on the Unaudited Financial Results (Consolidated and Standalone) of the Company for the quarter and half year ended September 30, 2026, at the analyst meet held on Oc\u2026",
+        "url": "https://nsearchives.nseindia.com/corporate/kavinavora_31102026173331_SE_31102026_AR.pdf",
+        "category": "earnings_call",
+        "ts": "2026-10-31T12:04:03Z"
+       }
+      ]
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106836523",
+      "symbol": "DIXON",
+      "category": "results",
+      "subtype": "filing",
+      "tier": "act",
+      "score": 1.0,
+      "ts": "2026-10-30T10:37:23Z",
+      "title": "Results for the period ended September 30, 2026",
+      "card": null,
+      "reasons": [
+       "Quarterly results: the results filing itself",
+       "on your alert list",
+       "stock moved +12.0% that day",
+       "3 related filings folded in (deck, call, press release)"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/DIXON_30102026160547_Outcome30102026.pdf",
+      "attachments": [
+       {
+        "subject": "Investor Presentation",
+        "url": "https://nsearchives.nseindia.com/corporate/DIXON_30102026161836_OutcomewithPPT30102026.pdf",
+        "category": "results",
+        "ts": "2026-10-30T10:49:57Z"
+       },
+       {
+        "subject": "Copy of newspaper publication of Unaudited Financial Results (standalone & consolidated) of the Company for the quarter and half year ended 30th September, 2026",
+        "url": "https://nsearchives.nseindia.com/corporate/DIXON_31102026192630_NewspaperAdvertisement31101026.pdf",
+        "category": "results",
+        "ts": "2026-10-31T14:02:44Z"
+       },
+       {
+        "subject": "Link of Recording",
+        "url": "https://nsearchives.nseindia.com/corporate/DIXON_30102026203021_ConferenceCallRecordingIntimation30102026.pdf",
+        "category": "earnings_call",
+        "ts": "2026-10-30T15:02:52Z"
+       }
+      ]
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106834505",
+      "symbol": "TRENT",
+      "category": "management_change",
+      "subtype": "senior",
+      "tier": "act",
+      "score": 1.0,
+      "ts": "2026-10-29T11:02:13Z",
+      "title": "Retirement of Mr Noel N Tata as the Chairman",
+      "card": null,
+      "reasons": [
+       "Management change: a top-level role (CEO/CFO/MD/Chair) is changing",
+       "on your alert list",
+       "stock moved +5.4% that day"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163122_AppointmentofDirector.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106834353",
+      "symbol": "SUZLON",
+      "category": "results",
+      "subtype": "filing",
+      "tier": "act",
+      "score": 1.0,
+      "ts": "2026-10-29T10:21:45Z",
+      "title": "Results for the period ended September 30, 2026",
+      "card": null,
+      "reasons": [
+       "Quarterly results: the results filing itself",
+       "on your alert list",
+       "stock moved -7.9% that day",
+       "1 related filing folded in (deck, call, press release)"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/SUZLON1_29102026154942_Suzlon29102026.pdf",
+      "attachments": [
+       {
+        "subject": "Link of Recording",
+        "url": "https://nsearchives.nseindia.com/corporate/SUZLON1_29102026203518_Suzlon29102026.pdf",
+        "category": "earnings_call",
+        "ts": "2026-10-29T15:06:10Z"
+       }
+      ]
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106830479",
+      "symbol": "LT",
+      "category": "results",
+      "subtype": "filing",
+      "tier": "act",
+      "score": 1.0,
+      "ts": "2026-10-27T11:43:09Z",
+      "title": "Results for the quarter ended September 30, 2026",
+      "card": null,
+      "reasons": [
+       "Quarterly results: the results filing itself",
+       "on your alert list",
+       "stock moved +3.7% that day",
+       "3 related filings folded in (deck, call, press release)"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/PAM_27102026171156_LTSep2026.pdf",
+      "attachments": [
+       {
+        "subject": "Analyst Presentation.- Q2 / H1 FY27",
+        "url": "https://nsearchives.nseindia.com/corporate/PAM_27102026183653_AnalystPresentationSep2026.pdf",
+        "category": "results",
+        "ts": "2026-10-27T13:07:19Z"
+       },
+       {
+        "subject": "Transcript",
+        "url": "https://nsearchives.nseindia.com/corporate/PAM_02112026175603_TranscriptSep2026.pdf",
+        "category": "earnings_call",
+        "ts": "2026-11-02T12:26:36Z"
+       },
+       {
+        "subject": "Link of Recording",
+        "url": "https://nsearchives.nseindia.com/corporate/PAM_27102026221257_Intimation27102026.pdf",
+        "category": "earnings_call",
+        "ts": "2026-10-27T16:43:16Z"
+       }
+      ]
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106840268",
+      "symbol": "ITC",
+      "category": "results",
+      "subtype": "filing",
+      "tier": "act",
+      "score": 0.95,
+      "ts": "2026-11-02T12:50:16Z",
+      "title": "Results for the period ended September 30, 2026",
+      "card": null,
+      "reasons": [
+       "Quarterly results: the results filing itself",
+       "on your alert list",
+       "1 related filing folded in (deck, call, press release)"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026181912_SE_Results_.pdf",
+      "attachments": [
+       {
+        "subject": "Results",
+        "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026181547_SE_Results_.pdf",
+        "category": "results",
+        "ts": "2026-11-02T12:45:57Z"
+       }
+      ]
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106836723",
+      "symbol": "BEL",
+      "category": "results",
+      "subtype": "filing",
+      "tier": "act",
+      "score": 0.95,
+      "ts": "2026-10-30T11:32:28Z",
+      "title": "Results for the period ended September 30, 2026",
+      "card": null,
+      "reasons": [
+       "Quarterly results: the results filing itself",
+       "on your alert list",
+       "1 related filing folded in (deck, call, press release)"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/BEL_30102026165447_Lettersigned.pdf",
+      "attachments": [
+       {
+        "subject": "Copy of Newspaper Publication of Financial Results",
+        "url": "https://nsearchives.nseindia.com/corporate/BEL_31102026204800_Lettersigned.pdf",
+        "category": "results",
+        "ts": "2026-10-31T15:23:21Z"
+       }
+      ]
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106836275",
+      "symbol": "SUNPHARMA",
+      "category": "results",
+      "subtype": "filing",
+      "tier": "act",
+      "score": 0.95,
+      "ts": "2026-10-30T08:45:10Z",
+      "title": "Results for the quarter ended 30 September 2026",
+      "card": null,
+      "reasons": [
+       "Quarterly results: the results filing itself",
+       "on your alert list",
+       "1 related filing folded in (deck, call, press release)"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_30102026141321_BMOutcomeFinancialoct26signed.pdf",
+      "attachments": [
+       {
+        "subject": "Link of Recording",
+        "url": "https://nsearchives.nseindia.com/corporate/SUNPHARMA456_30102026201207_IntimationSE20261030_Q2FY27_Call_Recording_Signed.pdf",
+        "category": "earnings_call",
+        "ts": "2026-10-30T14:43:58Z"
+       }
+      ]
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106840382",
+      "symbol": "ITC",
+      "category": "M&A",
+      "subtype": "merger",
+      "tier": "act",
+      "score": 0.85,
+      "ts": "2026-11-02T13:15:24Z",
+      "title": "Amalgamation/Merger",
+      "card": null,
+      "reasons": [
+       "Deal",
+       "on your alert list"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026184512_SE_Sproutlife_.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106834418",
+      "symbol": "TRENT",
+      "category": "results",
+      "subtype": "board_outcome",
+      "tier": "act",
+      "score": 0.85,
+      "ts": "2026-10-29T10:38:05Z",
+      "title": "Results",
+      "card": null,
+      "reasons": [
+       "Quarterly results: board meeting outcome on results day",
+       "on your alert list",
+       "3 related filings folded in (deck, call, press release)"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026160446_DraftOutcomeofBM.pdf",
+      "attachments": [
+       {
+        "subject": "A press release dated October 29, 2026, titled \"Press Release on Unaudited Financial Results (Standalone and Consolidated) for thesecond quarter and half-year ended 30th September 2026",
+        "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026162053_PressReleaseOct2026.pdf",
+        "category": "results",
+        "ts": "2026-10-29T10:51:37Z"
+       },
+       {
+        "subject": "Investor Presentation",
+        "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026161637_InvestorPresentationQ2FY27.pdf",
+        "category": "results",
+        "ts": "2026-10-29T10:47:38Z"
+       },
+       {
+        "subject": "Newspaper Publication on Unaudited Financial Results (Standalone and Consolidated) for the second quarter and half-year ended 30th September 2026",
+        "url": "https://nsearchives.nseindia.com/corporate/TRENT_02112026132637_Q2FY27_Financial_Results_-_Newspaper_Publication.pdf",
+        "category": "results",
+        "ts": "2026-11-02T07:56:56Z"
+       }
+      ]
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106837941",
+      "symbol": "LT",
+      "category": "M&A",
+      "subtype": "stake_sale",
+      "tier": "act",
+      "score": 0.75,
+      "ts": "2026-10-31T07:30:35Z",
+      "title": "Updates on the Business Transfer Agreement with Vyoma.AI Limited (Vyoma), Wholly owned Subsidiary of the Company and Share Purchase Agreement towards sale of entire stake held in L&T Network Services \u2026",
+      "card": null,
+      "reasons": [
+       "Deal",
+       "on your alert list"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/AB_31102026130022_SEIntimation_ExtensionofBTAVyoma_31102026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106836029",
+      "symbol": "POLYCAB",
+      "category": "litigation",
+      "subtype": "insolvency",
+      "tier": "act",
+      "score": 0.7,
+      "ts": "2026-10-30T06:50:09Z",
+      "title": "The order passed by NCLAT setting aside the order of NCLT Ahmedabad bench dated October 07, 2026",
+      "card": null,
+      "reasons": [
+       "Legal / regulatory: insolvency proceedings",
+       "on your alert list"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_30102026121954_SECIRP30102026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106831536",
+      "symbol": "POLYCAB",
+      "category": "litigation",
+      "subtype": "insolvency",
+      "tier": "act",
+      "score": 0.7,
+      "ts": "2026-10-28T04:54:43Z",
+      "title": "The update of NCLAT order dated October 27, 2026",
+      "card": null,
+      "reasons": [
+       "Legal / regulatory: insolvency proceedings",
+       "on your alert list"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_28102026102430_StockExchangeintimation27102026.pdf",
+      "attachments": []
+     }
+    ],
+    "know": [
+     {
+      "kind": "filing",
+      "id": "NSE-106837634",
+      "symbol": "BHARTIARTL",
+      "category": "litigation",
+      "subtype": "regulatory_order",
+      "tier": "know",
+      "score": 0.65,
+      "ts": "2026-10-30T17:10:24Z",
+      "title": "Action(s) taken or orders passed",
+      "card": null,
+      "reasons": [
+       "Legal / regulatory: a regulator or court has acted",
+       "on your alert list"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/BHARTIARTL_30102026223927_BhartiAirtelSTXdisclosure.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106834064",
+      "symbol": "BHARTIARTL",
+      "category": "litigation",
+      "subtype": "regulatory_order",
+      "tier": "know",
+      "score": 0.65,
+      "ts": "2026-10-29T08:12:21Z",
+      "title": "Action(s) taken or orders passed",
+      "card": null,
+      "reasons": [
+       "Legal / regulatory: a regulator or court has acted",
+       "on your alert list"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/BHARTIARTL_29102026134154_BhartiAirtelSTXIntimation.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106840669",
+      "symbol": "SUNPHARMA",
+      "category": "press_release",
+      "subtype": "clarification",
+      "tier": "know",
+      "score": 0.55,
+      "ts": "2026-11-02T15:28:22Z",
+      "title": "Clarification regarding news report relating to the Company s Assam facility",
+      "card": null,
+      "reasons": [
+       "Company news: the company is answering a news report"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_02112026205719_Reply_to_SEs_-_Rumour_Verification02112026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106839459",
+      "symbol": "SUNPHARMA",
+      "category": "press_release",
+      "subtype": "clarification",
+      "tier": "know",
+      "score": 0.55,
+      "ts": "2026-11-02T08:48:39Z",
+      "title": "The Exchange has sought clarification from Sun Pharmaceutical Industries Limited with respect to recent news item captioned India orders Sun Pharma to halt eye-care drug production at plant after qual\u2026",
+      "card": null,
+      "reasons": [
+       "Company news: the company is answering a news report"
+      ],
+      "url": "-",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106836294",
+      "symbol": "SUZLON",
+      "category": "press_release",
+      "subtype": "clarification",
+      "tier": "know",
+      "score": 0.55,
+      "ts": "2026-10-30T08:58:30Z",
+      "title": "Rumour Verification - Regulation 30(11)",
+      "card": null,
+      "reasons": [
+       "Company news: the company is answering a news report"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/SUZLON1_30102026142755_Suzlon30102026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106837091",
+      "symbol": "SUZLON",
+      "category": "credit_rating",
+      "subtype": "general",
+      "tier": "know",
+      "score": 0.5,
+      "ts": "2026-10-30T12:52:36Z",
+      "title": "Credit Rating",
+      "card": null,
+      "reasons": [
+       "Credit rating",
+       "on your alert list",
+       "stock moved +4.0% that day"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/SUZLON1_30102026182203_Suzlon30102026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106836531",
+      "symbol": "DIXON",
+      "category": "management_change",
+      "subtype": "other",
+      "tier": "know",
+      "score": 0.5,
+      "ts": "2026-10-30T10:40:12Z",
+      "title": "Change in Management",
+      "card": null,
+      "reasons": [
+       "Management change",
+       "on your alert list"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/DIXON_30102026160939_Outcome30102026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106839016",
+      "symbol": "LT",
+      "category": "press_release",
+      "subtype": "order_win",
+      "tier": "know",
+      "score": 0.45,
+      "ts": "2026-11-02T04:48:49Z",
+      "title": "Bagging/Receiving of orders/contracts",
+      "card": null,
+      "reasons": [
+       "Company news"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/PAM_02112026101835_PressRelease02112026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106834503",
+      "symbol": "TRENT",
+      "category": "management_change",
+      "subtype": "director",
+      "tier": "know",
+      "score": 0.45,
+      "ts": "2026-10-29T11:02:13Z",
+      "title": "Appointment of Mr Rajiv Dube as Non- Executive Director of the company w.e.f",
+      "card": null,
+      "reasons": [
+       "Management change",
+       "on your alert list"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163044_AppointmentofDirector.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106834504",
+      "symbol": "TRENT",
+      "category": "management_change",
+      "subtype": "director",
+      "tier": "know",
+      "score": 0.45,
+      "ts": "2026-10-29T11:02:13Z",
+      "title": "Change in Director(s) of the company",
+      "card": null,
+      "reasons": [
+       "Management change",
+       "on your alert list"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163102_AppointmentofDirector.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106833561",
+      "symbol": "RELIANCE",
+      "category": "M&A",
+      "subtype": "restructuring",
+      "tier": "know",
+      "score": 0.45,
+      "ts": "2026-10-29T03:25:40Z",
+      "title": "Disclosure under Regulation 30 of the Securities and Exchange Board of India (Listing Obligations and Disclosure Requirements) Regulations, 2015   Voluntary strike off of Hamleys (Franchising) Limited",
+      "card": null,
+      "reasons": [
+       "Deal",
+       "on your alert list"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/kavinavora_29102026084603_SE_29102026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106840686",
+      "symbol": "MARUTI",
+      "category": "earnings_call",
+      "subtype": "transcript",
+      "tier": "know",
+      "score": 0.4,
+      "ts": "2026-11-02T15:38:18Z",
+      "title": "Transcript",
+      "card": null,
+      "reasons": [
+       "Earnings call"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_02112026210459_Transcript_27Oct026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106838789",
+      "symbol": "MARUTI",
+      "category": "press_release",
+      "subtype": "business_update",
+      "tier": "know",
+      "score": 0.4,
+      "ts": "2026-11-01T09:14:18Z",
+      "title": "Maruti Suzuki Production Volume: October 2026",
+      "card": null,
+      "reasons": [
+       "Company news"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_01112026143647_STxIntimation_Prod_Oct2026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106838779",
+      "symbol": "MARUTI",
+      "category": "press_release",
+      "subtype": "business_update",
+      "tier": "know",
+      "score": 0.4,
+      "ts": "2026-11-01T08:15:06Z",
+      "title": "A press release dated November 01, 2026, titled \"Maruti Suzuki sales in October 2026",
+      "card": null,
+      "reasons": [
+       "Company news"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_01112026133641_StxIntimation_Sales_Oct2026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106836729",
+      "symbol": "NAZARA",
+      "category": "earnings_call",
+      "subtype": "transcript",
+      "tier": "know",
+      "score": 0.4,
+      "ts": "2026-10-30T11:34:19Z",
+      "title": "Transcript",
+      "card": null,
+      "reasons": [
+       "Earnings call"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/NAZARA_30102026170330_IntimationofTranscript.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106835654",
+      "symbol": "SUNPHARMA",
+      "category": "press_release",
+      "subtype": "product",
+      "tier": "know",
+      "score": 0.4,
+      "ts": "2026-10-30T02:35:47Z",
+      "title": "A press release dated October 30, 2026, titled \"ILUMYA\u00ae (tildrakizumab-asmn) approved in the U.S",
+      "card": null,
+      "reasons": [
+       "Company news"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_30102026080437_SE_Intimation_of_Press_Release_ILUMYA_PsA_Approval.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106832593",
+      "symbol": "INFY",
+      "category": "earnings_call",
+      "subtype": "transcript",
+      "tier": "know",
+      "score": 0.4,
+      "ts": "2026-10-28T12:08:42Z",
+      "title": "Earnings Call Transcript",
+      "card": null,
+      "reasons": [
+       "Earnings call"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173824_SE_filing_Earnings_call_transcript.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106831411",
+      "symbol": "SUZLON",
+      "category": "credit_rating",
+      "subtype": "general",
+      "tier": "know",
+      "score": 0.4,
+      "ts": "2026-10-28T04:01:53Z",
+      "title": "Credit Rating",
+      "card": null,
+      "reasons": [
+       "Credit rating",
+       "on your alert list"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/SUZLON1_28102026093056_Suzlon28102026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106830405",
+      "symbol": "ETERNAL",
+      "category": "earnings_call",
+      "subtype": "transcript",
+      "tier": "know",
+      "score": 0.4,
+      "ts": "2026-10-27T11:22:27Z",
+      "title": "Transcript of earnings conference call conducted on October 21, 2026",
+      "card": null,
+      "reasons": [
+       "Earnings call"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/ZOMATO_27102026165119_Transcript_of_the_earnings_conference_call_September_2026signed.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106830354",
+      "symbol": "INFY",
+      "category": "press_release",
+      "subtype": "general",
+      "tier": "know",
+      "score": 0.4,
+      "ts": "2026-10-27T11:08:30Z",
+      "title": "Infosys Successfully Delivers Syngenta s Global SAP S/4HANA Transformation for Crop Protection Business",
+      "card": null,
+      "reasons": [
+       "Company news",
+       "stock moved -3.4% that day"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/Infosys_27102026163727_PR_27102026.pdf",
+      "attachments": []
+     }
+    ],
+    "routine": {
+     "count": 33,
+     "companies": 15,
+     "by_company": {
+      "BAJFINANCE": [
+       {
+        "title": "Proceedings of Extraordinary General Meeting held on November 02, 2026",
+        "url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_02112026193032_BFLEGMProceedings.pdf",
+        "ts": "2026-11-02T14:01:06Z"
+       },
+       {
+        "title": "Allotment of 2,06,950 securities pursuant to Non Convertible Securities at its meeting held on October 30, 2026",
+        "url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_30102026145301_REG30_Allotment_intimation.pdf",
+        "ts": "2026-10-30T09:23:37Z"
+       }
+      ],
+      "BEL": [
+       {
+        "title": "Schedule of meet",
+        "url": "https://nsearchives.nseindia.com/corporate/BEL_27102026164511_Lettersigned.pdf",
+        "ts": "2026-10-27T11:21:04Z"
+       }
+      ],
+      "BHARTIARTL": [
+       {
+        "title": "Copy of Newspaper Publication",
+        "url": "https://nsearchives.nseindia.com/corporate/BHARTIARTL_30102026152337_STXintimationOctober302026.pdf",
+        "ts": "2026-10-30T09:53:54Z"
+       },
+       {
+        "title": "Schedule of meet",
+        "url": "https://nsearchives.nseindia.com/corporate/BHARTIARTL_28102026185916_AirtelSTXEarningCallIntimation.pdf",
+        "ts": "2026-10-28T13:39:29Z"
+       }
+      ],
+      "DIXON": [
+       {
+        "title": "Outcome of Analyst or Institutional Investor Meet",
+        "url": "https://nsearchives.nseindia.com/corporate/DIXON_03112026112356_InvestorMeetOutcome031102026.pdf",
+        "ts": "2026-11-03T05:54:09Z"
+       }
+      ],
+      "ICICIBANK": [
+       {
+        "title": "Allotment of 62879  Shares",
+        "url": "https://nsearchives.nseindia.com/corporate/ICICIBANK1_03112026102424_Lettertoexchange.pdf",
+        "ts": "2026-11-03T04:54:40Z"
+       },
+       {
+        "title": "Disclosure under Regulation 30 of the SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015",
+        "url": "https://nsearchives.nseindia.com/corporate/ICICI2022_01112026094235_BSENSE01112026.pdf",
+        "ts": "2026-11-01T04:13:51Z"
+       },
+       {
+        "title": "Allotment of 109039  Shares",
+        "url": "https://nsearchives.nseindia.com/corporate/ICICIBANK1_30102026101600_Lettertoexchange.pdf",
+        "ts": "2026-10-30T04:46:13Z"
+       }
+      ],
+      "INFY": [
+       {
+        "title": "Infosys Announces Expansion of Pocharam Development Center in Hyderabad",
+        "url": "https://nsearchives.nseindia.com/corporate/INFY_30102026185037_PR_30102026.pdf",
+        "ts": "2026-10-30T13:20:50Z"
+       },
+       {
+        "title": "Copy of Newspaper Publication",
+        "url": "https://nsearchives.nseindia.com/corporate/INFY_29102026151445_SE_intimation_Newspaper_ad_2.pdf",
+        "ts": "2026-10-29T09:45:01Z"
+       },
+       {
+        "title": "Winners of Qorus-Infosys Finacle Banking Innovation Awards 2026 Announced",
+        "url": "https://nsearchives.nseindia.com/corporate/INFY_29102026150417_PR_29102026.pdf",
+        "ts": "2026-10-29T09:35:32Z"
+       },
+       {
+        "title": "Canada s UNI Financial Cooperation Advances Branch Modernization with Infosys Finacle Universal Banker",
+        "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173120_PR_28102026.pdf",
+        "ts": "2026-10-28T12:01:34Z"
+       },
+       {
+        "title": "Investor Conference",
+        "url": "https://nsearchives.nseindia.com/corporate/Infosys_27102026225301_SE_filing_Investor_Conference_27102026.pdf",
+        "ts": "2026-10-27T17:23:15Z"
+       }
+      ],
+      "ITC": [
+       {
+        "title": "Media Statement and Presentation",
+        "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026183159_SE_Media_.pdf",
+        "ts": "2026-11-02T13:02:13Z"
+       }
+      ],
+      "LT": [
+       {
+        "title": "Copy of Newspaper Publication",
+        "url": "https://nsearchives.nseindia.com/corporate/PAM_28102026194657_NewspaperAdvtSep2026.pdf",
+        "ts": "2026-10-28T14:17:25Z"
+       }
+      ],
+      "MARUTI": [
+       {
+        "title": "A press release dated October 29, 2026, titled \"Maruti Suzuki, India s No 1 Electric Vehicle exporter, crosses EV exports of 50,000 units",
+        "url": "https://nsearchives.nseindia.com/corporate/MARUTI_29102026104658_StxIntimation_EVExports.pdf",
+        "ts": "2026-10-29T05:20:48Z"
+       },
+       {
+        "title": "Copy of Newspaper Publication",
+        "url": "https://nsearchives.nseindia.com/corporate/MARUTI_28102026103729_STxIntimation_NP_27Oct2026.pdf",
+        "ts": "2026-10-28T05:08:47Z"
+       },
+       {
+        "title": "Audio Recording of the investors' call held on 27th October 2026",
+        "url": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_27102026202705_SubmissionofAudioRecordings.pdf",
+        "ts": "2026-10-27T15:00:49Z"
+       }
+      ],
+      "NAZARA": [
+       {
+        "title": "Disclosure under Regulation 30 of the SEBI (LODR) Regulations, 2015 - Update",
+        "url": "https://nsearchives.nseindia.com/corporate/NAZARA_30102026224359_IntimationNazara.pdf",
+        "ts": "2026-10-30T17:15:50Z"
+       },
+       {
+        "title": "Copy of Newspaper Publication",
+        "url": "https://nsearchives.nseindia.com/corporate/NAZARA_28102026172729_NewspaperPublicationfinal.pdf",
+        "ts": "2026-10-28T11:58:59Z"
+       },
+       {
+        "title": "Link of Recording",
+        "url": "https://nsearchives.nseindia.com/corporate/NAZARA_27102026161013_OutcomeofEarningCall.pdf",
+        "ts": "2026-10-27T10:42:04Z"
+       }
+      ],
+      "POLYCAB": [
+       {
+        "title": "Analyst(s)/Investor(s) meet",
+        "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_28102026174326_Intimationtostockexchange.pdf",
+        "ts": "2026-10-28T12:13:39Z"
+       },
+       {
+        "title": "Analyst(s)/Investor(s) meet",
+        "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_27102026190410_Intimationtostockexchange.pdf",
+        "ts": "2026-10-27T13:34:27Z"
+       },
+       {
+        "title": "Certificate under SEBI (Depositories and Participants) Regulations, 2018",
+        "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_27102026184209_IntimationtoStockExchange.pdf",
+        "ts": "2026-10-27T13:12:35Z"
+       }
+      ],
+      "RATEGAIN": [
+       {
+        "title": "Schedule of meet",
+        "url": "https://nsearchives.nseindia.com/corporate/RATEGAIN_29102026052302_RG_EC_051126.pdf",
+        "ts": "2026-10-28T23:53:17Z"
+       },
+       {
+        "title": "Grant of 53021  Options",
+        "url": "https://nsearchives.nseindia.com/corporate/RATEGAIN_29102026051334_RG_SAR_Grant.pdf",
+        "ts": "2026-10-28T23:43:46Z"
+       }
+      ],
+      "SUNPHARMA": [
+       {
+        "title": "Completion and Results of Postal Ballot dated 01 October 2026",
+        "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_31102026201341_SEIntimationforVR_-_31_October_2026.pdf",
+        "ts": "2026-10-31T14:44:24Z"
+       },
+       {
+        "title": "Copy of Newspaper Publication",
+        "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_31102026173121_SEIntimationforFinancialResultsNewspaperadvertisement.pdf",
+        "ts": "2026-10-31T12:02:02Z"
+       },
+       {
+        "title": "Appointment of Statutory Auditors Pursuant to Mandatory Auditor Rotation",
+        "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_30102026151827_BMOutcome30102026_Conclusion.pdf",
+        "ts": "2026-10-30T09:48:46Z"
+       }
+      ],
+      "TITAN": [
+       {
+        "title": "Copy of Newspaper Publication",
+        "url": "https://nsearchives.nseindia.com/corporate/TITAN_28102026172546_SEnewspaperadlossofshares.pdf",
+        "ts": "2026-10-28T11:56:00Z"
+       },
+       {
+        "title": "The Company has incorporated Titan Company Canada Inc",
+        "url": "https://nsearchives.nseindia.com/corporate/TITAN_28102026134838_SEIntimation_-_Canada_Incorporation.pdf",
+        "ts": "2026-10-28T08:19:00Z"
+       }
+      ],
+      "TRENT": [
+       {
+        "title": "Appointment of Mrs Kalpana Merchant as Non- Executive Independent Director of the company w.e.f",
+        "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163140_AppointmentofDirector.pdf",
+        "ts": "2026-10-29T11:02:13Z"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "start": "2026-11-01T00:00:00Z",
+   "end": "2026-11-03T10:30:00Z",
+   "expected": {
+    "window": {
+     "start": "2026-11-01T00:00:00Z",
+     "end": "2026-11-03T10:30:00Z"
+    },
+    "headline": {
+     "act": 2,
+     "know": 8,
+     "routine": 6,
+     "filings": 17,
+     "companies": 9
+    },
+    "alerts": [],
+    "act": [
+     {
+      "kind": "filing",
+      "id": "NSE-106840268",
+      "symbol": "ITC",
+      "category": "results",
+      "subtype": "filing",
+      "tier": "act",
+      "score": 0.95,
+      "ts": "2026-11-02T12:50:16Z",
+      "title": "Results for the period ended September 30, 2026",
+      "card": null,
+      "reasons": [
+       "Quarterly results: the results filing itself",
+       "on your alert list",
+       "1 related filing folded in (deck, call, press release)"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026181912_SE_Results_.pdf",
+      "attachments": [
+       {
+        "subject": "Results",
+        "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026181547_SE_Results_.pdf",
+        "category": "results",
+        "ts": "2026-11-02T12:45:57Z"
+       }
+      ]
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106840382",
+      "symbol": "ITC",
+      "category": "M&A",
+      "subtype": "merger",
+      "tier": "act",
+      "score": 0.85,
+      "ts": "2026-11-02T13:15:24Z",
+      "title": "Amalgamation/Merger",
+      "card": null,
+      "reasons": [
+       "Deal",
+       "on your alert list"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026184512_SE_Sproutlife_.pdf",
+      "attachments": []
+     }
+    ],
+    "know": [
+     {
+      "kind": "filing",
+      "id": "NSE-106838897",
+      "symbol": "RELIANCE",
+      "category": "earnings_call",
+      "subtype": "transcript",
+      "tier": "know",
+      "score": 0.6,
+      "ts": "2026-11-01T17:39:22Z",
+      "title": "Transcript of the discussion on the Unaudited Financial Results (Consolidated and Standalone) of the Company for the quarter and half year ended September 30, 2026, at the analyst meet held on October\u2026",
+      "card": null,
+      "reasons": [
+       "Earnings call",
+       "stock moved +11.6% that day"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/kavinavora_01112026230907_SE_01112026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106840669",
+      "symbol": "SUNPHARMA",
+      "category": "press_release",
+      "subtype": "clarification",
+      "tier": "know",
+      "score": 0.55,
+      "ts": "2026-11-02T15:28:22Z",
+      "title": "Clarification regarding news report relating to the Company s Assam facility",
+      "card": null,
+      "reasons": [
+       "Company news: the company is answering a news report"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_02112026205719_Reply_to_SEs_-_Rumour_Verification02112026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106839459",
+      "symbol": "SUNPHARMA",
+      "category": "press_release",
+      "subtype": "clarification",
+      "tier": "know",
+      "score": 0.55,
+      "ts": "2026-11-02T08:48:39Z",
+      "title": "The Exchange has sought clarification from Sun Pharmaceutical Industries Limited with respect to recent news item captioned India orders Sun Pharma to halt eye-care drug production at plant after qual\u2026",
+      "card": null,
+      "reasons": [
+       "Company news: the company is answering a news report"
+      ],
+      "url": "-",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106839016",
+      "symbol": "LT",
+      "category": "press_release",
+      "subtype": "order_win",
+      "tier": "know",
+      "score": 0.45,
+      "ts": "2026-11-02T04:48:49Z",
+      "title": "Bagging/Receiving of orders/contracts",
+      "card": null,
+      "reasons": [
+       "Company news"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/PAM_02112026101835_PressRelease02112026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106840686",
+      "symbol": "MARUTI",
+      "category": "earnings_call",
+      "subtype": "transcript",
+      "tier": "know",
+      "score": 0.4,
+      "ts": "2026-11-02T15:38:18Z",
+      "title": "Transcript",
+      "card": null,
+      "reasons": [
+       "Earnings call"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_02112026210459_Transcript_27Oct026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106840137",
+      "symbol": "LT",
+      "category": "earnings_call",
+      "subtype": "transcript",
+      "tier": "know",
+      "score": 0.4,
+      "ts": "2026-11-02T12:26:36Z",
+      "title": "Transcript",
+      "card": null,
+      "reasons": [
+       "Earnings call"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/PAM_02112026175603_TranscriptSep2026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106838789",
+      "symbol": "MARUTI",
+      "category": "press_release",
+      "subtype": "business_update",
+      "tier": "know",
+      "score": 0.4,
+      "ts": "2026-11-01T09:14:18Z",
+      "title": "Maruti Suzuki Production Volume: October 2026",
+      "card": null,
+      "reasons": [
+       "Company news"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_01112026143647_STxIntimation_Prod_Oct2026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106838779",
+      "symbol": "MARUTI",
+      "category": "press_release",
+      "subtype": "business_update",
+      "tier": "know",
+      "score": 0.4,
+      "ts": "2026-11-01T08:15:06Z",
+      "title": "A press release dated November 01, 2026, titled \"Maruti Suzuki sales in October 2026",
+      "card": null,
+      "reasons": [
+       "Company news"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_01112026133641_StxIntimation_Sales_Oct2026.pdf",
+      "attachments": []
+     }
+    ],
+    "routine": {
+     "count": 6,
+     "companies": 5,
+     "by_company": {
+      "BAJFINANCE": [
+       {
+        "title": "Proceedings of Extraordinary General Meeting held on November 02, 2026",
+        "url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_02112026193032_BFLEGMProceedings.pdf",
+        "ts": "2026-11-02T14:01:06Z"
+       }
+      ],
+      "DIXON": [
+       {
+        "title": "Outcome of Analyst or Institutional Investor Meet",
+        "url": "https://nsearchives.nseindia.com/corporate/DIXON_03112026112356_InvestorMeetOutcome031102026.pdf",
+        "ts": "2026-11-03T05:54:09Z"
+       }
+      ],
+      "ICICIBANK": [
+       {
+        "title": "Allotment of 62879  Shares",
+        "url": "https://nsearchives.nseindia.com/corporate/ICICIBANK1_03112026102424_Lettertoexchange.pdf",
+        "ts": "2026-11-03T04:54:40Z"
+       },
+       {
+        "title": "Disclosure under Regulation 30 of the SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015",
+        "url": "https://nsearchives.nseindia.com/corporate/ICICI2022_01112026094235_BSENSE01112026.pdf",
+        "ts": "2026-11-01T04:13:51Z"
+       }
+      ],
+      "ITC": [
+       {
+        "title": "Media Statement and Presentation",
+        "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026183159_SE_Media_.pdf",
+        "ts": "2026-11-02T13:02:13Z"
+       }
+      ],
+      "TRENT": [
+       {
+        "title": "Newspaper Publication on Unaudited Financial Results (Standalone and Consolidated) for the second quarter and half-year ended 30th September 2026",
+        "url": "https://nsearchives.nseindia.com/corporate/TRENT_02112026132637_Q2FY27_Financial_Results_-_Newspaper_Publication.pdf",
+        "ts": "2026-11-02T07:56:56Z"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "start": "2026-11-02T10:30:00Z",
+   "end": "2026-11-03T10:30:00Z",
+   "expected": {
+    "window": {
+     "start": "2026-11-02T10:30:00Z",
+     "end": "2026-11-03T10:30:00Z"
+    },
+    "headline": {
+     "act": 2,
+     "know": 3,
+     "routine": 4,
+     "filings": 10,
+     "companies": 7
+    },
+    "alerts": [],
+    "act": [
+     {
+      "kind": "filing",
+      "id": "NSE-106840268",
+      "symbol": "ITC",
+      "category": "results",
+      "subtype": "filing",
+      "tier": "act",
+      "score": 0.95,
+      "ts": "2026-11-02T12:50:16Z",
+      "title": "Results for the period ended September 30, 2026",
+      "card": null,
+      "reasons": [
+       "Quarterly results: the results filing itself",
+       "on your alert list",
+       "1 related filing folded in (deck, call, press release)"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026181912_SE_Results_.pdf",
+      "attachments": [
+       {
+        "subject": "Results",
+        "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026181547_SE_Results_.pdf",
+        "category": "results",
+        "ts": "2026-11-02T12:45:57Z"
+       }
+      ]
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106840382",
+      "symbol": "ITC",
+      "category": "M&A",
+      "subtype": "merger",
+      "tier": "act",
+      "score": 0.85,
+      "ts": "2026-11-02T13:15:24Z",
+      "title": "Amalgamation/Merger",
+      "card": null,
+      "reasons": [
+       "Deal",
+       "on your alert list"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026184512_SE_Sproutlife_.pdf",
+      "attachments": []
+     }
+    ],
+    "know": [
+     {
+      "kind": "filing",
+      "id": "NSE-106840669",
+      "symbol": "SUNPHARMA",
+      "category": "press_release",
+      "subtype": "clarification",
+      "tier": "know",
+      "score": 0.55,
+      "ts": "2026-11-02T15:28:22Z",
+      "title": "Clarification regarding news report relating to the Company s Assam facility",
+      "card": null,
+      "reasons": [
+       "Company news: the company is answering a news report"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_02112026205719_Reply_to_SEs_-_Rumour_Verification02112026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106840686",
+      "symbol": "MARUTI",
+      "category": "earnings_call",
+      "subtype": "transcript",
+      "tier": "know",
+      "score": 0.4,
+      "ts": "2026-11-02T15:38:18Z",
+      "title": "Transcript",
+      "card": null,
+      "reasons": [
+       "Earnings call"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_02112026210459_Transcript_27Oct026.pdf",
+      "attachments": []
+     },
+     {
+      "kind": "filing",
+      "id": "NSE-106840137",
+      "symbol": "LT",
+      "category": "earnings_call",
+      "subtype": "transcript",
+      "tier": "know",
+      "score": 0.4,
+      "ts": "2026-11-02T12:26:36Z",
+      "title": "Transcript",
+      "card": null,
+      "reasons": [
+       "Earnings call"
+      ],
+      "url": "https://nsearchives.nseindia.com/corporate/PAM_02112026175603_TranscriptSep2026.pdf",
+      "attachments": []
+     }
+    ],
+    "routine": {
+     "count": 4,
+     "companies": 4,
+     "by_company": {
+      "BAJFINANCE": [
+       {
+        "title": "Proceedings of Extraordinary General Meeting held on November 02, 2026",
+        "url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_02112026193032_BFLEGMProceedings.pdf",
+        "ts": "2026-11-02T14:01:06Z"
+       }
+      ],
+      "DIXON": [
+       {
+        "title": "Outcome of Analyst or Institutional Investor Meet",
+        "url": "https://nsearchives.nseindia.com/corporate/DIXON_03112026112356_InvestorMeetOutcome031102026.pdf",
+        "ts": "2026-11-03T05:54:09Z"
+       }
+      ],
+      "ICICIBANK": [
+       {
+        "title": "Allotment of 62879  Shares",
+        "url": "https://nsearchives.nseindia.com/corporate/ICICIBANK1_03112026102424_Lettertoexchange.pdf",
+        "ts": "2026-11-03T04:54:40Z"
+       }
+      ],
+      "ITC": [
+       {
+        "title": "Media Statement and Presentation",
+        "url": "https://nsearchives.nseindia.com/corporate/ITC_02112026183159_SE_Media_.pdf",
+        "ts": "2026-11-02T13:02:13Z"
+       }
+      ]
+     }
+    }
+   }
+  }
+ ]
+}
