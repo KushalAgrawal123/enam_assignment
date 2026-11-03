@@ -15,4 +15,7 @@ Spike run 3 Nov 2026 from a residential connection in India (PLAN Phase 1, step 
 BSE blocks scripted access; FINN does not try to get around that. NSE is the primary feed instead, which BUILD_PLAN
 already allowed for (`FINN_USE_NSE`). Every portfolio company is NSE-listed, so no filings are lost.
 
-From GitHub Actions: see the "Cloud runner check" section below (filled in when the first workflow run completes).
+## Cloud runner check
+
+Every workflow run starts with `python -m jobs.source_check` (non-blocking), so the Actions log shows whether
+GitHub's runners can reach NSE. Pending the first scheduled run (repo pushed 3 Nov 2026).

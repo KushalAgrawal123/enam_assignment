@@ -9,7 +9,7 @@ piece looks like**. Where they disagree, this file wins, and every disagreement 
 
 | Phase | At the end you can… | Status |
 |---|---|---|
-| 1 · Foundations + live Brief | install FINN on a phone and read a ranked brief of real portfolio filings | not started |
+| 1 · Foundations + live Brief | install FINN on a phone and read a ranked brief of real portfolio filings | **in progress**: built, deployed in demo mode; live data waits on Supabase |
 | 2 · Pull foundations | look up any NSE ticker and get its number cards in seconds, each number tappable to its table row | not started |
 | 3 · Push cards + triggers | see verified results numbers, who an incoming CFO is, one-liners, and Telegram alerts on thresholds you set | not started |
 | 4 · Pull analysis | read what management promised vs delivered, and tap any claim to its source page | not started |
@@ -44,7 +44,8 @@ piece looks like**. Where they disagree, this file wins, and every disagreement 
    `Docs/` and the repo's `docs/` would be the same folder.
 4. **Model IDs.** `FINN_STRONG_MODEL=claude-sonnet-5` (`claude-sonnet-5-5` doesn't exist). The cheap tier stays
    Gemini Flash, and Phase 1 confirms the current Flash model ID and free-tier quota. If the quota throttles bulk
-   extraction, an env var switches the cheap tier to `claude-haiku-4-5-20251001`, which is paid but cheap.
+   extraction, an env var switches the cheap tier to `claude-haiku-4-5` ($1/$5 per million tokens; Sonnet 5 is
+   $2/$10).
 5. **The LLM cache and cost log live in Supabase** in a new table, `llm_cache` (response, tokens and ₹ per call),
    with `.cache/` as a local layer in front. GitHub Actions runners and HF Spaces have ephemeral disks, and
    `usage_summary()` has to total spend across all three runtimes for `docs/cost.md`.
@@ -60,6 +61,11 @@ piece looks like**. Where they disagree, this file wins, and every disagreement 
    the session-pooler connection string, which works over IPv4. The web app reads with the publishable key. So no
    secret or service-role key is stored at all. Supabase retires the legacy `anon` and `service_role` keys at the
    end of 2026, so `NEXT_PUBLIC_SUPABASE_ANON_KEY` becomes `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
+10. **NSE is the primary filings feed; BSE is off.** BSE's API returns 403 to automated clients (`docs/sources.md`),
+    and FINN doesn't try to get around that. NSE's announcements API works and carries more than BSE's: ISIN, NSE's
+    own category, a text summary, the PDF and an XBRL flag. Every portfolio company is NSE-listed. `bse_code`
+    stays empty. If NSE turns out to block GitHub's runners, the poll job moves to a local schedule (step 1's
+    fallback).
 
 ## Setup you provide
 
