@@ -45,9 +45,16 @@ jobs:
           path: .cache
           key: finn-cache-${{ github.run_id }}
           restore-keys: finn-cache-
+      - name: Source check (can this runner reach NSE?)
+        id: sources
+        continue-on-error: true
+        run: python -m jobs.source_check
+      - name: Skip if the database isn't configured yet
+        if: env.SUPABASE_DB_URL == ''
+        run: echo "::notice::SUPABASE_DB_URL secret not set; jobs skipped."
       - name: EOD prices
-        if: github.event.schedule == '0 12 * * 1-5' || (github.event_name == 'workflow_dispatch' && inputs.job != 'poll')
+        if: env.SUPABASE_DB_URL != '' && (github.event.schedule == '0 12 * * 1-5' || (github.event_name == 'workflow_dispatch' && inputs.job != 'poll'))
         run: python -m jobs.eod
       - name: Poll filings
-        if: github.event.schedule != '0 12 * * 1-5' || (github.event_name == 'workflow_dispatch' && inputs.job != 'eod')
+        if: env.SUPABASE_DB_URL != '' && ((github.event_name == 'schedule' && github.event.schedule != '0 12 * * 1-5') || (github.event_name == 'workflow_dispatch' && inputs.job != 'eod'))
         run: python -m jobs.poll ${{ inputs.since && format('--since {0}', inputs.since) || '' }}
