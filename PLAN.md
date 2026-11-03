@@ -12,8 +12,8 @@ piece looks like**. Where they disagree, this file wins, and every disagreement 
 | 1 · Foundations + live Brief | install FINN on a phone and read a ranked brief of real portfolio filings | ✅ done 3 Nov: https://finn-beryl-delta.vercel.app (live) |
 | 2 · Pull foundations | look up any NSE ticker and get its number cards in seconds, each number tappable to its table row | ✅ done 3 Nov: Look up → /c/SYMBOL, API https://finn-api-khaki.vercel.app |
 | 3 · Push cards + triggers | see verified results numbers, who an incoming CFO is, one-liners, and Telegram alerts on thresholds you set | ✅ done 3 Nov (keyless, Delta 14) |
-| 4 · Pull analysis | read what management promised vs delivered, and tap any claim to its source page | not started |
-| 5 · Reliability + submission | hand it to a reviewer: works on unseen tickers, survives dead scrapers, package complete | not started |
+| 4 · Pull analysis | read what management promised vs delivered, and tap any claim to its source page | ✅ done 3 Nov (keyless rule path, Delta 15) |
+| 5 · Reliability + submission | hand it to a reviewer: works on unseen tickers, survives dead scrapers, package complete | ✅ done 3 Nov; real-phone test, video and email are yours |
 
 ## How we work
 
@@ -83,6 +83,11 @@ piece looks like**. Where they disagree, this file wins, and every disagreement 
     person gets a "Who is …? Search ↗" link instead of a sourced bio. Results come from screener, checked by
     arithmetic, and one-liners are regex-only. Telegram, Tavily and Gemini stay wired; adding a key later turns
     each one on, with no code change.
+15. **Phase 4 also runs without keys.** Guidance, claims, ledger notes, narrative, bull/bear, verdict and Ask FINN
+    each have a rule path: fixed patterns read management's own sentences (quoted verbatim), and code computes every
+    verdict from the tables. P6–P13 are wired and take over when keys are added; numcheck guards their output. The
+    business snapshot has no rule path and shows a gap without a key. With rules, some tickers show 2–3 guidance
+    threads, not the ≥ 4 the exit criterion asks for (BEL 5, HCLTECH 3, POLYCAB 4, PERSISTENT 3, KPITTECH 2).
 
 ## Setup you provide
 

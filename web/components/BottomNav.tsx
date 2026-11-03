@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// Only screens that exist are listed. Watch joins in Phase 5.
-const ITEMS: { href: string; label: string }[] = [{ href: "/", label: "Brief" }, { href: "/lookup", label: "Look up" }];
+const ITEMS: { href: string; label: string }[] = [{ href: "/", label: "Brief" }, { href: "/watch", label: "Watch" }, { href: "/lookup", label: "Look up" }];
 
 const active = (path: string, href: string) => href === "/" ? path === "/" : path.startsWith(href) || (href === "/lookup" && path.startsWith("/c/"));
 

@@ -16,9 +16,10 @@ DB_URL = os.getenv("FINN_DB_URL") or os.getenv("SUPABASE_DB_URL") or "postgresql
 CHEAP_MODEL = os.getenv("FINN_CHEAP_MODEL", "gemini-2.5-flash")
 STRONG_MODEL = os.getenv("FINN_STRONG_MODEL", "claude-sonnet-5")
 PROMPT_VERSION = os.getenv("FINN_PROMPT_VERSION", "v1")
+# ₹ per million tokens (input, output) at ₹88/US$: Gemini 2.5 Flash $0.30/$2.50, Claude Sonnet 5 $2/$10.
 PRICE_INR = {
-    "cheap": (float(os.getenv("FINN_CHEAP_IN", "0")), float(os.getenv("FINN_CHEAP_OUT", "0"))),
-    "strong": (float(os.getenv("FINN_STRONG_IN", "0")), float(os.getenv("FINN_STRONG_OUT", "0"))),
+    "cheap": (float(os.getenv("FINN_CHEAP_IN", "26.4")), float(os.getenv("FINN_CHEAP_OUT", "220"))),
+    "strong": (float(os.getenv("FINN_STRONG_IN", "176")), float(os.getenv("FINN_STRONG_OUT", "880"))),
 }
 CACHE_DIR = Path(os.getenv("FINN_CACHE", ROOT / ".cache"))
 

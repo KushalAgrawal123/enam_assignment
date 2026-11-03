@@ -16,18 +16,22 @@ const SECTIONS = [["verdict", "Verdict"], ["ledger", "Promises"], ["narrative", 
 
 const needsAnalysis = (p: ResearchPayload) => !p.cards.verdict;
 
-export function ResearchView({ symbol }: { symbol: string }) {
-  const [state, setState] = useState<Loaded | null>(null);
+const FRESH_MS = 24 * 3600 * 1000;
+
+export function ResearchView({ symbol, initial = null }: { symbol: string; initial?: ResearchPayload | null }) {
+  const [state, setState] = useState<Loaded | null>(initial ? { payload: initial, demo: false } : null);
   const [error, setError] = useState<{ code: string; message: string } | null>(null);
   const started = useRef(false);
 
   useEffect(() => {
+    // Built within the last day on the server: nothing to (re)build here; the documents effect below takes over.
+    if (initial && Date.now() - new Date(initial.as_of).getTime() < FRESH_MS) return;
     let alive = true;
     research(symbol)
       .then((l) => alive && setState(l))
       .catch((e) => alive && setError({ code: e instanceof ApiError ? e.code : "error", message: e.message }));
     return () => { alive = false; };
-  }, [symbol]);
+  }, [symbol, initial]);
 
   // Documents (transcripts, annual report) load in the background, then the analysis cards are built from them.
   useEffect(() => {
@@ -97,7 +101,7 @@ export function ResearchView({ symbol }: { symbol: string }) {
   );
 }
 
-function ResearchSkeleton({ symbol }: { symbol: string }) {
+export function ResearchSkeleton({ symbol }: { symbol: string }) {
   return (
     <main aria-busy>
       <p className="num text-[12px] text-muted">{symbol}</p>

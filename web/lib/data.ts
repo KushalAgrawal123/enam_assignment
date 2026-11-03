@@ -1,9 +1,10 @@
 // Data layer (BUILD_PLAN §6.3): live Supabase first, the frozen demo snapshot otherwise.
 // Falls back when Supabase isn't configured, a request fails, or the newest filing is older than 72 hours.
-import { supabase } from "./supabase";
+import { supabase, supabaseConfigured } from "./supabase";
 import type { Alert, BriefData, Company, DataMode, Filing, PricePoint, Snapshot } from "./types";
 
 const STALE_MS = 72 * 3600 * 1000;
+const LIVE_TIMEOUT_MS = 3500;
 const HISTORY_DAYS = 8; // the widest preset window is 7d; custom ranges reload with their own start
 const FILING_COLS = "id,symbol,ts,subject,url,category,subtype,secondary,score,tier,reasons,card,card_status";
 
@@ -20,8 +21,8 @@ function index(companies: Company[], prices: PricePoint[]) {
 
 const normFiling = (f: Filing): Filing => ({ ...f, ts: z(new Date(f.ts)), score: Number(f.score) });
 
-async function loadLive(since: Date): Promise<BriefData> {
-  const sb = supabase();
+export async function loadLive(since: Date = new Date(Date.now() - HISTORY_DAYS * 86400 * 1000)): Promise<BriefData> {
+  const sb = await supabase();
   if (!sb) throw new Error("Supabase isn't configured for this deployment");
   const now = new Date();
   const priceSince = new Date(now.getTime() - 60 * 86400 * 1000).toISOString().slice(0, 10);
@@ -63,10 +64,12 @@ export async function loadBrief(prefer: DataMode, windowStart?: Date): Promise<B
   if (prefer === "demo") return loadDemo(null);
   const since = windowStart ?? new Date(Date.now() - HISTORY_DAYS * 86400 * 1000);
   try {
-    return await loadLive(since);
+    // supabase-js retries network errors; a dead host shouldn't hold the brief for more than a few seconds
+    return await Promise.race([loadLive(since), new Promise<never>((_, no) =>
+      setTimeout(() => no(new Error("Live data didn't answer within 3.5 seconds")), LIVE_TIMEOUT_MS))]);
   } catch (e) {
     return loadDemo(e instanceof Error ? e.message : String(e));
   }
 }
 
-export const liveConfigured = () => supabase() !== null;
+export const liveConfigured = supabaseConfigured;

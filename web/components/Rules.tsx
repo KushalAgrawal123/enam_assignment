@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { InlineNumber } from "@/components/RuleSentence";
 import { getSettings, putSettings } from "@/lib/api";
+import { routineCategories, undoRoutine } from "@/lib/feedback";
+import { CATEGORY_LABEL } from "@/lib/format";
 import type { Settings } from "@/lib/types";
 
 const CATS: [string, string][] = [["results", "results"], ["M&A", "deals"], ["management_change", "management changes"],
@@ -14,7 +16,19 @@ const CATS: [string, string][] = [["results", "results"], ["M&A", "deals"], ["ma
 export function Rules() {
   const [s, setS] = useState<Settings | null>(null);
   const [status, setStatus] = useState<string>("");
+  const [routine, setRoutine] = useState<string[]>([]);
   useEffect(() => { getSettings().then(setS).catch((e) => setStatus(`Couldn't load your rules: ${e.message}`)); }, []);
+  useEffect(() => { const t = setTimeout(() => setRoutine([...routineCategories()]), 0); return () => clearTimeout(t); }, []);
+
+  const unroutine = (c: string) => {
+    undoRoutine(c);
+    setRoutine(routine.filter((x) => x !== c));
+    if (s?.weights && c in s.weights) {
+      const w = { ...s.weights };
+      delete w[c];
+      save({ weights: w });
+    }
+  };
 
   const save = (patch: Partial<Settings>) => {
     if (!s) return;
@@ -70,8 +84,17 @@ export function Rules() {
           </div>
         </div>
       )}
+      {routine.length > 0 && (
+        <div className="mt-6 font-serif text-[19px] leading-relaxed">
+          <p>Treat these as routine, because you kept marking them Noted:</p>
+          <div className="mt-2 flex flex-wrap gap-1.5 font-sans text-[13px]">
+            {routine.map((c) => <button key={c} onClick={() => unroutine(c)} className="rounded-full border border-ink px-3 py-1">
+              {CATEGORY_LABEL[c] ?? c} <span aria-hidden>×</span><span className="sr-only">: show again</span></button>)}
+          </div>
+        </div>
+      )}
       <p className="mt-8 text-[12px] text-muted" aria-live="polite">{status}</p>
-      <p className="mt-2 text-[12px] text-muted">Alerts arrive on Telegram and at the top of your brief. Prices are checked after the close (17:30 IST); filings every 15 minutes.</p>
+      <p className="mt-2 text-[12px] text-muted">Alerts appear at the top of your brief, and on Telegram once a bot is connected. Prices are checked after the close (17:30 IST); filings every 15 minutes.</p>
     </main>
   );
 }

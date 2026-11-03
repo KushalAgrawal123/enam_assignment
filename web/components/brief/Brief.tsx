@@ -7,6 +7,8 @@ import { DataModeChip } from "@/components/DataModeChip";
 import { WINDOW_HOURS, WindowChip, type WindowKey } from "@/components/WindowChip";
 import { markAlertSeen } from "@/lib/api";
 import { liveConfigured, loadBrief } from "@/lib/data";
+import { acceptRoutine, applyRoutine, decline, pendingOffer, routineCategories } from "@/lib/feedback";
+import { CATEGORY_LABEL } from "@/lib/format";
 import { hiddenIds, triage, undo } from "@/lib/triage";
 import { buildDigest } from "@/lib/digest";
 import { istDay, longDay } from "@/lib/format";
@@ -36,19 +38,26 @@ function plural(n: number, one: string, many = `${one}s`) {
   return `${n} ${n === 1 ? one : many}`;
 }
 
-export function Brief() {
+export function Brief({ initial = null }: { initial?: BriefData | null }) {
   // null = use the saved preference (read inside the effect, so the server render never touches storage)
   const [prefer, setPrefer] = useState<DataMode | null>(null);
-  const [data, setData] = useState<BriefData | null>(null);
+  const [data, setData] = useState<BriefData | null>(initial);
   const [error, setError] = useState<string | null>(null);
   const [win, setWin] = useState<WindowKey>("24h");
   const [custom, setCustom] = useState({ from: "", to: "" });
   const [hidden, setHidden] = useState<Set<string>>(new Set());
   const [lastAction, setLastAction] = useState<{ id: string; label: string } | null>(null);
+  const [routine, setRoutine] = useState<Set<string>>(new Set());
+  const [offer, setOffer] = useState<{ category: string; count: number } | null>(null);
+  const [offerNote, setOfferNote] = useState<string | null>(null);
 
-  useEffect(() => { const t = setTimeout(() => setHidden(hiddenIds()), 0); return () => clearTimeout(t); }, []);
-  const act = (id: string, action: "noted" | "snoozed", label: string, alertId?: number) => {
-    triage(id, action);
+  useEffect(() => {
+    const t = setTimeout(() => { setHidden(hiddenIds()); setRoutine(routineCategories()); setOffer(pendingOffer()); }, 0);
+    return () => clearTimeout(t);
+  }, []);
+  const act = (id: string, action: "noted" | "snoozed", label: string, alertId?: number, category?: string) => {
+    triage(id, action, category);
+    setOffer(pendingOffer());
     if (alertId !== undefined) markAlertSeen(alertId).catch(() => {});   // the server learns it was seen
     setHidden(hiddenIds());
     setLastAction({ id, label: action === "noted" ? `Noted: ${label}` : `Snoozed till 8am: ${label}` });
@@ -56,10 +65,11 @@ export function Brief() {
   const undoLast = () => { if (lastAction) { undo(lastAction.id); setHidden(hiddenIds()); setLastAction(null); } };
 
   useEffect(() => {
+    if (prefer === null && initial && readMode() === "live") return;   // the server already sent the live brief
     let alive = true;
     loadBrief(prefer ?? readMode()).then((d) => alive && (setData(d), setError(null))).catch((e) => alive && setError(String(e)));
     return () => { alive = false; };
-  }, [prefer]);
+  }, [prefer, initial]);
 
   const range = useMemo(() => {
     if (!data) return null;
@@ -71,9 +81,17 @@ export function Brief() {
   const digest = useMemo(() => {
     if (!data || !range) return null;
     const alerts = data.alerts.filter((a) => range.start <= a.ts && a.ts <= range.end && !hidden.has(`alert:${a.id}`));
-    const d = buildDigest(data.filings, range.start, range.end, alerts);
+    const d = buildDigest(applyRoutine(data.filings, routine), range.start, range.end, alerts);
     return { ...d, act: d.act.filter((c) => !hidden.has(c.id)), know: d.know.filter((c) => !hidden.has(c.id)) };
-  }, [data, range, hidden]);
+  }, [data, range, hidden, routine]);
+
+  const label = (c: string) => (CATEGORY_LABEL[c] ?? c).toLowerCase();
+  const yes = async (c: string) => {
+    setOffer(null);
+    setRoutine(new Set([...routine, c]));
+    const saved = await acceptRoutine(c);
+    setOfferNote(`${CATEGORY_LABEL[c] ?? c} filings now go to Routine${saved ? "." : " on this device (the server will learn once saving is switched on)."}`);
+  };
 
   const toggleMode = () => {
     const next: DataMode = data?.mode === "live" ? "demo" : "live";
@@ -121,6 +139,17 @@ export function Brief() {
         </>}
       </p>
 
+      {offer && (
+        <div role="status" className="mt-4 rounded-xl border border-hairline bg-raised px-4 py-3">
+          <p>You&apos;ve marked <span className="num">{offer.count}</span> {label(offer.category)} filings as Noted. Show {label(offer.category)} filings as routine?</p>
+          <div className="mt-2 flex gap-4 text-[13px] font-medium">
+            <button onClick={() => yes(offer.category)} className="underline underline-offset-2">Yes, routine</button>
+            <button onClick={() => { decline(offer.category); setOffer(null); }} className="text-muted">No, keep showing</button>
+          </div>
+        </div>
+      )}
+      {offerNote && <p className="mt-3 text-[12px] text-muted" role="status">{offerNote} <Link href="/rules" className="underline">Rules</Link></p>}
+
       <section className="mt-6" aria-labelledby="act-h">
         <h2 id="act-h" className="mb-2 flex items-center gap-2 text-[11px] uppercase tracking-wider text-muted">
           <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent" /> Act
@@ -133,7 +162,7 @@ export function Brief() {
             ))}
             {digest.act.map((c) => (
               <ActCard key={c.id} c={c} company={data.companies[c.symbol]} prices={data.prices[c.symbol]} now={now}
-                onNoted={() => act(c.id, "noted", c.symbol)} onSnooze={() => act(c.id, "snoozed", c.symbol)} />
+                onNoted={() => act(c.id, "noted", c.symbol, undefined, c.category)} onSnooze={() => act(c.id, "snoozed", c.symbol)} />
             ))}
           </div>
         )}
@@ -143,7 +172,7 @@ export function Brief() {
         <section className="mt-7" aria-labelledby="know-h">
           <h2 id="know-h" className="mb-1 text-[11px] uppercase tracking-wider text-muted">Know</h2>
           <ul>{digest.know.map((c) => <KnowRow key={c.id} c={c} now={now}
-            onNoted={() => act(c.id, "noted", c.symbol)} onSnooze={() => act(c.id, "snoozed", c.symbol)} />)}</ul>
+            onNoted={() => act(c.id, "noted", c.symbol, undefined, c.category)} onSnooze={() => act(c.id, "snoozed", c.symbol)} />)}</ul>
         </section>
       )}
 

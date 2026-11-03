@@ -1,6 +1,6 @@
 // Triage state lives on this device (localStorage): Noted hides an item for good, Snooze until 08:00 IST tomorrow.
 const KEY = "finn.triage";
-type State = Record<string, { action: "noted" | "snoozed"; until?: string; at: string }>;
+type State = Record<string, { action: "noted" | "snoozed"; until?: string; at: string; category?: string }>;
 
 function read(): State {
   try { return JSON.parse(localStorage.getItem(KEY) ?? "{}"); } catch { return {}; }
@@ -20,9 +20,9 @@ export function tomorrow8IST(now = new Date()): string {
   return d.toISOString();
 }
 
-export function triage(id: string, action: "noted" | "snoozed") {
+export function triage(id: string, action: "noted" | "snoozed", category?: string) {
   const s = read();
-  s[id] = { action, at: new Date().toISOString(), until: action === "snoozed" ? tomorrow8IST() : undefined };
+  s[id] = { action, at: new Date().toISOString(), until: action === "snoozed" ? tomorrow8IST() : undefined, category };
   write(s);
 }
 
@@ -32,7 +32,9 @@ export function undo(id: string) {
   write(s);
 }
 
-/** How often each category was marked Noted (feeds the "show as routine?" prompt in Phase 5). */
-export function notedCount(): number {
-  return Object.values(read()).filter((v) => v.action === "noted").length;
+/** How often each category was marked Noted (feeds the "show as routine?" prompt). */
+export function notedByCategory(): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const v of Object.values(read())) if (v.action === "noted" && v.category) out[v.category] = (out[v.category] ?? 0) + 1;
+  return out;
 }
