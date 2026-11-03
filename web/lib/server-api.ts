@@ -7,7 +7,7 @@ const API = process.env.NEXT_PUBLIC_API_URL ?? "";
 export async function forward(path: string, init: RequestInit = {}): Promise<Response> {
   const token = process.env.FINN_API_TOKEN;
   if (!API || !token) {
-    return Response.json({ error: "not_configured", detail: "Saving rules isn't switched on for this deployment yet." }, { status: 503 });
+    return Response.json({ error: "not_configured", detail: "This needs the API token, which isn't set on this deployment yet." }, { status: 503 });
   }
   const r = await fetch(API + path, { ...init, cache: "no-store",
     headers: { "Content-Type": "application/json", "X-FINN-Token": token, ...(init.headers ?? {}) } });

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { Swipeable, TriageButtons } from "@/components/Swipeable";
 import { CATEGORY_LABEL, when } from "@/lib/format";
@@ -35,7 +36,10 @@ export function KnowRow({ c, now, onNoted, onSnooze }: { c: DigestCard; now: str
               <ul className="text-muted">
                 {c.reasons.map((r) => <li key={r}>— {r}</li>)}
               </ul>
-              {c.url && <a href={c.url} target="_blank" rel="noreferrer" className="mt-1.5 inline-block font-medium underline underline-offset-2">Open filing ↗</a>}
+              <div className="mt-1.5 flex gap-4 font-medium">
+                {c.url && <a href={c.url} target="_blank" rel="noreferrer" className="underline underline-offset-2">Open filing ↗</a>}
+                <Link href={`/c/${c.symbol}#ledger`} className="underline underline-offset-2">Dig in →</Link>
+              </div>
               <TriageButtons onNoted={onNoted} onSnooze={onSnooze} />
             </div>
           </div>

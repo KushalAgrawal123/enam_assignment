@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { dayMove, Sparkline } from "@/components/Sparkline";
 import { Swipeable, TriageButtons } from "@/components/Swipeable";
@@ -58,11 +59,10 @@ export function ActCard({ c, company, prices, now, onNoted, onSnooze }: {
                 </ul>
               </>
             )}
-            {c.url && (
-              <a href={c.url} target="_blank" rel="noreferrer" className="mt-3 inline-block text-[13px] font-medium underline underline-offset-2">
-                Open filing ↗
-              </a>
-            )}
+            <div className="mt-3 flex gap-4 text-[13px] font-medium">
+              {c.url && <a href={c.url} target="_blank" rel="noreferrer" className="underline underline-offset-2">Open filing ↗</a>}
+              <Link href={`/c/${c.symbol}#ledger`} className="underline underline-offset-2">Dig in →</Link>
+            </div>
             <TriageButtons onNoted={onNoted} onSnooze={onSnooze} />
           </div>
         </div>

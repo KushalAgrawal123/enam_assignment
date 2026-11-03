@@ -1,5 +1,5 @@
 // Pull API client. Falls back to the frozen demo payloads when the API is unreachable (BUILD_PLAN §6.3).
-import type { ResearchPayload, TableReceipt } from "./types";
+import type { AnyReceipt, AskAnswer, Citation, ResearchPayload, TableReceipt } from "./types";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "";
 
@@ -30,6 +30,32 @@ export async function research(symbol: string, refresh = false): Promise<Loaded>
 
 export const refreshPayload = (symbol: string) => call<ResearchPayload>(`/research/${symbol}`);
 export const ingest = (symbol: string) => call<{ done: boolean }>(`/research/${symbol}/ingest`, { method: "POST" });
+export const analyse = (symbol: string) => call<{ cards?: Record<string, string> }>(`/research/${symbol}/analyse`, { method: "POST" });
+
+const findCitation = (payload: ResearchPayload | undefined, id: string): Citation | undefined => {
+  for (const card of Object.values(payload?.cards ?? {})) {
+    const c = card?.citations.find((x) => x.id === id);
+    if (c) return c;
+  }
+};
+
+/** Any receipt: a table row (TBL-…) or a document page (T…/AR…) with the quote highlighted. */
+export async function receipt(symbol: string, id: string, payload?: ResearchPayload, quote?: string): Promise<AnyReceipt | null> {
+  if (id.startsWith("TBL-")) return tableReceipt(symbol, id, payload);
+  const c = findCitation(payload, id);
+  const q = quote ?? c?.quote;
+  try {
+    return await call<AnyReceipt>(`/receipt?symbol=${encodeURIComponent(symbol)}&citation_id=${encodeURIComponent(id)}${q ? `&q=${encodeURIComponent(q)}` : ""}`);
+  } catch {
+    if (!c && !q) return null;   // offline: the quote we stored is the receipt
+    const text = (q ?? "").replace(/ …$/, "");
+    return { kind: c?.kind === "annual_report" ? "annual_report" : "transcript", doc_url: c?.doc_url ?? "", period: c?.period ?? "",
+      page: c?.page ?? 0, text, highlight: [0, text.length], citation_id: id, offline: true };
+  }
+}
+
+export const askFinn = (symbol: string, question: string, context?: { card?: string; citation_id?: string }) =>
+  local<AskAnswer>("/api/ask", "POST", { symbol, question, context });
 
 export async function tableReceipt(symbol: string, citationId: string, payload?: ResearchPayload): Promise<TableReceipt | null> {
   try {

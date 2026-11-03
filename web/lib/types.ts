@@ -134,6 +134,39 @@ export interface TableReceipt {
   kind: "table"; doc_url: string; section: string; metric: string; periods: string[];
   values: (number | null)[]; highlight: number; basis: string | null;
 }
+export interface DocReceipt {
+  kind: "transcript" | "annual_report"; doc_url: string; period: string; page: number; text: string;
+  highlight: [number, number] | null; citation_id: string; offline?: boolean;
+}
+export type AnyReceipt = TableReceipt | DocReceipt;
+
+// ---- Pull analysis (Phase 4) ----
+export type Method = "rules" | "model";
+export type LedgerVerdict = "delivered" | "beat" | "partial" | "missed" | "pending" | "not_verifiable";
+export interface Target { lo: number | null; hi: number | null; unit: string; horizon: string; direction?: "up" | "down" | "flat" | null }
+export interface LedgerItem {
+  id: string; metric: string; metric_key: string; table_metric: string | null; verdict: LedgerVerdict; note: string;
+  quarters: { period: string; said: string | null; said_citation: string | null; target: Target | null;
+              actual: number | null; actual_citation: string | null; actual_citations?: string[];
+              verdict: LedgerVerdict; note: string | null }[];
+  revisions: { from_period: string; to_period: string; change: string }[];
+  actual_citations: string[];
+}
+export interface LedgerData { items: LedgerItem[]; pattern: string; summary: Record<LedgerVerdict, number>; method: Method; calls: string[] }
+export interface GuidanceItem { metric: string; metric_label: string; basis: string; target_lo: number | null; target_hi: number | null;
+  unit: string; horizon: string; direction: string | null; confidence_words: string; quote: string; citation: string; page?: number }
+export interface GuidanceData { call: string; items: GuidanceItem[]; method: Method }
+export interface NarrativeRow { topic: string; claim: string; claim_citation: string; evidence: string; evidence_citations: string[];
+  status: "agrees" | "diverges" | "mixed" | "untestable" }
+export interface NarrativeData { rows: NarrativeRow[]; headline: string; method: Method }
+export interface SnapshotData { what_it_does: string; method: Method;
+  segments: { name: string; description: string; revenue_share_pct: number | null; citation: string }[];
+  geographies: { name: string; revenue_share_pct: number | null; citation: string }[];
+  key_facts: { text: string; citation: string }[] }
+export interface BullBearData { bull: { point: string; citations: string[] }[]; bear: { point: string; citations: string[] }[];
+  swing_factor: string; method: Method }
+export interface VerdictData { verdict: string; method: Method; llm_calls?: { api: number; cache: number } }
+export interface AskAnswer { answer: string; citations: Citation[]; not_found: boolean; method?: Method }
 
 // ---- Push cards (Phase 3) ----
 export interface ResultsCard {

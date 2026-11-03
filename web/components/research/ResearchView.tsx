@@ -2,12 +2,19 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ApiError, ingest, refreshPayload, research, type Loaded } from "@/lib/api";
+import { analyse, ApiError, ingest, refreshPayload, research, type Loaded } from "@/lib/api";
 import { stamp } from "@/lib/format";
+import type { ResearchPayload } from "@/lib/types";
+import { BullBearCard, GuidanceCard, LedgerCard, NarrativeCard, SnapshotCard, VerdictCard } from "./AnalysisCards";
 import { BalanceCard, CashCard, FinancialsCard, TrajectoryCard } from "./NumberCards";
 import { ReceiptProvider } from "./Receipt";
 
-const SECTIONS = [["financials", "Snapshot"], ["trajectory", "Trajectory"], ["balance_sheet", "Balance sheet"], ["cash_quality", "Cash"]];
+// Verdict first, then the evidence behind it (BUILD_PLAN Phase 3 web).
+const SECTIONS = [["verdict", "Verdict"], ["ledger", "Promises"], ["narrative", "Narrative"], ["snapshot", "Business"],
+  ["financials", "Numbers"], ["trajectory", "Trajectory"], ["balance_sheet", "Balance sheet"], ["cash_quality", "Cash"],
+  ["guidance", "Guidance"], ["bull_bear", "Bull/bear"]];
+
+const needsAnalysis = (p: ResearchPayload) => !p.cards.verdict;
 
 export function ResearchView({ symbol }: { symbol: string }) {
   const [state, setState] = useState<Loaded | null>(null);
@@ -22,16 +29,22 @@ export function ResearchView({ symbol }: { symbol: string }) {
     return () => { alive = false; };
   }, [symbol]);
 
-  // Documents (transcripts, annual report) load in the background; Phase 4's analysis reads them.
+  // Documents (transcripts, annual report) load in the background, then the analysis cards are built from them.
   useEffect(() => {
-    if (!state || state.demo || !state.payload.documents?.pending || started.current) return;
+    if (!state || state.demo || started.current) return;
+    const p = state.payload;
+    if (!p.documents?.pending && !needsAnalysis(p)) return;
     started.current = true;
     let alive = true;
-    const poll = setInterval(() => refreshPayload(symbol).then((p) => alive && setState({ payload: p, demo: false })).catch(() => {}), 4000);
-    ingest(symbol).catch(() => {}).finally(() => {
-      refreshPayload(symbol).then((p) => alive && setState({ payload: p, demo: false })).catch(() => {});
-      clearInterval(poll);
-    });
+    const update = () => refreshPayload(symbol).then((x) => alive && setState({ payload: x, demo: false })).catch(() => {});
+    const poll = setInterval(update, 4000);
+    (async () => {
+      for (let i = 0; i < 4; i++) {           // ingest is resumable; each call has its own time budget
+        const r = await ingest(symbol).catch(() => ({ done: true }));
+        if (r.done) break;
+      }
+      await analyse(symbol).catch(() => {});
+    })().finally(() => { clearInterval(poll); update(); });
     return () => { alive = false; clearInterval(poll); };
   }, [state, symbol]);
 
@@ -46,6 +59,7 @@ export function ResearchView({ symbol }: { symbol: string }) {
 
   const p = state.payload;
   const d = p.documents;
+  const analysing = !state.demo && (needsAnalysis(p) || (d?.pending ?? 0) > 0);
   return (
     <ReceiptProvider symbol={p.symbol} payload={p}>
       <main>
@@ -65,12 +79,19 @@ export function ResearchView({ symbol }: { symbol: string }) {
           ))}
         </nav>
         <div className="mt-2 space-y-3">
+          <VerdictCard card={p.cards.verdict} />
+          {analysing && <p className="text-center text-[12px] text-muted">Reading the earnings calls and annual report…</p>}
+          <LedgerCard card={p.cards.ledger} />
+          <NarrativeCard card={p.cards.narrative} />
+          <SnapshotCard card={p.cards.snapshot} />
           <FinancialsCard card={p.cards.financials} />
           <TrajectoryCard card={p.cards.trajectory} />
           <BalanceCard card={p.cards.balance_sheet} />
           <CashCard card={p.cards.cash_quality} />
+          <GuidanceCard card={p.cards.guidance} />
+          <BullBearCard card={p.cards.bull_bear} />
         </div>
-        <p className="mt-6 text-center text-[12px] text-muted">Coming next: what management promised on its calls, against what it delivered.</p>
+        <p className="mt-6 text-center text-[11px] text-muted">Primary sources only: exchange filings, the company&apos;s calls and annual report, and reported tables. No news, no web search.</p>
       </main>
     </ReceiptProvider>
   );

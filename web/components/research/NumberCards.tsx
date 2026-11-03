@@ -10,7 +10,7 @@ export function CardShell({ id, title, card, children }: { id: string; title: st
   return (
     <section id={id} className="scroll-mt-24 rounded-xl border border-hairline bg-raised px-4 py-4">
       <h2 className="font-serif text-[19px]">{title}</h2>
-      {!card ? <p className="mt-2 text-muted">Not available.</p>
+      {!card ? <p className="mt-2 animate-pulse text-muted">Not built yet.</p>
         : card.status === "gap" || !card.data ? <GapNotice gaps={card.gaps} />
           : <>{children}{card.gaps.length > 0 && <p className="mt-3 text-[12px] text-muted">{card.gaps.join(" ")}</p>}</>}
     </section>

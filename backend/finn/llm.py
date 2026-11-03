@@ -18,6 +18,7 @@ from . import config, db
 
 log = logging.getLogger("finn.llm")
 JSON_SUFFIX = " Respond with a single JSON object and nothing else."
+CALLS = {"api": 0, "cache": 0}   # this process's calls; research runs report the difference as evidence
 
 
 class LLMUnavailable(RuntimeError):
@@ -75,6 +76,7 @@ def complete_json(tier: str, system: str, prompt: str, max_tokens: int = 4000) -
 
     local = config.CACHE_DIR / "llm" / f"{key}.json"
     if local.exists():
+        CALLS["cache"] += 1
         return json.loads(local.read_text())
     try:
         rows = db.select("update llm_cache set hits = hits + 1 where key = %s returning response", (key,))
@@ -82,11 +84,13 @@ def complete_json(tier: str, system: str, prompt: str, max_tokens: int = 4000) -
         log.warning("llm_cache read failed: %s", e)
         rows = []
     if rows:
+        CALLS["cache"] += 1
         out = rows[0]["response"]
     else:
         if not available(tier):
             raise LLMUnavailable(f"no API key for {model}")
         call = _call_gemini if model.startswith("gemini") else _call_anthropic
+        CALLS["api"] += 1
         text, tin, tout = call(model, system, prompt, max_tokens)
         out = _parse_json(text)
         pin, pout = config.PRICE_INR[tier]

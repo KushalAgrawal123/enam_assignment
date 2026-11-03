@@ -2,8 +2,11 @@
 
 POST /research/{symbol}          number cards now (cached 24 h; ?refresh=1 rebuilds)
 GET  /research/{symbol}          the ResearchPayload so far
-POST /research/{symbol}/ingest   fetch transcripts + annual report; resumable, call until done=true
-GET  /receipt?symbol=&citation_id=   the table row behind a number
+POST /research/{symbol}/ingest   fetch transcripts + annual report; resumable, call until done=true.
+                                 When the documents are all in, it runs the analysis cards too.
+POST /research/{symbol}/analyse  (re)build guidance, ledger, narrative, snapshot, bull/bear, verdict
+GET  /receipt?symbol=&citation_id=[&q=]   the table row or document page behind a number or claim
+POST /ask                        Ask FINN, grounded in the company's own documents (token required)
 """
 from __future__ import annotations
 
@@ -15,11 +18,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from finn import db
+from finn.pull import ask as ask_mod
 from finn.pull import bundle, run
 from finn.sources.fetchers import SourceError
 
 logging.basicConfig(level=logging.INFO)
-VERSION = "phase3"
+VERSION = "phase5"
 app = FastAPI(title="FINN Pull API", version=VERSION)
 app.add_middleware(CORSMiddleware, allow_origins=[o.strip() for o in os.getenv("FINN_WEB_ORIGINS", "*").split(",") if o.strip()],
                    allow_methods=["GET", "POST", "PUT"], allow_headers=["*"])
@@ -52,13 +56,33 @@ def get(symbol: str):
 
 @app.post("/research/{symbol}/ingest")
 def ingest(symbol: str):
-    return bundle.ingest(symbol.upper(), budget_s=float(os.getenv("FINN_INGEST_BUDGET", "200")))
+    s = symbol.upper()
+    out = bundle.ingest(s, budget_s=float(os.getenv("FINN_INGEST_BUDGET", "200")))
+    if out.get("done"):
+        out["analysis"] = run.build_analysis(s)
+    return out
+
+
+@app.post("/research/{symbol}/analyse")
+def analyse(symbol: str, refresh: int = 0):
+    out = run.build_analysis(symbol.upper(), refresh=bool(refresh))
+    return err(409, "not_started", out["error"]) if out.get("error") else out
 
 
 @app.get("/receipt")
-def receipt(symbol: str = Query(...), citation_id: str = Query(...)):
-    r = run.receipt(symbol, citation_id)
+def receipt(symbol: str = Query(...), citation_id: str = Query(...), q: str | None = Query(default=None)):
+    r = run.receipt(symbol, citation_id, q)
     return r or err(404, "unknown_citation", f"No source found for {citation_id}.")
+
+
+@app.post("/ask")
+def ask(body: dict = Body(...), x_finn_token: str | None = Header(default=None)):
+    if not authorised(x_finn_token):
+        return err(401, "unauthorised", "Missing or wrong X-FINN-Token.")
+    symbol, question = str(body.get("symbol") or "").upper(), str(body.get("question") or "").strip()
+    if not symbol or not question or len(question) > 500:
+        return err(400, "bad_request", "Send a symbol and a question of at most 500 characters.")
+    return ask_mod.ask(symbol, question, body.get("context") or {})
 
 
 # ---- writes (Phase 3): shared-token auth, adequate for a single-user demo (BUILD_PLAN §3) -------------------

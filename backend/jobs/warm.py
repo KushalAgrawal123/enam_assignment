@@ -48,7 +48,7 @@ def snapshot(freeze: dt.datetime) -> dict:
 
 
 def warm_research() -> None:
-    """Number cards + documents for the research set; payloads frozen to web/public/demo/research/."""
+    """Number cards, documents and analysis for the research set; payloads frozen to web/public/demo/research/."""
     from finn.pull import bundle, run
 
     out = DEMO / "research"
@@ -57,6 +57,7 @@ def warm_research() -> None:
         run.build_numbers(sym, refresh=True)
         while not bundle.ingest(sym, budget_s=600)["done"]:
             pass
+        run.build_analysis(sym, refresh=True)
         p = run.payload(sym)
         (out / f"{sym}.json").write_text(json.dumps(p, default=str, separators=(",", ":")))
         print(f"{sym}: {p['documents']}", flush=True)
