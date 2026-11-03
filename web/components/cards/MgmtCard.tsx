@@ -3,7 +3,7 @@ import type { MgmtCard as MC, Person } from "@/lib/types";
 const VERB: Record<Person["action"], string> = { appointment: "joins", resignation: "resigns", cessation: "leaves",
   redesignation: "moves", retirement: "retires" };
 
-function P({ p }: { p: Person }) {
+function P({ p, company }: { p: Person; company: string }) {
   return (
     <li className="py-1.5">
       <p><span className="font-medium">{p.name}</span> <span className="text-muted">{VERB[p.action]}{p.role ? ` as ${p.role}` : ""}
@@ -15,18 +15,21 @@ function P({ p }: { p: Person }) {
           {p.bio.bullets.map((b) => <li key={b.url + b.text}>— {b.text} <a href={b.url} target="_blank" rel="noreferrer" className="text-muted underline">source</a></li>)}
         </ul>
       ) : p.bio?.note ? <p className="text-[12px] text-muted">{p.bio.note}</p> : null}
+      {p.action === "appointment" && !p.bio?.bullets?.length && (
+        <a href={`https://www.google.com/search?q=${encodeURIComponent(`"${p.name}" ${company}`)}`} target="_blank" rel="noreferrer"
+          className="text-[12px] text-muted underline underline-offset-2">Who is {p.name.split(" ")[0]}? Search ↗</a>
+      )}
     </li>
   );
 }
 
 /** Who's leaving, who's arriving, and who the newcomer is. */
-export function MgmtCard({ c }: { c: MC }) {
+export function MgmtCard({ c, company }: { c: MC; company: string }) {
   return (
     <div className="mt-2 text-[13px]">
-      {c.incoming.length > 0 && <><p className="text-[11px] uppercase tracking-wide text-muted">In</p><ul>{c.incoming.map((p) => <P key={p.name} p={p} />)}</ul></>}
-      {c.outgoing.length > 0 && <><p className="mt-1 text-[11px] uppercase tracking-wide text-muted">Out</p><ul>{c.outgoing.map((p) => <P key={p.name} p={p} />)}</ul></>}
+      {c.incoming.length > 0 && <><p className="text-[11px] uppercase tracking-wide text-muted">In</p><ul>{c.incoming.map((p) => <P key={p.name} p={p} company={company} />)}</ul></>}
+      {c.outgoing.length > 0 && <><p className="mt-1 text-[11px] uppercase tracking-wide text-muted">Out</p><ul>{c.outgoing.map((p) => <P key={p.name} p={p} company={company} />)}</ul></>}
       {c.flags.length > 0 && <p className="mt-1 text-[12px]">▼ {c.flags.join("; ")}</p>}
-      {c.incoming.some((p) => !p.bio) && <p className="mt-1 text-[11px] text-muted">Background search isn&apos;t switched on yet for this deployment.</p>}
     </div>
   );
 }

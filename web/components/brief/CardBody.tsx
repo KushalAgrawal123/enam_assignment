@@ -7,7 +7,7 @@ export function CardBody({ c }: { c: DigestCard }) {
   const card = c.card as PushCard | null;
   if (!card) return null;
   if (card.type === "results") return <ResultsCard c={card} />;
-  if (card.type === "management_change") return <MgmtCard c={card} />;
+  if (card.type === "management_change") return <MgmtCard c={card} company={c.symbol} />;
   if (card.type === "oneliner") return <p className="mt-2 text-[14px]">{card.line}</p>;
   return null;
 }

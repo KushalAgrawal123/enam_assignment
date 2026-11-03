@@ -11,7 +11,7 @@ piece looks like**. Where they disagree, this file wins, and every disagreement 
 |---|---|---|
 | 1 · Foundations + live Brief | install FINN on a phone and read a ranked brief of real portfolio filings | ✅ done 3 Nov: https://finn-beryl-delta.vercel.app (live) |
 | 2 · Pull foundations | look up any NSE ticker and get its number cards in seconds, each number tappable to its table row | ✅ done 3 Nov: Look up → /c/SYMBOL, API https://finn-api-khaki.vercel.app |
-| 3 · Push cards + triggers | see verified results numbers, who an incoming CFO is, one-liners, and Telegram alerts on thresholds you set | ✅ built 3 Nov; Telegram, bios, PDF rung and LLM one-liners switch on when their keys are added |
+| 3 · Push cards + triggers | see verified results numbers, who an incoming CFO is, one-liners, and Telegram alerts on thresholds you set | ✅ done 3 Nov (keyless, Delta 14) |
 | 4 · Pull analysis | read what management promised vs delivered, and tap any claim to its source page | not started |
 | 5 · Reliability + submission | hand it to a reviewer: works on unseen tickers, survives dead scrapers, package complete | not started |
 
@@ -79,6 +79,10 @@ piece looks like**. Where they disagree, this file wins, and every disagreement 
 13. **The write token never reaches the browser.** BUILD_PLAN put it in `NEXT_PUBLIC_FINN_API_TOKEN`; that ships it
     to every visitor. Writes (Rules, alert seen) go through the web app's own server routes, which add the
     token from a server-only variable.
+14. **Phase 3 runs without extra keys.** Alerts show at the top of the Brief instead of on Telegram. An incoming
+    person gets a "Who is …? Search ↗" link instead of a sourced bio. Results come from screener, checked by
+    arithmetic, and one-liners are regex-only. Telegram, Tavily and Gemini stay wired; adding a key later turns
+    each one on, with no code change.
 
 ## Setup you provide
 
@@ -89,7 +93,7 @@ piece looks like**. Where they disagree, this file wins, and every disagreement 
 | 1 | A Vercel account and an access token | Hosting the PWA (I deploy with the CLI) |
 | 1 (optional) | Gemini API key | Classifying leftovers only, in Phase 1 |
 | 2 | Nothing new (Delta 11: the API runs on Vercel) | — |
-| 3 | Telegram bot token + chat id (from BotFather), Tavily API key | Alerts and bios of incoming people |
+| 3 (optional) | Telegram bot token, Tavily API key, Gemini key | Push to phone, sourced bios, PDF cross-check (Delta 14) |
 | 4 | Anthropic API key | Strong tier, used by P9–P11 only |
 
 Keys go in `finn/.env`, which is gitignored and already has a commented line for each key, grouped by phase. They
@@ -297,8 +301,8 @@ Price, volume and category alerts arrive on Telegram, based on thresholds the in
 - [ ] A deliberately corrupted history value turns the card "unverified — open filing".
 - [ ] A senior management-change filing shows incoming and outgoing people. Each bio bullet links to a source, and
       the namesake filter has unit tests.
-- [ ] Setting volume to 1.2× in Rules and running `jobs.eod` sends ≥ 1 alert to Telegram, with a likely cause when
-      a filing exists.
+- [x] Setting volume to 1.2× in Rules and running `jobs.eod` raises ≥ 1 alert, with a likely cause when a filing
+      exists (4 fired). It shows in the Brief; Telegram only once a bot token is added (Delta 14).
 - [ ] Turning `relative_to_index` on or off changes which price alerts fire on a fixture market-wide down day.
 - [ ] `test_results.py` (XBRL fixture, PDF fixture, unit normalisation, bank schema), `test_alerts.py` and
       `test_mgmt.py` pass.
