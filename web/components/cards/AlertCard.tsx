@@ -10,7 +10,8 @@ export function AlertCard({ a, now, onNoted, onSnooze }: { a: Alert; now: string
   const [open, setOpen] = useState(false);
   const p = a.payload as unknown as AlertPayload;
   return (
-    <article className="rounded-xl border border-accent/40 bg-raised">
+    <article className="card relative overflow-hidden border-accent/40 bg-[color-mix(in_srgb,var(--accent)_4%,var(--raised))]">
+      <span aria-hidden className="absolute inset-y-0 left-0 w-[3px] bg-accent" />
       <button onClick={() => setOpen(!open)} aria-expanded={open} className="block w-full px-4 py-3 text-left">
         <div className="flex items-center gap-2 text-[12px] text-muted">
           <span aria-hidden className="text-accent">◆</span>

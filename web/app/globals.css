@@ -10,6 +10,10 @@
   --accent: #d2462b;
   --up: #2f6b3a;
   --down: #a33a22;
+  --hero: #1c1b19;
+  --hero-ink: #f7f5f0;
+  --hero-muted: #b9b6ad;
+  --shadow: 0 1px 2px rgb(28 27 25 / 0.04), 0 4px 14px -6px rgb(28 27 25 / 0.08);
   color-scheme: light;
 }
 
@@ -22,6 +26,10 @@
     --raised: #1c1c1a;
     --up: #7fb38a;
     --down: #e0826b;
+    --hero: #262522;
+    --hero-ink: #f2f0ea;
+    --hero-muted: #a19e95;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3);
     color-scheme: dark;
   }
 }
@@ -35,6 +43,9 @@
   --color-accent: var(--accent);
   --color-up: var(--up);
   --color-down: var(--down);
+  --color-hero: var(--hero);
+  --color-hero-ink: var(--hero-ink);
+  --color-hero-muted: var(--hero-muted);
   --font-serif: var(--font-newsreader), Georgia, serif;
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
@@ -76,3 +87,28 @@ body {
     transition: none;
   }
 }
+
+/* Surfaces: one card style everywhere. */
+.card {
+  border: 1px solid var(--hairline);
+  background: var(--raised);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+}
+
+/* Change pill: ▲ 6.8% on a faint tint of its own colour, never wrapping. */
+.chg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2em;
+  white-space: nowrap;
+  border-radius: 0.3rem;
+  padding: 0 0.3rem;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.chg-up { color: var(--up); background: color-mix(in srgb, var(--up) 10%, transparent); }
+.chg-down { color: var(--down); background: color-mix(in srgb, var(--down) 10%, transparent); }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

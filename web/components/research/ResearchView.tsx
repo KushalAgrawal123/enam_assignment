@@ -69,7 +69,7 @@ export function ResearchView({ symbol, initial = null }: { symbol: string; initi
       <main>
         <header>
           <p className="num text-[12px] text-muted">{p.symbol} · {p.basis ?? "—"}{p.is_financial ? " · bank/NBFC" : ""}</p>
-          <h1 className="font-serif text-[28px] leading-tight">{p.name}</h1>
+          <h1 className="font-serif text-[30px] leading-tight">{p.name}</h1>
           <p className="mt-1 text-[12px] text-muted">
             Numbers from screener.in tables as of <span className="num">{stamp(p.as_of)}</span> IST{state.demo ? " · demo copy" : ""}.
             {d && <> Sources: <span className="num">{d.transcripts}</span> call transcripts{d.annual_report ? `, annual report ${d.annual_report}` : ""}
@@ -77,13 +77,11 @@ export function ResearchView({ symbol, initial = null }: { symbol: string; initi
               {d.ocr_needed > 0 ? ` · ${d.ocr_needed} scanned (not readable yet)` : ""}.</>}
           </p>
         </header>
-        <nav className="sticky top-[env(safe-area-inset-top)] z-10 -mx-4 mt-3 flex gap-1.5 overflow-x-auto bg-paper/95 px-4 py-2 backdrop-blur">
-          {SECTIONS.map(([id, label]) => (
-            <a key={id} href={`#${id}`} className="shrink-0 rounded-full border border-hairline px-3 py-1 text-[12px] text-muted hover:text-ink">{label}</a>
-          ))}
-        </nav>
+        <KeyStats card={p.cards.financials} />
+        <SectionChips ids={SECTIONS} />
         <div className="mt-2 space-y-3">
-          <VerdictCard card={p.cards.verdict} ledger={p.cards.ledger} />
+          <VerdictCard card={p.cards.verdict} ledger={p.cards.ledger}
+            rules={["ledger", "narrative", "guidance", "bull_bear"].some((k) => (p.cards[k as keyof typeof p.cards]?.data as { method?: string } | null)?.method === "rules")} />
           {analysing && <p className="text-center text-[12px] text-muted">Reading the earnings calls and annual report…</p>}
           <LedgerCard card={p.cards.ledger} />
           <NarrativeCard card={p.cards.narrative} />
@@ -108,5 +106,55 @@ export function ResearchSkeleton({ symbol }: { symbol: string }) {
       <p className="mt-1 font-serif text-[22px] text-muted">Reading the latest numbers…</p>
       <div className="animate-pulse">{[0, 1, 2].map((i) => <div key={i} className="mt-4 h-40 rounded-xl bg-hairline" />)}</div>
     </main>
+  );
+}
+
+type FinItem = { label: string; value: number; unit: string };
+const compactCr = (v: number) => v >= 1e5 ? `₹${(v / 1e5).toFixed(2)}L cr` : `₹${Math.round(v).toLocaleString("en-IN")} cr`;
+
+/** Four headline numbers under the name: size, scale, profitability, returns. */
+function KeyStats({ card }: { card?: ResearchPayload["cards"]["financials"] }) {
+  const items = ((card?.data as { items?: FinItem[] } | null)?.items ?? []);
+  const pick = (...labels: string[]) => labels.map((l) => items.find((i) => i.label === l)).find(Boolean);
+  const stats = [["Market cap", pick("Market cap")], ["Revenue TTM", pick("Revenue (TTM)")],
+    ["Margin", pick("EBITDA margin (OPM)", "Financing margin")], ["Return", pick("ROCE", "ROE")]] as const;
+  if (!items.length) return null;
+  return (
+    <dl className="card mt-3 grid grid-cols-2 gap-px overflow-hidden bg-hairline p-0 sm:grid-cols-4">
+      {stats.map(([label, it]) => (
+        <div key={label} className="bg-raised px-3.5 py-2.5">
+          <dt className="text-[10px] uppercase tracking-wider text-muted">{label === "Return" && it ? it.label : label}</dt>
+          <dd className="num mt-0.5 text-[17px] font-medium">
+            {!it ? "—" : it.unit === "₹ cr" ? compactCr(it.value) : `${it.value}${it.unit === "%" ? "%" : ""}`}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+/** Sticky section chips; the one on screen is highlighted and kept in view. */
+function SectionChips({ ids }: { ids: string[][] }) {
+  const [active, setActive] = useState(ids[0][0]);
+  const nav = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const els = ids.map(([id]) => document.getElementById(id)).filter((e): e is HTMLElement => !!e);
+    const io = new IntersectionObserver((entries) => {
+      const top = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (top) setActive(top.target.id);
+    }, { rootMargin: "-120px 0px -55% 0px" });
+    els.forEach((e) => io.observe(e));
+    return () => io.disconnect();
+  }, [ids]);
+  useEffect(() => {
+    nav.current?.querySelector(`[data-id="${active}"]`)?.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+  }, [active]);
+  return (
+    <nav ref={nav} aria-label="Sections"
+      className="sticky top-[env(safe-area-inset-top)] z-20 -mx-4 mt-3 flex gap-1.5 overflow-x-auto bg-paper/90 px-4 py-2 backdrop-blur [scrollbar-width:none]">
+      {ids.map(([id, label]) => (
+        <a key={id} href={`#${id}`} data-id={id} aria-current={active === id ? "true" : undefined}
+          className={`shrink-0 rounded-full border px-3 py-1 text-[12px] transition-colors ${active === id ? "border-ink bg-ink text-paper" : "border-hairline text-muted hover:text-ink"}`}>{label}</a>
+      ))}
+    </nav>
   );
 }

@@ -50,7 +50,8 @@ export function Rules() {
       <h1 className="mt-1 font-serif text-[30px] leading-tight">Your rules</h1>
       <p className="text-[13px] text-muted">What counts as unusual is your call. Tap a number to change it.</p>
       {!s ? <p className="mt-8 text-muted">{status || "Loading…"}</p> : (
-        <div className="mt-6 space-y-6 font-serif text-[19px] leading-relaxed">
+        <div className="mt-6 space-y-3 font-serif text-[19px] leading-relaxed">
+          <section className="card px-4 py-4"><p className="mb-1 font-sans text-[11px] uppercase tracking-wider text-muted">Volume</p>
           <p>Tell me when a stock trades more than{" "}
             <InlineNumber label="Volume multiple" value={Number(s.vol_multiple)} min={1} max={20} suffix="×"
               onCommit={(v) => save({ vol_multiple: v })} /> its{" "}
@@ -59,7 +60,8 @@ export function Rules() {
             <span className="text-muted"> ignoring stocks that average under{" "}
               <InlineNumber label="Minimum average volume" value={Number(s.min_avg_volume)} min={0} max={1e9}
                 onCommit={(v) => save({ min_avg_volume: v })} /> shares a day.</span>
-          </p>
+          </p></section>
+          <section className="card px-4 py-4"><p className="mb-1 font-sans text-[11px] uppercase tracking-wider text-muted">Price</p>
           <p>…or when it moves more than ±
             <InlineNumber label="Price move percent" value={Number(s.price_move_pct)} min={0.5} max={50} suffix="%"
               onCommit={(v) => save({ price_move_pct: v })} /> in a day,{" "}
@@ -67,8 +69,8 @@ export function Rules() {
               className="border-b border-dashed border-ink" aria-pressed={s.relative_to_index}>
               {s.relative_to_index ? "measured against NIFTY 50" : "on its own"}</button>
             <span className="text-muted">{s.relative_to_index ? " (so a market-wide fall doesn't alert on every stock)." : "."}</span>
-          </p>
-          <div>
+          </p></section>
+          <section className="card px-4 py-4"><p className="mb-1 font-sans text-[11px] uppercase tracking-wider text-muted">Filings</p>
             <p>Alert me the moment a company files about</p>
             <div className="mt-2 flex flex-wrap gap-1.5 font-sans text-[13px]">
               {CATS.map(([c, label]) => {
@@ -81,7 +83,7 @@ export function Rules() {
               <button onClick={() => save({ min_category_tier: s.min_category_tier === "act" ? "know" : "act" })}
                 className="border-b border-dashed border-ink">{s.min_category_tier === "act" ? "Act" : "Know or higher"}</button>.
             </p>
-          </div>
+          </section>
         </div>
       )}
       {routine.length > 0 && (

@@ -115,29 +115,47 @@ export function Brief({ initial = null }: { initial?: BriefData | null }) {
   const now = data.asOf;
   return (
     <main>
-      <header className="flex items-start justify-between gap-3">
-        <div>
-          <p className="text-[12px] text-muted">{longDay(now)}</p>
-          <h1 className="whitespace-nowrap font-serif text-[30px] leading-tight">Your brief</h1>
+      <header>
+        <div className="flex items-center justify-between gap-3">
+          <p className="flex items-center gap-1.5 font-serif text-[16px] font-semibold tracking-[0.08em]">
+            FINN<span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent" />
+          </p>
+          <div className="flex shrink-0 items-center gap-2">
+            <DataModeChip mode={data.mode} freezeTime={data.freezeTime} reason={data.fallbackReason}
+              liveAvailable={liveConfigured()} onToggle={toggleMode} />
+            <Link href="/rules" aria-label="Your rules: what FINN alerts you about"
+              className="grid h-7 w-7 place-items-center rounded-full border border-hairline text-muted hover:text-ink">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden>
+                <path d="M4 7h10M18 7h2M4 17h4M12 17h8" /><circle cx="16" cy="7" r="2" /><circle cx="10" cy="17" r="2" />
+              </svg>
+            </Link>
+          </div>
         </div>
-        <div className="flex shrink-0 items-center gap-2 pt-1">
-          <DataModeChip mode={data.mode} freezeTime={data.freezeTime} reason={data.fallbackReason}
-            liveAvailable={liveConfigured()} onToggle={toggleMode} />
-          <Link href="/rules" aria-label="Your rules: what FINN alerts you about"
-            className="grid h-7 w-7 place-items-center rounded-full border border-hairline text-[12px] text-muted hover:text-ink">⚙</Link>
-        </div>
+        <p className="mt-4 text-[12px] text-muted">{longDay(now)}</p>
+        <h1 className="font-serif text-[32px] leading-tight">Your brief</h1>
       </header>
 
       <div className="mt-4">
         <WindowChip value={win} onChange={pickWindow} custom={custom} onCustom={setCustom} max={istDay(now)} />
       </div>
 
-      <p className="mt-4 font-serif text-[17px] leading-snug" aria-live="polite">
-        {h.filings === 0 ? <>No filings from your portfolio {WINDOW_LABEL[win]}.</> : <>
-          <span className="text-accent">{h.act} to act on</span>, {h.know} worth knowing, {h.routine} routine
-          <span className="text-muted"> — from {plural(h.filings, "filing")} across {plural(h.companies, "company", "companies")}.</span>
-        </>}
-      </p>
+      {h.filings === 0 ? (
+        <p className="mt-5 font-serif text-[18px] text-muted" aria-live="polite">No filings from your portfolio {WINDOW_LABEL[win]}.</p>
+      ) : (
+        <div className="mt-4" aria-live="polite">
+          <div className="grid grid-cols-3 gap-2">
+            {([["act", digest.act.length + digest.alerts.length, "to act on", "#act-h"], ["know", digest.know.length, "worth knowing", "#know-h"], ["routine", h.routine, "routine", "#routine"]] as const).map(([k, n, label, href]) => (
+              <a key={k} href={href} className={`card px-3 py-2.5 ${k === "act" && n > 0 ? "border-accent/40" : ""}`}>
+                <span className={`num block text-[26px] leading-none ${k === "act" && n > 0 ? "text-accent" : k === "routine" ? "text-muted" : ""}`}>{n}</span>
+                <span className="mt-1 block text-[12px] text-muted">{label}</span>
+              </a>
+            ))}
+          </div>
+          <p className="mt-2 text-[12px] text-muted">
+            From {plural(h.filings, "filing")} across {plural(h.companies, "company", "companies")} {WINDOW_LABEL[win]}.
+          </p>
+        </div>
+      )}
 
       {offer && (
         <div role="status" className="mt-4 rounded-xl border border-hairline bg-raised px-4 py-3">
@@ -151,8 +169,10 @@ export function Brief({ initial = null }: { initial?: BriefData | null }) {
       {offerNote && <p className="mt-3 text-[12px] text-muted" role="status">{offerNote} <Link href="/rules" className="underline">Rules</Link></p>}
 
       <section className="mt-6" aria-labelledby="act-h">
-        <h2 id="act-h" className="mb-2 flex items-center gap-2 text-[11px] uppercase tracking-wider text-muted">
+        <h2 id="act-h" className="mb-2.5 flex scroll-mt-4 items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-muted">
           <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent" /> Act
+          <span className="num font-normal">{digest.act.length + digest.alerts.length}</span>
+          <span aria-hidden className="ml-1 h-px flex-1 bg-hairline" />
         </h2>
         {digest.act.length === 0 && digest.alerts.length === 0 ? <p className="text-muted">Nothing needs action {WINDOW_LABEL[win]}.</p> : (
           <div className="space-y-3">
@@ -170,8 +190,11 @@ export function Brief({ initial = null }: { initial?: BriefData | null }) {
 
       {digest.know.length > 0 && (
         <section className="mt-7" aria-labelledby="know-h">
-          <h2 id="know-h" className="mb-1 text-[11px] uppercase tracking-wider text-muted">Know</h2>
-          <ul>{digest.know.map((c) => <KnowRow key={c.id} c={c} now={now}
+          <h2 id="know-h" className="mb-1 flex scroll-mt-4 items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-muted">
+            Know <span className="num font-normal">{digest.know.length}</span>
+            <span aria-hidden className="ml-1 h-px flex-1 bg-hairline" />
+          </h2>
+          <ul className="card px-4">{digest.know.map((c) => <KnowRow key={c.id} c={c} now={now}
             onNoted={() => act(c.id, "noted", c.symbol, undefined, c.category)} onSnooze={() => act(c.id, "snoozed", c.symbol)} />)}</ul>
         </section>
       )}

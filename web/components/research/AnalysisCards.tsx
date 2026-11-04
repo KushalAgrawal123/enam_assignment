@@ -1,7 +1,7 @@
 "use client";
 
 import type {
-  BullBearData, GuidanceData, LedgerData, LedgerItem, LedgerVerdict, Method, NarrativeData, ResearchCard, SnapshotData, Target, VerdictData,
+  BullBearData, GuidanceData, LedgerData, LedgerItem, LedgerVerdict, NarrativeData, ResearchCard, SnapshotData, Target, VerdictData,
 } from "@/lib/types";
 import { CardShell } from "./NumberCards";
 import { Cite, useAsk } from "./Receipt";
@@ -20,11 +20,6 @@ export function Chip({ v }: { v: LedgerVerdict }) {
   return <span className={`whitespace-nowrap rounded border px-1.5 py-px text-[11px] ${x.cls}`}><span aria-hidden>{x.mark} </span>{x.label}</span>;
 }
 
-function MethodNote({ m }: { m?: Method }) {
-  if (m !== "rules") return null;
-  return <p className="mt-3 text-[11px] text-muted">Read by fixed rules from the documents, quoted verbatim. Written analysis switches on with a model key.</p>;
-}
-
 const fmtNum = (v: number) => v.toLocaleString("en-IN", { maximumFractionDigits: 2 });
 export function targetText(t: Target | null | undefined): string {
   if (!t) return "—";
@@ -35,23 +30,31 @@ export function targetText(t: Target | null | undefined): string {
   return t.lo === t.hi ? `${fmtNum(t.lo)}${u}` : `${fmtNum(t.lo)}–${fmtNum(t.hi)}${u}`;
 }
 
-export function VerdictCard({ card, ledger }: { card?: ResearchCard; ledger?: ResearchCard }) {
+export function VerdictCard({ card, ledger, rules }: { card?: ResearchCard; ledger?: ResearchCard; rules?: boolean }) {
   const d = card?.data as VerdictData | null;
   const ask = useAsk();
   const sum = (ledger?.data as LedgerData | null)?.summary;
   return (
-    <section id="verdict" className="scroll-mt-24 rounded-xl border border-ink/80 bg-raised px-4 py-4">
-      <p className="text-[11px] uppercase tracking-wider text-muted">Verdict</p>
-      {!card ? <p className="mt-1 font-serif text-[19px] text-muted">Reading the calls…</p>
-        : <p className="mt-1 font-serif text-[20px] leading-snug">{d?.verdict ?? card.gaps.join(" ")}</p>}
+    <section id="verdict" className="scroll-mt-28 rounded-2xl bg-hero px-5 py-5 text-hero-ink shadow-[var(--shadow)]">
+      <p className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-hero-muted">
+        <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent" /> Verdict
+      </p>
+      {!card ? <p className="mt-2 animate-pulse font-serif text-[21px] text-hero-muted">Reading the calls…</p>
+        : <p className="mt-2 font-serif text-[22px] leading-snug">{d?.verdict ?? card.gaps.join(" ")}</p>}
       {sum && (
-        <a href="#ledger" className="mt-3 flex flex-wrap gap-1.5" aria-label="Guidance tally; jump to the ledger">
+        <a href="#ledger" className="mt-4 flex flex-wrap gap-1.5" aria-label="Guidance tally; jump to the ledger">
           {(Object.keys(VERDICT) as LedgerVerdict[]).filter((v) => sum[v]).map((v) => (
-            <span key={v} className={`num rounded border px-1.5 py-px text-[11px] ${VERDICT[v].cls}`}>{VERDICT[v].mark} {sum[v]} {VERDICT[v].label.toLowerCase()}</span>
+            <span key={v} className="num rounded-md border border-hero-muted/40 px-2 py-0.5 text-[11px]">
+              <span aria-hidden className={"text-[10px] " + (v === "delivered" || v === "beat" ? "text-[#8fc79b]" : v === "partial" || v === "missed" ? "text-[#f0a08c]" : "text-hero-muted")}>{VERDICT[v].mark}</span> {sum[v]} {VERDICT[v].label.toLowerCase()}
+            </span>
           ))}
         </a>
       )}
-      <button onClick={() => ask({ card: "verdict" })} className="mt-3 text-[13px] font-medium underline underline-offset-2">Ask FINN about {"this company"} →</button>
+      <button onClick={() => ask({ card: "verdict" })}
+        className="mt-4 inline-flex items-center gap-2 rounded-full bg-hero-ink px-4 py-2 text-[13px] font-medium text-hero">
+        Ask FINN about this company <span aria-hidden>→</span>
+      </button>
+      {rules && <p className="mt-3 text-[11px] leading-snug text-hero-muted">The analysis below is read by fixed rules from the company&apos;s own calls and tables, with every quote verbatim. Written analysis switches on with a model key.</p>}
     </section>
   );
 }
@@ -66,7 +69,6 @@ export function LedgerCard({ card }: { card?: ResearchCard }) {
         <ul className="mt-3 divide-y divide-hairline">
           {d.items.map((i) => <LedgerRow key={i.id} i={i} calls={d.calls} />)}
         </ul>
-        <MethodNote m={d.method} />
       </>}
     </CardShell>
   );
@@ -125,7 +127,6 @@ export function NarrativeCard({ card }: { card?: ResearchCard }) {
             </li>
           ))}
         </ul>
-        <MethodNote m={d.method} />
       </>}
     </CardShell>
   );
@@ -166,7 +167,6 @@ export function GuidanceCard({ card }: { card?: ResearchCard }) {
             </li>
           ))}
         </ul>
-        <MethodNote m={d.method} />
       </>}
     </CardShell>
   );
@@ -188,7 +188,6 @@ export function BullBearCard({ card }: { card?: ResearchCard }) {
         <div className="mt-2 grid gap-4 sm:grid-cols-2">{side("Bull", d.bull, "▲")}{side("Bear", d.bear, "▼")}</div>
         <p className="mt-3 border-t border-hairline pt-2 text-[13px]"><span className="text-muted">Swing factor: </span>{d.swing_factor}</p>
         <p className="mt-2 text-[11px] text-muted">No price targets or recommendations.</p>
-        <MethodNote m={d.method} />
       </>}
     </CardShell>
   );

@@ -5,7 +5,8 @@ import { useEffect, useMemo, useState } from "react";
 import { dayMove, Sparkline } from "@/components/Sparkline";
 import { getSettings } from "@/lib/api";
 import { loadBrief } from "@/lib/data";
-import { pct, shortName } from "@/lib/format";
+import { shortName } from "@/lib/format";
+import { Chg } from "@/components/cards/ResultsCard";
 import { hiddenIds } from "@/lib/triage";
 import type { BriefData, PricePoint, ResultsCard, Settings } from "@/lib/types";
 
@@ -66,32 +67,31 @@ export function Watch({ initial = null }: { initial?: BriefData | null }) {
 
   return (
     <main>
-      <h1 className="font-serif text-[30px] leading-tight">Watch</h1>
-      <p className="mt-1 text-[12px] text-muted">
-        Your <span className="num">{rows.length}</span> holdings, most in need of attention first: open Act items, unseen alerts,
-        how close today is to your thresholds (<span className="num">{rules.vol_multiple}×</span> volume, <span className="num">±{rules.price_move_pct}%</span>), and the last results.
+      <p className="flex items-center gap-1.5 font-serif text-[16px] font-semibold tracking-[0.08em]">FINN<span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent" /></p>
+      <h1 className="mt-4 font-serif text-[32px] leading-tight">Watch</h1>
+      <p className="text-[13px] text-muted">
+        <span className="num">{rows.length}</span> holdings, most in need of attention first.
+        <span className="ml-1">Thresholds: <span className="num">{rules.vol_multiple}×</span> volume, <span className="num">±{rules.price_move_pct}%</span> move.</span>
         {data.mode === "demo" && " Demo data."}
       </p>
       {rows.length === 0 ? <p className="mt-8 text-center text-muted">No portfolio companies are set up yet.</p> : (
-        <ul className="mt-4 divide-y divide-hairline border-y border-hairline">
+        <ul className="card mt-4 divide-y divide-hairline px-4">
           {rows.map((r) => (
             <li key={r.symbol}>
-              <Link href={`/c/${r.symbol}`} className="flex items-center gap-3 py-2.5">
+              <Link href={`/c/${r.symbol}`} className="flex items-center gap-3 py-3">
                 <div className="min-w-0 flex-1">
                   <p className="flex items-baseline gap-2"><span className="num text-[13px] font-medium">{r.symbol}</span>
                     <span className="truncate text-[12px] text-muted">{shortName(r.name, r.symbol)}</span></p>
-                  <p className="mt-0.5 flex flex-wrap gap-1.5 text-[11px]">
-                    {r.act > 0 && <span className="rounded border border-accent/50 px-1 text-accent">{r.act} to act</span>}
-                    {r.alerts > 0 && <span className="rounded border border-accent/50 px-1 text-accent">{r.alerts} alert{r.alerts > 1 ? "s" : ""}</span>}
-                    {r.volX !== null && <span className={`num rounded border px-1 ${r.volX >= rules.vol_multiple ? "border-ink" : "border-hairline text-muted"}`}>vol {r.volX.toFixed(1)}×</span>}
-                    {r.results && <span className="num rounded border border-hairline px-1 text-muted">
-                      results PAT {pct(r.results.pat_yoy)} YoY{r.results.verified ? " ✓" : ""}</span>}
+                  <p className="mt-1 flex flex-wrap items-center gap-1.5 text-[11px]">
+                    {r.act > 0 && <span className="rounded-md bg-accent px-1.5 py-px font-medium text-white">{r.act} to act</span>}
+                    {r.alerts > 0 && <span className="rounded-md border border-accent/60 px-1.5 text-accent">{r.alerts} alert{r.alerts > 1 ? "s" : ""}</span>}
+                    {r.volX !== null && <span className={`num rounded-md px-1.5 ${r.volX >= rules.vol_multiple ? "bg-ink text-paper" : "text-muted"}`}>vol {r.volX.toFixed(1)}×</span>}
+                    {r.results && <span className="inline-flex items-center gap-1 text-muted">PAT <Chg v={r.results.pat_yoy} /> YoY</span>}
                     {r.act === 0 && r.alerts === 0 && !r.results && r.nearness < 0.5 && <span className="text-muted">quiet</span>}
                   </p>
                 </div>
-                <Sparkline points={r.prices} />
-                <span className={`num w-16 text-right text-[12px] ${r.move === null ? "text-muted" : r.move >= 0 ? "text-up" : "text-down"}`}>
-                  {pct(r.move)}</span>
+                <Sparkline points={r.prices} width={60} />
+                <span className="w-[4.4rem] text-right text-[12px]"><Chg v={r.move} /></span>
               </Link>
             </li>
           ))}

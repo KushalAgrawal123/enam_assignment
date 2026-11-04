@@ -9,7 +9,7 @@ export function RoutineFold({ routine, now }: { routine: Digest["routine"]; now:
   const [open, setOpen] = useState(false);
   if (!routine.count) return null;
   return (
-    <section className="mt-6">
+    <section id="routine" className="mt-6 scroll-mt-4">
       <button onClick={() => setOpen(!open)} aria-expanded={open}
         className="flex w-full items-center justify-between border-y border-hairline py-3 text-left text-muted">
         <span>

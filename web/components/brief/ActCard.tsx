@@ -16,7 +16,8 @@ export function ActCard({ c, company, prices, now, onNoted, onSnooze }: {
   const move = dayMove(prices);
   return (
     <Swipeable onNoted={onNoted} onSnooze={onSnooze}>
-    <article className="rounded-xl border border-hairline bg-raised">
+    <article className="card relative overflow-hidden">
+      <span aria-hidden className="absolute inset-y-0 left-0 w-[3px] bg-accent" />
       <button onClick={() => setOpen(!open)} aria-expanded={open} className="block w-full px-4 pb-3 pt-3.5 text-left">
         <div className="flex items-center gap-2 text-[12px] text-muted">
           <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
