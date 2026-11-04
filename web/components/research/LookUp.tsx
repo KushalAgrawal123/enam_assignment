@@ -65,12 +65,24 @@ export function LookUp() {
       )}
       {!q && (
         <section className="mt-6">
-          <h2 className="text-[11px] uppercase tracking-wider text-muted">Research set</h2>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {["BEL", "POLYCAB", "PERSISTENT", "KPITTECH", "HCLTECH"].map((s) => (
-              <button key={s} onClick={() => go(s)} className="num rounded-full border border-hairline px-3 py-1 text-[12px]">{s}</button>
-            ))}
-          </div>
+          <h2 className="text-[11px] uppercase tracking-wider text-muted">Already read · opens instantly</h2>
+          <ul className="mt-1">{["BEL", "POLYCAB", "PERSISTENT", "KPITTECH", "HCLTECH"].map((sym) => (
+            <li key={sym}><button onClick={() => go(sym)} className="grid w-full grid-cols-[6.5rem_1fr_auto] items-center gap-3 border-b border-hairline py-2.5 text-left">
+              <span className="num text-[13px] font-medium">{sym}</span><span className="truncate text-muted">{names[sym] ?? ""}</span>
+              <span aria-hidden className="text-muted">→</span></button></li>
+          ))}</ul>
+        </section>
+      )}
+      {!q && (
+        <section className="mt-6 rounded-xl border border-hairline bg-raised px-4 py-3">
+          <h2 className="text-[11px] uppercase tracking-wider text-muted">What you get for any company</h2>
+          <ol className="mt-2 space-y-2 text-[13px]">
+            <li><span className="font-medium">Numbers in seconds</span> <span className="text-muted">— revenue, margins, cash conversion, debt, ten-year trends.</span></li>
+            <li><span className="font-medium">Promised vs delivered</span> <span className="text-muted">— what management guided on its last four calls, checked against the results.</span></li>
+            <li><span className="font-medium">Narrative vs numbers</span> <span className="text-muted">— where the talk runs ahead of the tables.</span></li>
+            <li><span className="font-medium">A receipt for everything</span> <span className="text-muted">— tap any number or quote to see its source page.</span></li>
+          </ol>
+          <p className="mt-2 text-[11px] text-muted">Primary sources only: exchange filings, the company&apos;s calls and annual report. No news, no web search.</p>
         </section>
       )}
     </main>

@@ -35,14 +35,22 @@ export function targetText(t: Target | null | undefined): string {
   return t.lo === t.hi ? `${fmtNum(t.lo)}${u}` : `${fmtNum(t.lo)}–${fmtNum(t.hi)}${u}`;
 }
 
-export function VerdictCard({ card }: { card?: ResearchCard }) {
+export function VerdictCard({ card, ledger }: { card?: ResearchCard; ledger?: ResearchCard }) {
   const d = card?.data as VerdictData | null;
   const ask = useAsk();
+  const sum = (ledger?.data as LedgerData | null)?.summary;
   return (
     <section id="verdict" className="scroll-mt-24 rounded-xl border border-ink/80 bg-raised px-4 py-4">
       <p className="text-[11px] uppercase tracking-wider text-muted">Verdict</p>
       {!card ? <p className="mt-1 font-serif text-[19px] text-muted">Reading the calls…</p>
         : <p className="mt-1 font-serif text-[20px] leading-snug">{d?.verdict ?? card.gaps.join(" ")}</p>}
+      {sum && (
+        <a href="#ledger" className="mt-3 flex flex-wrap gap-1.5" aria-label="Guidance tally; jump to the ledger">
+          {(Object.keys(VERDICT) as LedgerVerdict[]).filter((v) => sum[v]).map((v) => (
+            <span key={v} className={`num rounded border px-1.5 py-px text-[11px] ${VERDICT[v].cls}`}>{VERDICT[v].mark} {sum[v]} {VERDICT[v].label.toLowerCase()}</span>
+          ))}
+        </a>
+      )}
       <button onClick={() => ask({ card: "verdict" })} className="mt-3 text-[13px] font-medium underline underline-offset-2">Ask FINN about {"this company"} →</button>
     </section>
   );
@@ -80,10 +88,12 @@ function LedgerRow({ i, calls }: { i: LedgerItem; calls: string[] }) {
           const prev = calls.slice(0, k).map((p) => byCall[p]).filter(Boolean).pop();
           const revised = q && prev && targetText(q.target) !== targetText(prev.target);
           return (
-            <div key={c} className={`rounded border px-1.5 py-1 ${q ? "border-hairline" : "border-dashed border-hairline/70"}`}>
-              <p className="num text-[10px] text-muted">{c}</p>
-              {q ? <p className="num text-[12px]">{targetText(q.target)}{revised && <span className="text-muted" title="Revised"> ↻</span>}
-                <Cite ids={[q.said_citation]} /></p> : <p className="text-[12px] text-muted">—</p>}
+            <div key={c} className={`min-w-0 overflow-hidden rounded border px-1.5 py-1 ${q ? "border-hairline" : "border-dashed border-hairline/70"}`}>
+              <p className="num whitespace-nowrap text-[10px] text-muted">{c.replace(/ 20(\d\d)$/, " '$1")}</p>
+              {q ? <>
+                <p className="num whitespace-nowrap text-[12px]">{targetText(q.target)}{revised && <span className="text-muted" title="Revised"> ↻</span>}</p>
+                <div className="-ml-1 mt-0.5"><Cite ids={[q.said_citation]} /></div>
+              </> : <p className="text-[12px] text-muted">—</p>}
             </div>
           );
         })}

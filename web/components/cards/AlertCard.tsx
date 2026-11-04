@@ -17,8 +17,10 @@ export function AlertCard({ a, now, onNoted, onSnooze }: { a: Alert; now: string
           <span className="font-medium text-ink">{a.kind === "price_volume" ? "Unusual move" : "Alert"}</span>
           <span className="num ml-auto">{when(a.ts, now)}</span>
         </div>
-        <p className="num mt-1 text-[16px]">{a.title}</p>
-        {p?.likely_cause && <p className="mt-0.5 text-[12px] text-muted">Likely cause: {p.likely_cause.subject}</p>}
+        <h3 className="mt-1.5 font-serif text-[18px] leading-snug">{a.title}</h3>
+        <p className="mt-0.5 line-clamp-2 text-[12px] text-muted">
+          {p?.likely_cause ? <>Likely cause: {p.likely_cause.subject}</> : a.kind === "price_volume" ? "No filing from the company in the 24 hours before the close." : null}
+        </p>
       </button>
       <div className="fold" data-open={open}><div>
         <div className="border-t border-hairline px-4 pb-4 pt-3 text-[13px]">

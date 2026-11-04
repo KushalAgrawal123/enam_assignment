@@ -83,7 +83,7 @@ export function ResearchView({ symbol, initial = null }: { symbol: string; initi
           ))}
         </nav>
         <div className="mt-2 space-y-3">
-          <VerdictCard card={p.cards.verdict} />
+          <VerdictCard card={p.cards.verdict} ledger={p.cards.ledger} />
           {analysing && <p className="text-center text-[12px] text-muted">Reading the earnings calls and annual report…</p>}
           <LedgerCard card={p.cards.ledger} />
           <NarrativeCard card={p.cards.narrative} />
